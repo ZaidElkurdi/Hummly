@@ -38,7 +38,10 @@
 		935DC7F418F907B800A42623 /* VERSION in Resources */ = {isa = PBXBuildFile; fileRef = 935DC7E618F907B800A42623 /* VERSION */; };
 		935DC7FA18F9115700A42623 /* RecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 935DC7F918F9115700A42623 /* RecordViewController.m */; };
 		B86D4F0F18F93E390048F5A3 /* searchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = B86D4F0E18F93E390048F5A3 /* searchBar.m */; };
-		B86D4F1118F93E590048F5A3 /* searchBarXIB.xib in Resources */ = {isa = PBXBuildFile; fileRef = B86D4F1018F93E590048F5A3 /* searchBarXIB.xib */; };
+		B86D4F1318F942C10048F5A3 /* searchBG.png in Resources */ = {isa = PBXBuildFile; fileRef = B86D4F1218F942C10048F5A3 /* searchBG.png */; };
+		B86D4F1518F953020048F5A3 /* magnifyingGlass.png in Resources */ = {isa = PBXBuildFile; fileRef = B86D4F1418F953020048F5A3 /* magnifyingGlass.png */; };
+		B86D4F1718F957A20048F5A3 /* mainBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = B86D4F1618F957A20048F5A3 /* mainBackground.png */; };
+		B86D4F1A18F967510048F5A3 /* categoryTiles.m in Sources */ = {isa = PBXBuildFile; fileRef = B86D4F1918F967510048F5A3 /* categoryTiles.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -102,7 +105,11 @@
 		935DC7F918F9115700A42623 /* RecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordViewController.m; sourceTree = "<group>"; };
 		B86D4F0D18F93E390048F5A3 /* searchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = searchBar.h; sourceTree = "<group>"; };
 		B86D4F0E18F93E390048F5A3 /* searchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = searchBar.m; sourceTree = "<group>"; };
-		B86D4F1018F93E590048F5A3 /* searchBarXIB.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = searchBarXIB.xib; sourceTree = "<group>"; };
+		B86D4F1218F942C10048F5A3 /* searchBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = searchBG.png; sourceTree = "<group>"; };
+		B86D4F1418F953020048F5A3 /* magnifyingGlass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = magnifyingGlass.png; sourceTree = "<group>"; };
+		B86D4F1618F957A20048F5A3 /* mainBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mainBackground.png; sourceTree = "<group>"; };
+		B86D4F1818F967510048F5A3 /* categoryTiles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = categoryTiles.h; sourceTree = "<group>"; };
+		B86D4F1918F967510048F5A3 /* categoryTiles.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = categoryTiles.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,9 +174,10 @@
 				935DC7A318F8FC3600A42623 /* Main.storyboard */,
 				B86D4F0D18F93E390048F5A3 /* searchBar.h */,
 				B86D4F0E18F93E390048F5A3 /* searchBar.m */,
-				B86D4F1018F93E590048F5A3 /* searchBarXIB.xib */,
 				935DC7A618F8FC3600A42623 /* ViewController.h */,
 				935DC7A718F8FC3600A42623 /* ViewController.m */,
+				B86D4F1818F967510048F5A3 /* categoryTiles.h */,
+				B86D4F1918F967510048F5A3 /* categoryTiles.m */,
 				935DC7F818F9115700A42623 /* RecordViewController.h */,
 				935DC7F918F9115700A42623 /* RecordViewController.m */,
 				935DC7A918F8FC3600A42623 /* Images.xcassets */,
@@ -212,6 +220,9 @@
 		935DC7C618F8FD7C00A42623 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				B86D4F1618F957A20048F5A3 /* mainBackground.png */,
+				B86D4F1418F953020048F5A3 /* magnifyingGlass.png */,
+				B86D4F1218F942C10048F5A3 /* searchBG.png */,
 				935DC7C918F8FF4200A42623 /* SearchBar.png */,
 			);
 			name = Images;
@@ -302,9 +313,12 @@
 		935DC78618F8FC3600A42623 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = LaHacks;
 				TargetAttributes = {
+					935DC78D18F8FC3600A42623 = {
+						DevelopmentTeam = W735WRNN72;
+					};
 					935DC7AE18F8FC3700A42623 = {
 						TestTargetID = 935DC78D18F8FC3600A42623;
 					};
@@ -335,11 +349,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				935DC7AA18F8FC3600A42623 /* Images.xcassets in Resources */,
+				B86D4F1718F957A20048F5A3 /* mainBackground.png in Resources */,
+				B86D4F1518F953020048F5A3 /* magnifyingGlass.png in Resources */,
 				935DC79C18F8FC3600A42623 /* InfoPlist.strings in Resources */,
 				935DC7A518F8FC3600A42623 /* Main.storyboard in Resources */,
 				935DC7F418F907B800A42623 /* VERSION in Resources */,
-				B86D4F1118F93E590048F5A3 /* searchBarXIB.xib in Resources */,
 				935DC7CA18F8FF4200A42623 /* SearchBar.png in Resources */,
+				B86D4F1318F942C10048F5A3 /* searchBG.png in Resources */,
 				935DC7F318F907B800A42623 /* CHANGELOG in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -372,6 +388,7 @@
 				935DC7E918F907B800A42623 /* EZAudioFile.m in Sources */,
 				935DC79E18F8FC3600A42623 /* main.m in Sources */,
 				935DC7F118F907B800A42623 /* EZRecorder.m in Sources */,
+				B86D4F1A18F967510048F5A3 /* categoryTiles.m in Sources */,
 				935DC7E818F907B800A42623 /* EZAudio.m in Sources */,
 				935DC7EE18F907B800A42623 /* EZMicrophone.m in Sources */,
 				935DC7F018F907B800A42623 /* EZPlot.m in Sources */,
@@ -429,7 +446,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -468,7 +484,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -502,10 +517,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LAHacks/LAHacks-Prefix.pch";
 				INFOPLIST_FILE = "LAHacks/LAHacks-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -515,10 +533,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LAHacks/LAHacks-Prefix.pch";
 				INFOPLIST_FILE = "LAHacks/LAHacks-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -526,7 +547,6 @@
 		935DC7C418F8FC3700A42623 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/LAHacks.app/LAHacks";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -549,7 +569,6 @@
 		935DC7C518F8FC3700A42623 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/LAHacks.app/LAHacks";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",

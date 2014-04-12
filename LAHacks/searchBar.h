@@ -9,5 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface searchBar : UIView
-
+{
+}
+@property (nonatomic,strong) UIView *bgView;
+@property (nonatomic,strong) UIView *coverView;
+@property (nonatomic,strong) UITextField *searchField;
 @end
