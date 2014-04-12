@@ -88,6 +88,7 @@ bool alreadyStopped = NO;
   
   NSLog(@"File written to application sandbox's documents directory: %@",[self testFilePathURL]);
   [self.view addSubview:_playButton];
+    [self loadResults];
 }
 - (void)playClicked
 {
@@ -97,6 +98,31 @@ bool alreadyStopped = NO;
     } else {
         [[self getPlayer] togglePause];
     }
+}
+
+-(void)loadResults
+{
+    
+    
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[[NSString alloc] initWithFormat:@"http://developer.echonest.com/api/v4/song/search?api_key=ZAIMFQ6WMS5EZUABI&format=json&results=100&artist=%@",@"Billy+Joel"]]];
+    
+    NSURLResponse *resp = nil;
+    NSError *error = nil;
+    
+    NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:&resp error:& error];
+
+    NSDictionary *rawData = [NSJSONSerialization JSONObjectWithData:response options:kNilOptions error:&error];
+    NSLog(@"raw: %@",rawData);
+    NSArray *postData = [rawData objectForKey:@"name"];
+    NSMutableArray *postArray;
+    for(NSDictionary *post in postData)
+    {
+        postArray = [[NSMutableArray alloc] init];
+        [postArray addObject:[post objectForKey:@"catalog"]];
+    }
+    
+    NSLog(@"Return From JSON : %@", postArray);
+    
 }
 
 -(void)toggleRecording {
