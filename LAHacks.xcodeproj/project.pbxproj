@@ -37,6 +37,8 @@
 		935DC7F318F907B800A42623 /* CHANGELOG in Resources */ = {isa = PBXBuildFile; fileRef = 935DC7E518F907B800A42623 /* CHANGELOG */; };
 		935DC7F418F907B800A42623 /* VERSION in Resources */ = {isa = PBXBuildFile; fileRef = 935DC7E618F907B800A42623 /* VERSION */; };
 		935DC7FA18F9115700A42623 /* RecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 935DC7F918F9115700A42623 /* RecordViewController.m */; };
+		B86D4F0F18F93E390048F5A3 /* searchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = B86D4F0E18F93E390048F5A3 /* searchBar.m */; };
+		B86D4F1118F93E590048F5A3 /* searchBarXIB.xib in Resources */ = {isa = PBXBuildFile; fileRef = B86D4F1018F93E590048F5A3 /* searchBarXIB.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,6 +100,9 @@
 		935DC7E618F907B800A42623 /* VERSION */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = VERSION; sourceTree = "<group>"; };
 		935DC7F818F9115700A42623 /* RecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordViewController.h; sourceTree = "<group>"; };
 		935DC7F918F9115700A42623 /* RecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordViewController.m; sourceTree = "<group>"; };
+		B86D4F0D18F93E390048F5A3 /* searchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = searchBar.h; sourceTree = "<group>"; };
+		B86D4F0E18F93E390048F5A3 /* searchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = searchBar.m; sourceTree = "<group>"; };
+		B86D4F1018F93E590048F5A3 /* searchBarXIB.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = searchBarXIB.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +165,9 @@
 				935DC7A018F8FC3600A42623 /* AppDelegate.h */,
 				935DC7A118F8FC3600A42623 /* AppDelegate.m */,
 				935DC7A318F8FC3600A42623 /* Main.storyboard */,
+				B86D4F0D18F93E390048F5A3 /* searchBar.h */,
+				B86D4F0E18F93E390048F5A3 /* searchBar.m */,
+				B86D4F1018F93E590048F5A3 /* searchBarXIB.xib */,
 				935DC7A618F8FC3600A42623 /* ViewController.h */,
 				935DC7A718F8FC3600A42623 /* ViewController.m */,
 				935DC7F818F9115700A42623 /* RecordViewController.h */,
@@ -330,6 +338,7 @@
 				935DC79C18F8FC3600A42623 /* InfoPlist.strings in Resources */,
 				935DC7A518F8FC3600A42623 /* Main.storyboard in Resources */,
 				935DC7F418F907B800A42623 /* VERSION in Resources */,
+				B86D4F1118F93E590048F5A3 /* searchBarXIB.xib in Resources */,
 				935DC7CA18F8FF4200A42623 /* SearchBar.png in Resources */,
 				935DC7F318F907B800A42623 /* CHANGELOG in Resources */,
 			);
@@ -357,6 +366,7 @@
 				935DC7A818F8FC3600A42623 /* ViewController.m in Sources */,
 				935DC7EA18F907B800A42623 /* EZAudioPlayer.m in Sources */,
 				935DC7E718F907B800A42623 /* AEFloatConverter.m in Sources */,
+				B86D4F0F18F93E390048F5A3 /* searchBar.m in Sources */,
 				935DC7A218F8FC3600A42623 /* AppDelegate.m in Sources */,
 				935DC7EC18F907B800A42623 /* EZAudioPlotGL.m in Sources */,
 				935DC7E918F907B800A42623 /* EZAudioFile.m in Sources */,
