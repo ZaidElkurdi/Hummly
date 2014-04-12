@@ -14,36 +14,50 @@
 @implementation ViewController
 {
     searchBar *searchView;
+    UIImageView *autocompleteBorder;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
     self.autocompleteUrls = [[NSMutableArray alloc] init];
-    
-    self.autocompleteTableView = [[UITableView alloc] initWithFrame:CGRectMake(25, 220, 280, 90) style:UITableViewStylePlain];
-    self.autocompleteTableView.delegate=self;
-    self.autocompleteTableView.dataSource=self;
-    self.autocompleteTableView.scrollEnabled = YES;
-    //self.autocompleteTableView.hidden = YES;
-    [self.view addSubview:self.autocompleteTableView];
-    
     self.pastUrls = [[NSArray alloc] init];
+    
+        
+    autocompleteBorder = [[UIImageView alloc] initWithFrame:CGRectMake(20,215,285,130 )];
+    autocompleteBorder.image = [UIImage imageNamed:@"autocompleteBorder.png"];
+    autocompleteBorder.hidden = true;
+   [self.view addSubview:autocompleteBorder];
+    
+
     
     searchView = [[searchBar alloc] initWithFrame:self.view.frame];
     searchView.searchField.delegate=self;
     [self.view addSubview:searchView];
     
-    UIView *test = [[UIView alloc] initWithFrame:CGRectMake(10, 345, 300, 200)];
-    test.backgroundColor = [UIColor redColor];
-    [self.view addSubview:test];
+    UICollectionViewFlowLayout *layout=[[UICollectionViewFlowLayout alloc] init];
+    layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+    
+    self.categoryView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 345, 320, 200) collectionViewLayout:layout];
+    self.categoryView.backgroundColor = [UIColor clearColor];
+    self.categoryView.delegate = self;
+    self.categoryView.dataSource = self;
+    self.categoryView.showsHorizontalScrollIndicator = FALSE;
+    
+    [self.view addSubview:self.categoryView];
     
     NSArray *categories = [NSArray arrayWithObjects:@"Rock", @"Pop", @"Jazz", @"Country", @"Alternative", nil];
     NSArray *values = [NSArray arrayWithObjects:@"100", @"65", @"30", @"24", @"103", nil];
     NSDictionary *testDict = [NSDictionary dictionaryWithObjects:values forKeys:categories];
     
-    categoryTiles *tiles = [[categoryTiles alloc] initWithFrame:CGRectMake(10, 345, 300, 200) withDictionary:testDict];
+    [self.categoryView registerClass:[categoryCardCell class] forCellWithReuseIdentifier:@"categoryCellIdentifier"];
+    
+    self.autocompleteTableView = [[UITableView alloc] initWithFrame:CGRectMake(25, 228, 275, 111) style:UITableViewStylePlain];
+    self.autocompleteTableView.delegate=self;
+    self.autocompleteTableView.dataSource=self;
+    self.autocompleteTableView.allowsSelectionDuringEditing = YES;
+    [self.view addSubview:self.autocompleteTableView];
+    self.autocompleteTableView.hidden = YES;
 }
 
 - (void)didReceiveMemoryWarning
@@ -57,11 +71,25 @@
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
     NSLog(@"Being called");
+    if(self.autocompleteTableView.hidden==true)
+    {
+        self.autocompleteTableView.hidden = FALSE;
+        autocompleteBorder.hidden = FALSE;
+    }
     
     if([string isEqualToString:@"\n"])
     {
         [textField resignFirstResponder];
         return NO;
+    }
+    
+    NSString *substring = [NSString stringWithString:textField.text];
+    substring = [substring stringByReplacingCharactersInRange:range withString:string];
+    NSString *compareText = [substring stringByReplacingOccurrencesOfString:@" " withString:@""];
+    if([compareText isEqualToString:@""])
+    {
+        self.autocompleteTableView.hidden=TRUE;
+        autocompleteBorder.hidden=TRUE;
     }
     
     return YES;
@@ -82,6 +110,7 @@
     }
      
     completion:nil];
+    
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
@@ -103,9 +132,12 @@
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-
-    [self endEditView]; // dismiss the keyboard
+    if(CGRectContainsPoint(self.autocompleteTableView.bounds, [touches.anyObject locationInView:self.autocompleteTableView])==false)
+        [self endEditView]; // dismiss the keyboard
     
+    if(CGRectContainsPoint(self.autocompleteTableView.bounds, [touches.anyObject locationInView:self.autocompleteTableView])&&self.autocompleteTableView.hidden==true)
+        [self endEditView];
+        
     [super touchesBegan:touches withEvent:event];
 }
 
@@ -113,6 +145,8 @@
 -(void)endEditView
 {
     [self.view endEditing:YES]; // dismiss the keyboard
+    self.autocompleteTableView.hidden = TRUE;
+    autocompleteBorder.hidden = TRUE;
 }
 
 #pragma -mark autocomplete methods
@@ -161,18 +195,107 @@
                  initWithStyle:UITableViewCellStyleDefault reuseIdentifier:AutoCompleteRowIdentifier];
     }
     
-    cell.textLabel.text = @"Search result";
+    cell.textLabel.text = @"Search Results";
+    cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:15.0f];
     return cell;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger) section
 {
-    return 3;//return self.autocompleteUrls.count;
+    return 4;//return self.autocompleteUrls.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 30.0f;
+    return 50.0f;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"Calling selected");
+}
+#pragma -mark Collection View Methods
+
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
+{
+    return UIEdgeInsetsMake(5, 5, 5, 5);
+}
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return 5;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"CREATING CELL");
+    static NSString *categoryIdentifier = @"categoryCellIdentifier";
+    
+    categoryCardCell *collectionCell = nil;
+    collectionCell = [collectionView dequeueReusableCellWithReuseIdentifier:categoryIdentifier forIndexPath:indexPath];
+    
+    if(collectionCell==nil)
+    {
+        collectionCell = [[categoryCardCell alloc] init];
+    }
+    UIColor *cardColor = [UIColor clearColor];
+    UIImage *cardGraphic;
+    NSString *title = @"Placeholder";
+    CGRect cardGraphicFrame = CGRectMake(0, 0, 0, 0);
+    switch(indexPath.row)
+    {
+        case 0:
+            cardColor = [UIColor colorWithRed:95.0f/255.0f green:188.0f/255.0f blue:245.0f/255.0f alpha:1.0f];
+            cardGraphic = [UIImage imageNamed:@"microphoneIcon.png"];
+            cardGraphicFrame = CGRectMake(35, 20, 45, 80);
+            title = @"Popular";
+            break;
+        case 1:
+            cardColor = [UIColor colorWithRed:233.0f/255.0f green:89.0f/255.0f blue:114.0f/255.0f alpha:1.0f];
+            cardGraphic = [UIImage imageNamed:@"countryIcon.png"];
+            cardGraphicFrame = CGRectMake(15, 30, 88, 55);
+            title = @"Country";
+            break;
+        case 2:
+            cardColor = [UIColor colorWithRed:147.0f/255.0f green:165.0f/255.0f blue:177.0f/255.0f alpha:1.0f];
+            cardGraphic = [UIImage imageNamed:@"familyIcon.png"];
+            cardGraphicFrame = CGRectMake(10, 25, 95, 70);
+            title = @"Kid-Friendly";
+            break;
+        case 3:
+            cardColor = [UIColor colorWithRed:80.0f/255.0f green:173.0f/255.0f blue:178.0f/255.0f alpha:1.0f];
+            cardGraphic = [UIImage imageNamed:@"guitarIcon.png"];
+            cardGraphicFrame = CGRectMake(18, 20, 85, 80);
+            title = @"Rock and Roll";
+            break;
+        case 4:
+            cardColor = [UIColor colorWithRed:255.0f/255.0f green:175.0f/255.0f blue:9.0f/255.0f alpha:1.0f];
+            cardGraphic = [UIImage imageNamed:@"boomboxIcon.png"];
+            cardGraphicFrame = CGRectMake(15, 25, 95, 80);
+            title = @"Hip Hop";
+            break;
+    }
+    collectionCell.cardLabel.text = title;
+    collectionCell.cardGraphic.frame = cardGraphicFrame;
+    collectionCell.cardGraphic.image = cardGraphic;
+    collectionCell.backgroundColor = cardColor;
+    
+    return collectionCell;
+}
+
+- (NSInteger)numberOfSectionsInCollectionView: (UICollectionView *)collectionView
+{
+    return 1;
+}
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    return CGSizeMake(120, 180);
 }
 
 

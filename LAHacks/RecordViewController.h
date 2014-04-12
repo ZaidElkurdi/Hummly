@@ -14,7 +14,7 @@
 }
 
 @property (retain) RDPlayer *player;
-@property (nonatomic,weak) IBOutlet EZAudioPlotGL *audioPlot;
+@property (nonatomic,weak) IBOutlet EZAudioPlot *audioPlot;
 @property (nonatomic,assign) BOOL isRecording;
 @property (nonatomic,strong) EZMicrophone *microphone;
 @property (nonatomic,strong) EZRecorder *recorder;

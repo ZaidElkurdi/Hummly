@@ -97,8 +97,7 @@ bool alreadyStopped = NO;
   
   //NSLog(@"File written to application sandbox's documents directory: %@",[self testFilePathURL]);
   [self.view addSubview:_playButton];
-  
-  [self performSelectorInBackground:@selector(loadResults:) withObject:@"Chale Chalo"];
+  [self loadResults:@"Daylight"];
 }
 -(IBAction)upload
 {
@@ -209,40 +208,50 @@ bool alreadyStopped = NO;
     NSDictionary *postData = [rawData objectForKey:@"response"];
     NSArray *postDict = [postData objectForKey:@"songs"];
     
-    ////NSLog(@"raw: %@",postDict);
-    
-    NSDictionary *postDict2 = [postDict objectAtIndex:0];
-
-    for(id post in postDict)
+    //NSLog(@"raw: %@",postDict);
+    if([postDict count]>1)
     {
-        //NSLog(@"%@",[post objectForKey:@"artist_id"]);
-        [bandArray addObject:[post objectForKey:@"artist_name"]];
-        [albumArray addObject:[post objectForKey:@"artist_id"]];
-        [titleArray addObject:[post objectForKey:@"title"]];
+        NSDictionary *postDict2 = [postDict objectAtIndex:0];
+
+        for(id post in postDict)
+        {
+            NSLog(@"%@",[post objectForKey:@"artist_id"]);
+            [bandArray addObject:[post objectForKey:@"artist_name"]];
+            [albumArray addObject:[post objectForKey:@"artist_id"]];
+            [titleArray addObject:[post objectForKey:@"title"]];
+            
+        }
+        
+        [self grabImage];
+        
+        //Change to mutable array
+        NSString *finalArtists = [postDict2 objectForKey:@"artist_id"];
+        
+        NSArray *finalTracks = [postDict2 objectForKey:@"tracks"];
+      
+        NSMutableArray *tracks = [[NSMutableArray alloc] init];
+
+        for( int x=0; x < finalTracks.count; x++)
+        {
+            NSString * strTracks = [[finalTracks objectAtIndex:x] objectForKey:@"foreign_id"];
+            strTracks = [strTracks stringByReplacingOccurrencesOfString:@"rdio-US:track:" withString: @""];
+            [keys addObject:strTracks];
+        }
+     
+      
+        [artistName setText:[bandArray objectAtIndex:0]];
+        [titleName setText:[titleArray objectAtIndex:0]];
+        dispatch_async(dispatch_get_main_queue(),^{
+            [self playClicked];
+        });
         
     }
     
-    [self grabImage];
-    
-    //Change to mutable array
-    NSString *finalArtists = [postDict2 objectForKey:@"artist_id"];
-    
-    NSArray *finalTracks = [postDict2 objectForKey:@"tracks"];
-  
-    NSMutableArray *tracks = [[NSMutableArray alloc] init];
-
-    for( int x=0; x < finalTracks.count; x++)
+    else
     {
-        NSString * strTracks = [[finalTracks objectAtIndex:x] objectForKey:@"foreign_id"];
-        strTracks = [strTracks stringByReplacingOccurrencesOfString:@"rdio-US:track:" withString: @""];
-        [keys addObject:strTracks];
+        NSLog(@"There were no results!");
     }
- 
-  
-    [artistName setText:[bandArray objectAtIndex:0]];
-    [titleName setText:[titleArray objectAtIndex:0]];
-    [self playClicked];
-    
+
 }
 
 -(void)toggleRecording {
