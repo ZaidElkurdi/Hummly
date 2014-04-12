@@ -7,15 +7,34 @@
 //
 
 #import "AppDelegate.h"
+#import <Rdio/Rdio.h>
+
+static AppDelegate *launchedDelegate;
 
 @implementation AppDelegate
 
+@synthesize window, viewController, rdio;
+
++ (Rdio *)rdioInstance
+{
+    return launchedDelegate.rdio;
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    launchedDelegate  = self;
+    
+    rdio = [[Rdio alloc] initWithConsumerKey:@"dsk3r4xra8we2hj4djmn7m7u" andSecret:@"rHBug4zfPY" delegate:nil];
+
+    rdio.delegate = nil;
+    rdio.player.delegate = nil;
+
     // Override point for customization after application launch.
     return YES;
 }
-							
+-(void)dealloc
+{
+    }
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
