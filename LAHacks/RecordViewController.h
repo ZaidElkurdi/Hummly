@@ -18,7 +18,9 @@
 #define kAudioFilePath @"EZAudioTest.caf"
 
 @interface RecordViewController : UIViewController <AVAudioPlayerDelegate,EZMicrophoneDelegate>
-
+{
+    IBOutlet UIButton *stopRecording;
+}
 /**
  Use a OpenGL based plot to visualize the data coming in
  */
@@ -54,5 +56,6 @@
  Toggles the microphone on and off. When the microphone is on it will send its delegate (aka this view controller) the audio data in various ways (check out the EZMicrophoneDelegate documentation for more details);
  */
 -(IBAction)toggleRecording:(id)sender;
+-(IBAction)toggleRecording;
 
 @end
