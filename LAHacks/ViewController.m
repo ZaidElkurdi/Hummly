@@ -18,8 +18,6 @@
 {
     [super viewDidLoad];
 
-    //[searchField setBackgroundImage:@"SearchBar.png"];
-    //[searchField setTranslucent:YES];
 }
 
 - (void)didReceiveMemoryWarning

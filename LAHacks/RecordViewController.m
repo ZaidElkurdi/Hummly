@@ -70,7 +70,6 @@ bool alreadyStopped = NO;
 
 #pragma mark - Initialize View Controller Here
 -(void)initializeViewController {
-  // Create an instance of the microphone and tell it to use this view controller instance as the delegate
   self.microphone = [EZMicrophone microphoneWithDelegate:self];
 }
 
@@ -78,54 +77,15 @@ bool alreadyStopped = NO;
 -(void)viewDidLoad {
   
   [super viewDidLoad];
+  [self playClicked];
     
-    /*
-    // Play Button
-    _playButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [_playButton setTitle:@"Play" forState:UIControlStateNormal];
-    CGRect playFrame = CGRectMake(20, 20, 40, 40);
-    [_playButton setFrame:playFrame];
-    [_playButton setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
-    [_playButton addTarget:self action:@selector(playClicked) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:_playButton];
-    */
-    
-    /*
-    Rdio *sharedRdio = [AppDelegate rdioInstance];
-    sharedRdio.delegate = self;
-    sharedRdio.player.delegate = self;*/
-    
-   [self playClicked];
-    
-    
-  /*
-   Customizing the audio plot's look
-   */
-  // Background color
   self.audioPlot.backgroundColor = [UIColor colorWithRed: 0.0 green: 0.0 blue: 0.0 alpha: 1.0];
-  // Waveform color
   self.audioPlot.color           = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0];
-  // Plot type
   self.audioPlot.plotType        = EZPlotTypeRolling;
-  // Fill
   self.audioPlot.shouldFill      = YES;
-  // Mirror
   self.audioPlot.shouldMirror    = YES;
-  
-  /*
-   Start the microphone
-   */
   [self.microphone startFetchingAudio];
-  self.microphoneTextField.text = @"Microphone On";
-  self.recordingTextField.text = @"Not Recording";
-  self.playingTextField.text = @"Not Playing";
   
-  // Hide the play button
-  self.playButton.hidden = YES;
-  
-  /*
-   Log out where the file is being written to within the app's documents directory
-   */
   NSLog(@"File written to application sandbox's documents directory: %@",[self testFilePathURL]);
   [self.view addSubview:_playButton];
 }
