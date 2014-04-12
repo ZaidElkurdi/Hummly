@@ -8,6 +8,8 @@
 {
     IBOutlet UIButton *stopRecording;
     IBOutlet UIImageView *albumArtwork;
+    IBOutlet UILabel *artistName;
+    IBOutlet UILabel *titleName;
 }
 
 @property (retain) RDPlayer *player;

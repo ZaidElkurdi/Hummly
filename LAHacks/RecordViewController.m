@@ -19,7 +19,7 @@
     NSMutableArray *albumArray;
     NSMutableArray *bandArray;
     NSMutableArray *titleArray;
-    NSArray* keys;
+    NSMutableArray* keys;
 }
 // Using AVPlayer for example
 @property (nonatomic,strong) AVAudioPlayer *audioPlayer;
@@ -82,9 +82,8 @@ bool alreadyStopped = NO;
 -(void)viewDidLoad {
   
   [super viewDidLoad];
-  [self playClicked];
     
-    
+    keys = [[NSMutableArray alloc] init];
     bandArray = [[NSMutableArray alloc] init];
     albumArray = [[NSMutableArray alloc] init];
     titleArray = [[NSMutableArray alloc] init];
@@ -102,12 +101,14 @@ bool alreadyStopped = NO;
 }
 - (void)playClicked
 {
+    NSLog(@"Here");
     if (!_playing) {
-        
+        [[self getPlayer] playSource:[keys objectAtIndex:0]];
         [[self getPlayer] playSources:keys];
     } else {
         [[self getPlayer] togglePause];
     }
+
 }
 
 -(void)grabImage
@@ -132,11 +133,17 @@ bool alreadyStopped = NO;
      
     NSDictionary *postData = [rawData objectForKey:@"response"];
     
-    NSDictionary *postDict = [postData objectForKey:@"images"];
+    NSArray *postDict = [postData objectForKey:@"images"];
   
-  
-    NSLog(@"Post Data: %@", postDict);
     
+    NSLog(@"Post Data: %@", postDict);
+    NSLog(@"URL: %@",[[postDict objectAtIndex:0] objectForKey:@"url"]);
+    
+    NSURL * imageURL = [NSURL URLWithString:[[postDict objectAtIndex:0] objectForKey:@"url"]];
+    NSData * imageData = [NSData dataWithContentsOfURL:imageURL];
+    
+    
+    [albumArtwork setImage:[UIImage imageWithData:imageData]];
     
     
 }
@@ -179,7 +186,7 @@ bool alreadyStopped = NO;
         
     }
     
-    //[self grabImage];
+    [self grabImage];
     
     //Change to mutable array
     NSString *finalArtists = [postDict2 objectForKey:@"artist_id"];
@@ -192,11 +199,13 @@ bool alreadyStopped = NO;
     {
         NSString * strTracks = [[finalTracks objectAtIndex:x] objectForKey:@"foreign_id"];
         strTracks = [strTracks stringByReplacingOccurrencesOfString:@"rdio-US:track:" withString: @""];
-        [tracks addObject:strTracks];
+        [keys addObject:strTracks];
     }
-    
-    keys = [[tracks objectAtIndex:0],@"," componentsSeparatedByString:@","];
-    NSLog(@"Tracks: %@",tracks);
+ 
+  
+    [artistName setText:[bandArray objectAtIndex:0]];
+    [titleName setText:[titleArray objectAtIndex:0]];
+    [self playClicked];
 
 }
 
