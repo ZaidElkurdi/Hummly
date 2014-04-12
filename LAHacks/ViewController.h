@@ -8,13 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "searchBar.h"
-#import "categoryTiles.h"
+#import "categoryCardCell.h"
 
-@interface ViewController : UIViewController<UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface ViewController : UIViewController<UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 {
 
 }
 @property (nonatomic, retain) NSArray *pastUrls;
 @property (nonatomic, retain) NSMutableArray *autocompleteUrls;
+@property (nonatomic, retain) UICollectionView *categoryView;
 @property (nonatomic, retain) UITableView *autocompleteTableView;
 @end
