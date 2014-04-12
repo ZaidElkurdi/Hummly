@@ -88,7 +88,7 @@ bool alreadyStopped = NO;
   
   NSLog(@"File written to application sandbox's documents directory: %@",[self testFilePathURL]);
   [self.view addSubview:_playButton];
-    [self loadResults];
+    [self loadResults:@"Don't Stop Believin'"];
 }
 - (void)playClicked
 {
@@ -99,12 +99,15 @@ bool alreadyStopped = NO;
         [[self getPlayer] togglePause];
     }
 }
-
--(void)loadResults
+/*
+ * Make sure to sort by most popular
+ * Double listings
+ */
+-(void)loadResults:(NSString *)songName
 {
+    songName = [songName stringByReplacingOccurrencesOfString:@" " withString: @"+"];
     
-    
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[[NSString alloc] initWithFormat:@"http://developer.echonest.com/api/v4/song/search?api_key=ZAIMFQ6WMS5EZUABI&format=json&results=100&artist=%@",@"Billy+Joel"]]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[[NSString alloc] initWithFormat:@"http://developer.echonest.com/api/v4/song/search?api_key=ZAIMFQ6WMS5EZUABI&format=json&results=100&title=%@&bucket=id:rdio-US&bucket=tracks&limit=true",songName]]];
     
     NSURLResponse *resp = nil;
     NSError *error = nil;
