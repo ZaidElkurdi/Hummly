@@ -28,13 +28,14 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <connections>
                         <outlet property="searchField" destination="1fY-jF-f34" id="N3t-fn-bO0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="38" y="352"/>
+            <point key="canvasLocation" x="79" y="351"/>
         </scene>
         <!--Record View Controller-->
         <scene sceneID="EfZ-bo-etJ">
@@ -89,6 +90,7 @@
                             <constraint firstItem="8GX-l9-Hiw" firstAttribute="top" secondItem="nLs-Qs-uc7" secondAttribute="top" id="cyZ-zP-BUm"/>
                         </constraints>
                     </view>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <connections>
                         <outlet property="audioPlot" destination="8GX-l9-Hiw" id="9gL-oL-emt"/>
                         <outlet property="microphoneSwitch" destination="Ema-xU-XHG" id="Tci-5f-FAP"/>
@@ -129,6 +131,7 @@
                     <nil key="highlightedColor"/>
                 </label>
             </objects>
+            <point key="canvasLocation" x="420" y="351"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
