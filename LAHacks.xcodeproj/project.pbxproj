@@ -106,6 +106,7 @@
 		935DC88218F9429C00A42623 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 935DC88118F9429C00A42623 /* SystemConfiguration.framework */; };
 		935DC88418F942AD00A42623 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 935DC88318F942AD00A42623 /* AudioToolbox.framework */; };
 		935DC88618F942B300A42623 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 935DC88518F942B300A42623 /* Security.framework */; };
+		935DC88818F9587700A42623 /* AlbumBackgroundImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 935DC88718F9587700A42623 /* AlbumBackgroundImage.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -236,6 +237,7 @@
 		935DC88118F9429C00A42623 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		935DC88318F942AD00A42623 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		935DC88518F942B300A42623 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		935DC88718F9587700A42623 /* AlbumBackgroundImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AlbumBackgroundImage.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -352,6 +354,7 @@
 		935DC7C618F8FD7C00A42623 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				935DC88718F9587700A42623 /* AlbumBackgroundImage.png */,
 				935DC7C918F8FF4200A42623 /* SearchBar.png */,
 				935DC7FB18F9403500A42623 /* PauseButton.png */,
 				935DC7FC18F9403500A42623 /* PlayButton.png */,
@@ -566,6 +569,7 @@
 				935DC84418F9426C00A42623 /* _rdio_8h_source.html in Resources */,
 				935DC84518F9426C00A42623 /* annotated.html in Resources */,
 				935DC84218F9426C00A42623 /* _r_d_player_8h_source.html in Resources */,
+				935DC88818F9587700A42623 /* AlbumBackgroundImage.png in Resources */,
 				935DC85F18F9426C00A42623 /* ftv2splitbar.png in Resources */,
 				935DC85418F9426C00A42623 /* ftv2folderclosed.png in Resources */,
 				935DC84A18F9426C00A42623 /* deprecated.html in Resources */,
