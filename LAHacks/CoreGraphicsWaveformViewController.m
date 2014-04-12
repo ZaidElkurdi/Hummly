@@ -56,7 +56,8 @@
   self.audioPlot.plotType        = EZPlotTypeRolling;
   
   [self.microphone startFetchingAudio];
-
+   
+   self.audioPlot.plotType = EZPlotTypeRolling;
   
 }
 
@@ -64,8 +65,14 @@
   
 }
 
+-(void)viewDidAppear:(BOOL)animated
+{
+    self.audioPlot.plotType = EZPlotTypeRolling;
+}
+
 #pragma mark - Actions
 -(void)changePlotType:(id)sender {
+    
   NSInteger selectedSegment = [sender selectedSegmentIndex];
   switch(selectedSegment){
     case 0:
@@ -75,35 +82,9 @@
       [self drawRollingPlot];
       break;
     default:
-      [self drawRollingPlot];
       break;
   }
 }
-
--(void)toggleMicrophone:(id)sender {
-  if( ![(UISwitch*)sender isOn] ){
-    [self.microphone stopFetchingAudio];
-    self.microphoneTextLabel.text = @"Microphone Off";
-  }
-  else {
-    [self.microphone startFetchingAudio];
-    self.microphoneTextLabel.text = @"Microphone On";
-  }
-}
-
-#pragma mark - Action Extensions
-/*
- Give the visualization of the current buffer (this is almost exactly the openFrameworks audio input eample)
- */
--(void)drawBufferPlot {
-  // Change the plot type to the buffer plot
-  self.audioPlot.plotType = EZPlotTypeRolling;
-  // Don't mirror over the x-axis
-  self.audioPlot.shouldMirror = NO;
-  // Don't fill
-  self.audioPlot.shouldFill = NO;
-}
-
 /*
  Give the classic mirrored, rolling waveform look
  */

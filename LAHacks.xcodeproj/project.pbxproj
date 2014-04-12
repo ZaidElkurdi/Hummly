@@ -36,7 +36,7 @@
 		935DC7F218F907B800A42623 /* TPCircularBuffer.c in Sources */ = {isa = PBXBuildFile; fileRef = 935DC7E218F907B800A42623 /* TPCircularBuffer.c */; };
 		935DC7F318F907B800A42623 /* CHANGELOG in Resources */ = {isa = PBXBuildFile; fileRef = 935DC7E518F907B800A42623 /* CHANGELOG */; };
 		935DC7F418F907B800A42623 /* VERSION in Resources */ = {isa = PBXBuildFile; fileRef = 935DC7E618F907B800A42623 /* VERSION */; };
-		935DC7F718F907D000A42623 /* CoreGraphicsWaveformViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 935DC7F618F907D000A42623 /* CoreGraphicsWaveformViewController.m */; };
+		935DC7FA18F9115700A42623 /* RecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 935DC7F918F9115700A42623 /* RecordViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,8 +96,8 @@
 		935DC7E318F907B800A42623 /* TPCircularBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPCircularBuffer.h; sourceTree = "<group>"; };
 		935DC7E518F907B800A42623 /* CHANGELOG */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CHANGELOG; sourceTree = "<group>"; };
 		935DC7E618F907B800A42623 /* VERSION */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = VERSION; sourceTree = "<group>"; };
-		935DC7F518F907D000A42623 /* CoreGraphicsWaveformViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreGraphicsWaveformViewController.h; sourceTree = "<group>"; };
-		935DC7F618F907D000A42623 /* CoreGraphicsWaveformViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreGraphicsWaveformViewController.m; sourceTree = "<group>"; };
+		935DC7F818F9115700A42623 /* RecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordViewController.h; sourceTree = "<group>"; };
+		935DC7F918F9115700A42623 /* RecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,8 +162,8 @@
 				935DC7A318F8FC3600A42623 /* Main.storyboard */,
 				935DC7A618F8FC3600A42623 /* ViewController.h */,
 				935DC7A718F8FC3600A42623 /* ViewController.m */,
-				935DC7F518F907D000A42623 /* CoreGraphicsWaveformViewController.h */,
-				935DC7F618F907D000A42623 /* CoreGraphicsWaveformViewController.m */,
+				935DC7F818F9115700A42623 /* RecordViewController.h */,
+				935DC7F918F9115700A42623 /* RecordViewController.m */,
 				935DC7A918F8FC3600A42623 /* Images.xcassets */,
 				935DC7C618F8FD7C00A42623 /* Images */,
 				935DC79818F8FC3600A42623 /* Supporting Files */,
@@ -365,7 +365,7 @@
 				935DC7E818F907B800A42623 /* EZAudio.m in Sources */,
 				935DC7EE18F907B800A42623 /* EZMicrophone.m in Sources */,
 				935DC7F018F907B800A42623 /* EZPlot.m in Sources */,
-				935DC7F718F907D000A42623 /* CoreGraphicsWaveformViewController.m in Sources */,
+				935DC7FA18F9115700A42623 /* RecordViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -574,6 +574,7 @@
 				935DC7C218F8FC3700A42623 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		935DC7C318F8FC3700A42623 /* Build configuration list for PBXNativeTarget "LAHacksTests" */ = {
 			isa = XCConfigurationList;
@@ -582,6 +583,7 @@
 				935DC7C518F8FC3700A42623 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
