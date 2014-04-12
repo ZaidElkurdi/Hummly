@@ -10,7 +10,7 @@
 
 @interface ViewController : UIViewController
 {
-    IBOutlet UITextField *searchField;
+    IBOutlet UISearchBar *searchField;
 }
 @property(nonatomic, retain) UIImage *textFieldBackground;
 @end

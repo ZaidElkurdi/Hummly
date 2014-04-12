@@ -17,8 +17,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
-    searchField.background = [UIImage imageNamed:@"SearchBar.png"];
+
+    //[searchField setBackgroundImage:@"SearchBar.png"];
+    //[searchField setTranslucent:YES];
 }
 
 - (void)didReceiveMemoryWarning
