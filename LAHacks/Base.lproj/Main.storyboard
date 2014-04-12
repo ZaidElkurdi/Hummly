@@ -95,6 +95,9 @@
                                 <state key="normal" title="Share" image="PauseButton.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="upload" destination="abg-vX-LHH" eventType="touchUpInside" id="zkf-P7-YMG"/>
+                                </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PRg-P8-mOR">
                                 <rect key="frame" x="0.0" y="332" width="320" height="236"/>
@@ -119,6 +122,7 @@
                         <outlet property="recordSwitch" destination="AmU-7R-05Q" id="htj-om-gWJ"/>
                         <outlet property="stopRecording" destination="TrE-ls-gEq" id="SaP-r6-Tb9"/>
                         <outlet property="titleName" destination="Gr3-OI-blA" id="jYu-dG-29u"/>
+                        <outlet property="upload" destination="ESj-S3-KHN" id="qLK-lY-EjH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F9a-pA-S51" userLabel="First Responder" sceneMemberID="firstResponder"/>
