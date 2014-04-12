@@ -20,14 +20,13 @@
 {
     [super viewDidLoad];
     
-    self.autocompleteTableView.delegate=self;
-    self.autocompleteTableView.dataSource=self;
-    
     self.autocompleteUrls = [[NSMutableArray alloc] init];
     
-    self.autocompleteTableView = [[UITableView alloc] initWithFrame:CGRectMake(10, 215, 300, 150) style:UITableViewStylePlain];
+    self.autocompleteTableView = [[UITableView alloc] initWithFrame:CGRectMake(25, 220, 280, 90) style:UITableViewStylePlain];
+    self.autocompleteTableView.delegate=self;
+    self.autocompleteTableView.dataSource=self;
     self.autocompleteTableView.scrollEnabled = YES;
-    self.autocompleteTableView.hidden = YES;
+    //self.autocompleteTableView.hidden = YES;
     [self.view addSubview:self.autocompleteTableView];
     
     self.pastUrls = [[NSArray alloc] init];
@@ -162,13 +161,18 @@
                  initWithStyle:UITableViewCellStyleDefault reuseIdentifier:AutoCompleteRowIdentifier];
     }
     
-    cell.textLabel.text = [self.autocompleteUrls objectAtIndex:indexPath.row];
+    cell.textLabel.text = @"Search result";
     return cell;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger) section
 {
-    return self.autocompleteUrls.count;
+    return 3;//return self.autocompleteUrls.count;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 30.0f;
 }
 
 

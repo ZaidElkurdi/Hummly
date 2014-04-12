@@ -164,6 +164,10 @@
         </scene>
     </scenes>
     <resources>
+        <image name="AlbumBackgroundImage.png" width="320" height="568"/>
+        <image name="PauseButton.png" width="320" height="568"/>
+        <image name="PlayButton.png" width="38" height="42"/>
+        <image name="SearchBar.png" width="263" height="52"/>
         <image name="mainBackground.png" width="320" height="568"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
