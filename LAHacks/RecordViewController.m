@@ -83,10 +83,10 @@ bool alreadyStopped = NO;
   
   [super viewDidLoad];
     
-    keys = [[NSMutableArray alloc] init];
-    bandArray = [[NSMutableArray alloc] init];
-    albumArray = [[NSMutableArray alloc] init];
-    titleArray = [[NSMutableArray alloc] init];
+  keys = [[NSMutableArray alloc] init];
+  bandArray = [[NSMutableArray alloc] init];
+  albumArray = [[NSMutableArray alloc] init];
+  titleArray = [[NSMutableArray alloc] init];
     
   self.audioPlot.backgroundColor = [UIColor colorWithRed: 0.0 green: 0.0 blue: 0.0 alpha: 1.0];
   self.audioPlot.color           = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0];
@@ -95,13 +95,13 @@ bool alreadyStopped = NO;
   self.audioPlot.shouldMirror    = YES;
   [self.microphone startFetchingAudio];
   
-  NSLog(@"File written to application sandbox's documents directory: %@",[self testFilePathURL]);
+  //NSLog(@"File written to application sandbox's documents directory: %@",[self testFilePathURL]);
   [self.view addSubview:_playButton];
   [self loadResults:@"Daylight"];
 }
 - (void)playClicked
 {
-    NSLog(@"Here");
+    //NSLog(@"Here");
     if (!_playing) {
         [[self getPlayer] playSource:[keys objectAtIndex:0]];
         [[self getPlayer] playSources:keys];
@@ -113,10 +113,10 @@ bool alreadyStopped = NO;
 
 -(void)grabImage
 {
-    NSLog(@"First Element : %@", [albumArray objectAtIndex:0]);
+    //NSLog(@"First Element : %@", [albumArray objectAtIndex:0]);
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[[NSString alloc] initWithFormat:@"http://developer.echonest.com/api/v4/artist/images?api_key=ZAIMFQ6WMS5EZUABI&id=%@&format=json&results=1&start=0&license=unknown",[albumArray objectAtIndex:0]]]];
    
-    NSLog(@"%@",request);
+    //NSLog(@"%@",request);
     
     NSURLResponse *resp = nil;
     NSError *error = nil;
@@ -129,15 +129,15 @@ bool alreadyStopped = NO;
     
     NSDictionary *rawData = [NSJSONSerialization JSONObjectWithData:response options:kNilOptions error:&error];
     
-    NSLog(@"Grab Image: %@",rawData);
+    //NSLog(@"Grab Image: %@",rawData);
      
     NSDictionary *postData = [rawData objectForKey:@"response"];
     
     NSArray *postDict = [postData objectForKey:@"images"];
   
     
-    NSLog(@"Post Data: %@", postDict);
-    NSLog(@"URL: %@",[[postDict objectAtIndex:0] objectForKey:@"url"]);
+    //NSLog(@"Post Data: %@", postDict);
+    //NSLog(@"URL: %@",[[postDict objectAtIndex:0] objectForKey:@"url"]);
     
     NSURL * imageURL = [NSURL URLWithString:[[postDict objectAtIndex:0] objectForKey:@"url"]];
     NSData * imageData = [NSData dataWithContentsOfURL:imageURL];
@@ -155,6 +155,8 @@ bool alreadyStopped = NO;
 {
     songName = [songName stringByReplacingOccurrencesOfString:@" " withString: @"+"];
     
+    
+    
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[[NSString alloc] initWithFormat:@"http://developer.echonest.com/api/v4/song/search?api_key=ZAIMFQ6WMS5EZUABI&format=json&results=10&title=%@&bucket=id:rdio-US&bucket=tracks&limit=true",songName]]];
     
 
@@ -167,7 +169,7 @@ bool alreadyStopped = NO;
     NSDictionary *rawData = [NSJSONSerialization JSONObjectWithData:response options:kNilOptions error:&error];
     
     
-    NSLog(@"raw: %@",rawData);
+    //NSLog(@"raw: %@",rawData);
 
     
     NSDictionary *postData = [rawData objectForKey:@"response"];
@@ -231,7 +233,7 @@ bool alreadyStopped = NO;
     }
     else
     {
-        NSLog(@"here");
+        //NSLog(@"here");
         [self.microphone startFetchingAudio];
         self.isRecording = YES;
         [[self getPlayer] togglePause];
