@@ -53,7 +53,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8GX-l9-Hiw" customClass="EZAudioPlotGL">
-                                <rect key="frame" x="0.0" y="-61" width="320" height="276"/>
+                                <rect key="frame" x="0.0" y="-61" width="320" height="251"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
@@ -108,6 +108,8 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="albumArtwork" destination="bfR-1X-ilE" id="wEq-IP-57M"/>
+                        <outlet property="artistName" destination="mbW-37-ZHg" id="mUF-zT-N6H"/>
                         <outlet property="audioPlot" destination="8GX-l9-Hiw" id="9gL-oL-emt"/>
                         <outlet property="microphoneSwitch" destination="Ema-xU-XHG" id="Tci-5f-FAP"/>
                         <outlet property="microphoneTextField" destination="Rbr-6B-Wtu" id="vEe-QF-EXF"/>
@@ -115,6 +117,7 @@
                         <outlet property="playingTextField" destination="IRd-tk-dYW" id="V3j-bM-OAI"/>
                         <outlet property="recordSwitch" destination="AmU-7R-05Q" id="htj-om-gWJ"/>
                         <outlet property="stopRecording" destination="TrE-ls-gEq" id="SaP-r6-Tb9"/>
+                        <outlet property="titleName" destination="Gr3-OI-blA" id="jYu-dG-29u"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F9a-pA-S51" userLabel="First Responder" sceneMemberID="firstResponder"/>
