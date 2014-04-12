@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9310A5E018F9ADE500AFC475 /* LAHacks.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 9310A5DF18F9ADE500AFC475 /* LAHacks.sqlite */; };
 		933298C718F9666B00DECBED /* PlayButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 933298C618F9666B00DECBED /* PlayButton.png */; };
 		935DC79218F8FC3600A42623 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 935DC79118F8FC3600A42623 /* Foundation.framework */; };
 		935DC79418F8FC3600A42623 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 935DC79318F8FC3600A42623 /* CoreGraphics.framework */; };
@@ -58,6 +59,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9310A5DF18F9ADE500AFC475 /* LAHacks.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = LAHacks.sqlite; sourceTree = "<group>"; };
 		933298C618F9666B00DECBED /* PlayButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PlayButton.png; sourceTree = "<group>"; };
 		935DC78E18F8FC3600A42623 /* LAHacks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LAHacks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		935DC79118F8FC3600A42623 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -222,6 +224,7 @@
 		935DC7B718F8FC3700A42623 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				9310A5DF18F9ADE500AFC475 /* LAHacks.sqlite */,
 				935DC7B818F8FC3700A42623 /* LAHacksTests-Info.plist */,
 				935DC7B918F8FC3700A42623 /* InfoPlist.strings */,
 			);
@@ -380,6 +383,7 @@
 				B86D4F1518F953020048F5A3 /* magnifyingGlass.png in Resources */,
 				935DC79C18F8FC3600A42623 /* InfoPlist.strings in Resources */,
 				933298C718F9666B00DECBED /* PlayButton.png in Resources */,
+				9310A5E018F9ADE500AFC475 /* LAHacks.sqlite in Resources */,
 				935DC7A518F8FC3600A42623 /* Main.storyboard in Resources */,
 				935DC7F418F907B800A42623 /* VERSION in Resources */,
 				935DC7CA18F8FF4200A42623 /* SearchBar.png in Resources */,
@@ -545,8 +549,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Aryaman Sharda (W735WRNN72)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Aryaman Sharda (85TX29GWD7)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/rdio-ios-1.3.6",
@@ -556,7 +560,7 @@
 				INFOPLIST_FILE = "LAHacks/LAHacks-Info.plist";
 				"OTHER_LDFLAGS[arch=*]" = " -all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "C4E2A007-EE48-4B2E-B5A2-DBFBE26E6305";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -566,8 +570,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Aryaman Sharda (W735WRNN72)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Aryaman Sharda (W735WRNN72)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/rdio-ios-1.3.6",
@@ -577,7 +581,7 @@
 				INFOPLIST_FILE = "LAHacks/LAHacks-Info.plist";
 				"OTHER_LDFLAGS[arch=*]" = " -all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "C4E2A007-EE48-4B2E-B5A2-DBFBE26E6305";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
