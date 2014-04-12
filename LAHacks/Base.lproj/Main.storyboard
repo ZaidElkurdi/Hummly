@@ -104,6 +104,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <connections>
                         <outlet property="albumArtwork" destination="bfR-1X-ilE" id="wEq-IP-57M"/>
                         <outlet property="artistName" destination="mbW-37-ZHg" id="mUF-zT-N6H"/>
