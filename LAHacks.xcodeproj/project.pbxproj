@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		933298C718F9666B00DECBED /* PlayButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 933298C618F9666B00DECBED /* PlayButton.png */; };
 		935DC79218F8FC3600A42623 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 935DC79118F8FC3600A42623 /* Foundation.framework */; };
 		935DC79418F8FC3600A42623 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 935DC79318F8FC3600A42623 /* CoreGraphics.framework */; };
 		935DC79618F8FC3600A42623 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 935DC79518F8FC3600A42623 /* UIKit.framework */; };
@@ -55,6 +56,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		933298C618F9666B00DECBED /* PlayButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PlayButton.png; sourceTree = "<group>"; };
 		935DC78E18F8FC3600A42623 /* LAHacks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LAHacks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		935DC79118F8FC3600A42623 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		935DC79318F8FC3600A42623 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -117,7 +119,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				935DC88618F942B300A42623 /* Security.framework in Frameworks */,
+				935DC88418F942AD00A42623 /* AudioToolbox.framework in Frameworks */,
+				935DC88218F9429C00A42623 /* SystemConfiguration.framework in Frameworks */,
+				935DC88018F9429300A42623 /* CFNetwork.framework in Frameworks */,
 				935DC79418F8FC3600A42623 /* CoreGraphics.framework in Frameworks */,
+				935DC87E18F9426C00A42623 /* Rdio.framework in Frameworks */,
 				935DC79618F8FC3600A42623 /* UIKit.framework in Frameworks */,
 				935DC79218F8FC3600A42623 /* Foundation.framework in Frameworks */,
 			);
@@ -158,6 +165,11 @@
 		935DC79018F8FC3600A42623 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				935DC88518F942B300A42623 /* Security.framework */,
+				935DC88318F942AD00A42623 /* AudioToolbox.framework */,
+				935DC88118F9429C00A42623 /* SystemConfiguration.framework */,
+				935DC87F18F9429300A42623 /* CFNetwork.framework */,
+				935DC7FF18F9426B00A42623 /* rdio-ios-1.3.6 */,
 				935DC79118F8FC3600A42623 /* Foundation.framework */,
 				935DC79318F8FC3600A42623 /* CoreGraphics.framework */,
 				935DC79518F8FC3600A42623 /* UIKit.framework */,
@@ -224,6 +236,8 @@
 				B86D4F1418F953020048F5A3 /* magnifyingGlass.png */,
 				B86D4F1218F942C10048F5A3 /* searchBG.png */,
 				935DC7C918F8FF4200A42623 /* SearchBar.png */,
+				935DC7FB18F9403500A42623 /* PauseButton.png */,
+				933298C618F9666B00DECBED /* PlayButton.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -267,6 +281,84 @@
 				935DC7E618F907B800A42623 /* VERSION */,
 			);
 			path = VERSION;
+			sourceTree = "<group>";
+		};
+		935DC7FF18F9426B00A42623 /* rdio-ios-1.3.6 */ = {
+			isa = PBXGroup;
+			children = (
+				935DC80018F9426B00A42623 /* docs */,
+				935DC83F18F9426C00A42623 /* Rdio.framework */,
+			);
+			path = "rdio-ios-1.3.6";
+			sourceTree = "<group>";
+		};
+		935DC80018F9426B00A42623 /* docs */ = {
+			isa = PBXGroup;
+			children = (
+				935DC80118F9426B00A42623 /* _r_d_a_p_i_request_8h_source.html */,
+				935DC80218F9426B00A42623 /* _r_d_player_8h.html */,
+				935DC80318F9426B00A42623 /* _r_d_player_8h_source.html */,
+				935DC80418F9426B00A42623 /* _rdio_8h.html */,
+				935DC80518F9426B00A42623 /* _rdio_8h_source.html */,
+				935DC80618F9426B00A42623 /* annotated.html */,
+				935DC80718F9426B00A42623 /* bc_s.png */,
+				935DC80818F9426B00A42623 /* bdwn.png */,
+				935DC80918F9426B00A42623 /* classes.html */,
+				935DC80A18F9426B00A42623 /* closed.png */,
+				935DC80B18F9426B00A42623 /* deprecated.html */,
+				935DC80C18F9426B00A42623 /* dir_692516b589a32b3bfce781ca9f6d1534.html */,
+				935DC80D18F9426B00A42623 /* dir_aa17ab603cc08e1a7824163257544e61.html */,
+				935DC80E18F9426B00A42623 /* doxygen.css */,
+				935DC80F18F9426B00A42623 /* doxygen.png */,
+				935DC81018F9426B00A42623 /* dynsections.js */,
+				935DC81118F9426B00A42623 /* files.html */,
+				935DC81218F9426B00A42623 /* ftv2blank.png */,
+				935DC81318F9426B00A42623 /* ftv2cl.png */,
+				935DC81418F9426B00A42623 /* ftv2doc.png */,
+				935DC81518F9426B00A42623 /* ftv2folderclosed.png */,
+				935DC81618F9426B00A42623 /* ftv2folderopen.png */,
+				935DC81718F9426B00A42623 /* ftv2lastnode.png */,
+				935DC81818F9426B00A42623 /* ftv2link.png */,
+				935DC81918F9426B00A42623 /* ftv2mlastnode.png */,
+				935DC81A18F9426B00A42623 /* ftv2mnode.png */,
+				935DC81B18F9426B00A42623 /* ftv2mo.png */,
+				935DC81C18F9426B00A42623 /* ftv2node.png */,
+				935DC81D18F9426B00A42623 /* ftv2ns.png */,
+				935DC81E18F9426B00A42623 /* ftv2plastnode.png */,
+				935DC81F18F9426B00A42623 /* ftv2pnode.png */,
+				935DC82018F9426B00A42623 /* ftv2splitbar.png */,
+				935DC82118F9426B00A42623 /* ftv2vertline.png */,
+				935DC82218F9426B00A42623 /* functions.html */,
+				935DC82318F9426B00A42623 /* functions_func.html */,
+				935DC82418F9426B00A42623 /* functions_prop.html */,
+				935DC82518F9426B00A42623 /* globals.html */,
+				935DC82618F9426B00A42623 /* globals_enum.html */,
+				935DC82718F9426B00A42623 /* globals_eval.html */,
+				935DC82818F9426B00A42623 /* hierarchy.html */,
+				935DC82918F9426B00A42623 /* index.html */,
+				935DC82A18F9426B00A42623 /* interface_r_d_a_p_i_request.html */,
+				935DC82B18F9426B00A42623 /* interface_r_d_a_p_i_request_delegate.html */,
+				935DC82C18F9426B00A42623 /* interface_r_d_player.html */,
+				935DC82D18F9426B00A42623 /* interface_rdio.html */,
+				935DC82E18F9426B00A42623 /* jquery.js */,
+				935DC82F18F9426B00A42623 /* logo.png */,
+				935DC83018F9426B00A42623 /* nav_f.png */,
+				935DC83118F9426B00A42623 /* nav_g.png */,
+				935DC83218F9426B00A42623 /* nav_h.png */,
+				935DC83318F9426B00A42623 /* open.png */,
+				935DC83418F9426B00A42623 /* pages.html */,
+				935DC83518F9426B00A42623 /* protocol_r_d_a_p_i_request_delegate-p.html */,
+				935DC83618F9426B00A42623 /* protocol_r_d_player_delegate-p.html */,
+				935DC83718F9426B00A42623 /* protocol_rdio_delegate-p.html */,
+				935DC83818F9426B00A42623 /* sync_off.png */,
+				935DC83918F9426C00A42623 /* sync_on.png */,
+				935DC83A18F9426C00A42623 /* tab_a.png */,
+				935DC83B18F9426C00A42623 /* tab_b.png */,
+				935DC83C18F9426C00A42623 /* tab_h.png */,
+				935DC83D18F9426C00A42623 /* tab_s.png */,
+				935DC83E18F9426C00A42623 /* tabs.css */,
+			);
+			path = docs;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -348,15 +440,65 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				935DC86318F9426C00A42623 /* functions_prop.html in Resources */,
+				935DC84E18F9426C00A42623 /* doxygen.png in Resources */,
+				935DC84818F9426C00A42623 /* classes.html in Resources */,
+				935DC84318F9426C00A42623 /* _rdio_8h.html in Resources */,
+				935DC85518F9426C00A42623 /* ftv2folderopen.png in Resources */,
+				935DC87D18F9426C00A42623 /* tabs.css in Resources */,
+				935DC86718F9426C00A42623 /* hierarchy.html in Resources */,
 				935DC7AA18F8FC3600A42623 /* Images.xcassets in Resources */,
 				B86D4F1718F957A20048F5A3 /* mainBackground.png in Resources */,
 				B86D4F1518F953020048F5A3 /* magnifyingGlass.png in Resources */,
 				935DC79C18F8FC3600A42623 /* InfoPlist.strings in Resources */,
+				935DC86C18F9426C00A42623 /* interface_rdio.html in Resources */,
+				935DC84718F9426C00A42623 /* bdwn.png in Resources */,
+				933298C718F9666B00DECBED /* PlayButton.png in Resources */,
+				935DC86F18F9426C00A42623 /* nav_f.png in Resources */,
+				935DC85A18F9426C00A42623 /* ftv2mo.png in Resources */,
+				935DC87B18F9426C00A42623 /* tab_h.png in Resources */,
+				935DC85818F9426C00A42623 /* ftv2mlastnode.png in Resources */,
+				935DC85118F9426C00A42623 /* ftv2blank.png in Resources */,
+				935DC85218F9426C00A42623 /* ftv2cl.png in Resources */,
+				935DC87518F9426C00A42623 /* protocol_r_d_player_delegate-p.html in Resources */,
+				935DC87718F9426C00A42623 /* sync_off.png in Resources */,
+				935DC87618F9426C00A42623 /* protocol_rdio_delegate-p.html in Resources */,
 				935DC7A518F8FC3600A42623 /* Main.storyboard in Resources */,
+				935DC86818F9426C00A42623 /* index.html in Resources */,
+				935DC85E18F9426C00A42623 /* ftv2pnode.png in Resources */,
+				935DC84D18F9426C00A42623 /* doxygen.css in Resources */,
+				935DC84118F9426C00A42623 /* _r_d_player_8h.html in Resources */,
+				935DC86418F9426C00A42623 /* globals.html in Resources */,
+				935DC86E18F9426C00A42623 /* logo.png in Resources */,
+				935DC86A18F9426C00A42623 /* interface_r_d_a_p_i_request_delegate.html in Resources */,
+				935DC86018F9426C00A42623 /* ftv2vertline.png in Resources */,
+				935DC85C18F9426C00A42623 /* ftv2ns.png in Resources */,
+				935DC85B18F9426C00A42623 /* ftv2node.png in Resources */,
+				935DC85918F9426C00A42623 /* ftv2mnode.png in Resources */,
+				935DC85318F9426C00A42623 /* ftv2doc.png in Resources */,
+				935DC85D18F9426C00A42623 /* ftv2plastnode.png in Resources */,
+				935DC85618F9426C00A42623 /* ftv2lastnode.png in Resources */,
+				935DC84918F9426C00A42623 /* closed.png in Resources */,
 				935DC7F418F907B800A42623 /* VERSION in Resources */,
+				935DC84018F9426C00A42623 /* _r_d_a_p_i_request_8h_source.html in Resources */,
+				935DC87A18F9426C00A42623 /* tab_b.png in Resources */,
+				935DC84C18F9426C00A42623 /* dir_aa17ab603cc08e1a7824163257544e61.html in Resources */,
+				935DC84618F9426C00A42623 /* bc_s.png in Resources */,
+				935DC87018F9426C00A42623 /* nav_g.png in Resources */,
+				935DC86618F9426C00A42623 /* globals_eval.html in Resources */,
+				935DC86118F9426C00A42623 /* functions.html in Resources */,
+				935DC86218F9426C00A42623 /* functions_func.html in Resources */,
+				935DC87918F9426C00A42623 /* tab_a.png in Resources */,
+				935DC87118F9426C00A42623 /* nav_h.png in Resources */,
+				935DC84B18F9426C00A42623 /* dir_692516b589a32b3bfce781ca9f6d1534.html in Resources */,
+				935DC87418F9426C00A42623 /* protocol_r_d_a_p_i_request_delegate-p.html in Resources */,
+				935DC87218F9426C00A42623 /* open.png in Resources */,
 				935DC7CA18F8FF4200A42623 /* SearchBar.png in Resources */,
 				B86D4F1318F942C10048F5A3 /* searchBG.png in Resources */,
 				935DC7F318F907B800A42623 /* CHANGELOG in Resources */,
+				935DC87818F9426C00A42623 /* sync_on.png in Resources */,
+				935DC7FD18F9403500A42623 /* PauseButton.png in Resources */,
+				935DC87318F9426C00A42623 /* pages.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -381,10 +523,12 @@
 				935DC7F218F907B800A42623 /* TPCircularBuffer.c in Sources */,
 				935DC7A818F8FC3600A42623 /* ViewController.m in Sources */,
 				935DC7EA18F907B800A42623 /* EZAudioPlayer.m in Sources */,
+				935DC86D18F9426C00A42623 /* jquery.js in Sources */,
 				935DC7E718F907B800A42623 /* AEFloatConverter.m in Sources */,
 				B86D4F0F18F93E390048F5A3 /* searchBar.m in Sources */,
 				935DC7A218F8FC3600A42623 /* AppDelegate.m in Sources */,
 				935DC7EC18F907B800A42623 /* EZAudioPlotGL.m in Sources */,
+				935DC84F18F9426C00A42623 /* dynsections.js in Sources */,
 				935DC7E918F907B800A42623 /* EZAudioFile.m in Sources */,
 				935DC79E18F8FC3600A42623 /* main.m in Sources */,
 				935DC7F118F907B800A42623 /* EZRecorder.m in Sources */,
@@ -522,6 +666,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LAHacks/LAHacks-Prefix.pch";
 				INFOPLIST_FILE = "LAHacks/LAHacks-Info.plist";
+				"OTHER_LDFLAGS[arch=*]" = " -all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
@@ -538,6 +683,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LAHacks/LAHacks-Prefix.pch";
 				INFOPLIST_FILE = "LAHacks/LAHacks-Info.plist";
+				"OTHER_LDFLAGS[arch=*]" = " -all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;

@@ -225,9 +225,9 @@
                      _sampleLength);
       CGMutablePathRef path = CGPathCreateMutable();
       
-      double xscale = (frame.size.width) / (float)_sampleLength;
-      double halfHeight = floor( frame.size.height / 2.0 );
-      
+      double xscale = (frame.size.width)/(float)_sampleLength;
+      double halfHeight = floor(frame.size.height/ 2.0 );
+        
       // iOS drawing origin is flipped by default so make sure we account for that
       int deviceOriginFlipped = 1;
 #if TARGET_OS_IPHONE

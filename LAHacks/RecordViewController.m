@@ -7,8 +7,20 @@
 //
 
 #import "RecordViewController.h"
-
+#import "Rdio/Rdio.h"
+#import "AppDelegate.h"
 @interface RecordViewController ()
+{
+    UIButton *_playButton;
+    UIButton *_loginButton;
+    RDPlayer* _player;
+    BOOL _playing;
+    
+    NSMutableArray *albumArray;
+    NSMutableArray *bandArray;
+    NSMutableArray *titleArray;
+    NSArray* keys;
+}
 // Using AVPlayer for example
 @property (nonatomic,strong) AVAudioPlayer *audioPlayer;
 @property (nonatomic,weak) IBOutlet UISwitch *microphoneSwitch;
@@ -20,6 +32,7 @@
 @end
 
 @implementation RecordViewController
+@synthesize player;
 @synthesize audioPlot;
 @synthesize microphone;
 @synthesize microphoneSwitch;
@@ -31,6 +44,7 @@
 @synthesize recordingTextField;
 
 bool alreadyStopped = NO;
+
 
 #pragma mark - Initialization
 -(id)init {
@@ -49,9 +63,18 @@ bool alreadyStopped = NO;
   return self;
 }
 
+#pragma mark - Rdio Helper
+
+- (RDPlayer*)getPlayer
+{
+    if (_player == nil) {
+        _player = [AppDelegate rdioInstance].player;
+    }
+    return _player;
+}
+
 #pragma mark - Initialize View Controller Here
 -(void)initializeViewController {
-  // Create an instance of the microphone and tell it to use this view controller instance as the delegate
   self.microphone = [EZMicrophone microphoneWithDelegate:self];
 }
 
@@ -59,95 +82,122 @@ bool alreadyStopped = NO;
 -(void)viewDidLoad {
   
   [super viewDidLoad];
-  
-  /*
-   Customizing the audio plot's look
-   */
-  // Background color
-  self.audioPlot.backgroundColor = [UIColor colorWithRed: 0.984 green: 0.71 blue: 0.365 alpha: 1];
-  // Waveform color
+  [self playClicked];
+    
+    
+    bandArray = [[NSMutableArray alloc] init];
+    albumArray = [[NSMutableArray alloc] init];
+    titleArray = [[NSMutableArray alloc] init];
+    
+  self.audioPlot.backgroundColor = [UIColor colorWithRed: 0.0 green: 0.0 blue: 0.0 alpha: 1.0];
   self.audioPlot.color           = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0];
-  // Plot type
   self.audioPlot.plotType        = EZPlotTypeRolling;
-  // Fill
   self.audioPlot.shouldFill      = YES;
-  // Mirror
   self.audioPlot.shouldMirror    = YES;
-  
-  /*
-   Start the microphone
-   */
   [self.microphone startFetchingAudio];
-  self.microphoneTextField.text = @"Microphone On";
-  self.recordingTextField.text = @"Not Recording";
-  self.playingTextField.text = @"Not Playing";
   
-  // Hide the play button
-  self.playButton.hidden = YES;
-  
-  /*
-   Log out where the file is being written to within the app's documents directory
-   */
   NSLog(@"File written to application sandbox's documents directory: %@",[self testFilePathURL]);
-  
+  [self.view addSubview:_playButton];
+  [self loadResults:@"Tears In Heaven"];
+}
+- (void)playClicked
+{
+    if (!_playing) {
+        
+        [[self getPlayer] playSources:keys];
+    } else {
+        [[self getPlayer] togglePause];
+    }
 }
 
-#pragma mark - Actions
--(void)playFile:(id)sender {
+-(void)grabImage
+{
+    NSLog(@"First Element : %@", [albumArray objectAtIndex:0]);
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[[NSString alloc] initWithFormat:@"http://developer.echonest.com/api/v4/artist/images?api_key=ZAIMFQ6WMS5EZUABI&id=%@&format=json&results=1&start=0&license=unknown",[albumArray objectAtIndex:0]]]];
+   
+    NSLog(@"%@",request);
+    
+    NSURLResponse *resp = nil;
+    NSError *error = nil;
+    
+    
+    
+    NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:&resp error:& error];
+    
+    
+    
+    NSDictionary *rawData = [NSJSONSerialization JSONObjectWithData:response options:kNilOptions error:&error];
+    
+    NSLog(@"Grab Image: %@",rawData);
+     
+    NSDictionary *postData = [rawData objectForKey:@"response"];
+    
+    NSDictionary *postDict = [postData objectForKey:@"images"];
   
-  // Update microphone state
-  [self.microphone stopFetchingAudio];
-  self.microphoneTextField.text = @"Microphone Off";
-  self.microphoneSwitch.on = NO;
   
-  // Update recording state
-  self.isRecording = NO;
-  self.recordingTextField.text = @"Not Recording";
-  self.recordSwitch.on = NO;
-  
-  // Create Audio Player
-  if( self.audioPlayer ){
-    if( self.audioPlayer.playing ) [self.audioPlayer stop];
-    self.audioPlayer = nil;
-  }
-  NSError *err;
-  self.audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:[self testFilePathURL]
-                                                            error:&err];
-  [self.audioPlayer play];
-  self.audioPlayer.delegate = self;
-  self.playingTextField.text = @"Playing";
-  
+    NSLog(@"Post Data: %@", postDict);
+    
+    
+    
 }
+/*
+ * Make sure to sort by most popular
+ * Double listings
+ */
+-(void)loadResults:(NSString *)songName
+{
+    songName = [songName stringByReplacingOccurrencesOfString:@" " withString: @"+"];
+    
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[[NSString alloc] initWithFormat:@"http://developer.echonest.com/api/v4/song/search?api_key=ZAIMFQ6WMS5EZUABI&format=json&results=10&title=%@&bucket=id:rdio-US&bucket=tracks&limit=true",songName]]];
+    
 
--(void)toggleMicrophone:(id)sender {
-  
-  self.playingTextField.text = @"Not Playing";
-  if( self.audioPlayer ){
-    if( self.audioPlayer.playing ) [self.audioPlayer stop];
-    self.audioPlayer = nil;
-  }
-  
-  if( ![(UISwitch*)sender isOn] ){
-    [self.microphone stopFetchingAudio];
-    self.microphoneTextField.text = @"Microphone Off";
-  }
-  else {
-    [self.microphone startFetchingAudio];
-    self.microphoneTextField.text = @"Microphone On";
-  }
-}
+    
+    NSURLResponse *resp = nil;
+    NSError *error = nil;
+    
+    NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:&resp error:& error];
 
--(void)toggleRecording:(id)sender {
+    NSDictionary *rawData = [NSJSONSerialization JSONObjectWithData:response options:kNilOptions error:&error];
+    
+    
+    NSLog(@"raw: %@",rawData);
+
+    
+    NSDictionary *postData = [rawData objectForKey:@"response"];
+    NSArray *postDict = [postData objectForKey:@"songs"];
+    
+    //NSLog(@"raw: %@",postDict);
+    
+    NSDictionary *postDict2 = [postDict objectAtIndex:0];
+
+    for(id post in postDict)
+    {
+        NSLog(@"%@",[post objectForKey:@"artist_id"]);
+        [bandArray addObject:[post objectForKey:@"artist_name"]];
+        [albumArray addObject:[post objectForKey:@"artist_id"]];
+        [titleArray addObject:[post objectForKey:@"title"]];
+        
+    }
+    
+    //[self grabImage];
+    
+    //Change to mutable array
+    NSString *finalArtists = [postDict2 objectForKey:@"artist_id"];
+    
+    NSArray *finalTracks = [postDict2 objectForKey:@"tracks"];
   
-  self.playingTextField.text = @"Not Playing";
-  if( self.audioPlayer ){
-    if( self.audioPlayer.playing ) [self.audioPlayer stop];
-    self.audioPlayer = nil;
-  }
-  self.playButton.hidden = NO;
-  
-  self.isRecording = (BOOL)[sender isOn];
-  self.recordingTextField.text = self.isRecording ? @"Recording" : @"Not Recording";
+    NSMutableArray *tracks = [[NSMutableArray alloc] init];
+
+    for( int x=0; x < finalTracks.count; x++)
+    {
+        NSString * strTracks = [[finalTracks objectAtIndex:x] objectForKey:@"foreign_id"];
+        strTracks = [strTracks stringByReplacingOccurrencesOfString:@"rdio-US:track:" withString: @""];
+        [tracks addObject:strTracks];
+    }
+    
+    keys = [[tracks objectAtIndex:0],@"," componentsSeparatedByString:@","];
+    NSLog(@"Tracks: %@",tracks);
+
 }
 
 -(void)toggleRecording {
@@ -156,6 +206,8 @@ bool alreadyStopped = NO;
     {
         [self.microphone stopFetchingAudio];
         [self.audioPlayer stop];
+        [[self getPlayer] togglePause];
+        [stopRecording setImage:[UIImage imageNamed:@"PlayButton.png"] forState:UIControlStateNormal];
         alreadyStopped = YES;
     }
     else
@@ -163,34 +215,27 @@ bool alreadyStopped = NO;
         NSLog(@"here");
         [self.microphone startFetchingAudio];
         self.isRecording = YES;
+        [[self getPlayer] togglePause];
+        [stopRecording setImage:[UIImage imageNamed:@"PauseButton.png"] forState:UIControlStateNormal];
         alreadyStopped = NO;
     }
 }
 
 
 #pragma mark - EZMicrophoneDelegate
-
-// Note that any callback that provides streamed audio data (like streaming microphone input) happens on a separate audio thread that should not be blocked. When we feed audio data into any of the UI components we need to explicity create a GCD block on the main thread to properly get the UI to work.
 -(void)microphone:(EZMicrophone *)microphone
  hasAudioReceived:(float **)buffer
    withBufferSize:(UInt32)bufferSize
 withNumberOfChannels:(UInt32)numberOfChannels {
-  // Getting audio data as an array of float buffer arrays. What does that mean? Because the audio is coming in as a stereo signal the data is split into a left and right channel. So buffer[0] corresponds to the float* data for the left channel while buffer[1] corresponds to the float* data for the right channel.
-  
-  // See the Thread Safety warning above, but in a nutshell these callbacks happen on a separate audio thread. We wrap any UI updating in a GCD block on the main thread to avoid blocking that audio flow.
-  dispatch_async(dispatch_get_main_queue(),^{
-    // All the audio plot needs is the buffer data (float*) and the size. Internally the audio plot will handle all the drawing related code, history management, and freeing its own resources. Hence, one badass line of code gets you a pretty plot :)
-    [self.audioPlot updateBuffer:buffer[0] withBufferSize:bufferSize];
+    dispatch_async(dispatch_get_main_queue(),^{
+        [self.audioPlot updateBuffer:buffer[0] withBufferSize:bufferSize];
   });
 }
 
 -(void)microphone:(EZMicrophone *)microphone hasAudioStreamBasicDescription:(AudioStreamBasicDescription)audioStreamBasicDescription {
-  // The AudioStreamBasicDescription of the microphone stream. This is useful when configuring the EZRecorder or telling another component what audio format type to expect.
-  
-  // Here's a print function to allow you to inspect it a little easier
+ 
   [EZAudio printASBD:audioStreamBasicDescription];
   
-  // We can initialize the recorder with this ASBD
   self.recorder = [EZRecorder recorderWithDestinationURL:[self testFilePathURL]
                                          andSourceFormat:audioStreamBasicDescription];
   
@@ -201,8 +246,7 @@ withNumberOfChannels:(UInt32)numberOfChannels {
    withBufferSize:(UInt32)bufferSize
 withNumberOfChannels:(UInt32)numberOfChannels {
   
-  // Getting audio data as a buffer list that can be directly fed into the EZRecorder. This is happening on the audio thread - any UI updating needs a GCD main queue block. This will keep appending data to the tail of the audio file.
-  if( self.isRecording ){
+    if( self.isRecording ){
     [self.recorder appendDataFromBufferList:bufferList
                              withBufferSize:bufferSize];
   }
@@ -210,9 +254,7 @@ withNumberOfChannels:(UInt32)numberOfChannels {
 }
 
 #pragma mark - AVAudioPlayerDelegate
-/*
- Occurs when the audio player instance completes playback
- */
+
 -(void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag {
   self.audioPlayer = nil;
   self.playingTextField.text = @"Finished Playing";
