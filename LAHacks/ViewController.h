@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface ViewController : UIViewController
-
+{
+    IBOutlet UITextField *searchField;
+}
+@property(nonatomic, retain) UIImage *textFieldBackground;
 @end

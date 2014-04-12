@@ -21,6 +21,7 @@
 		935DC7B318F8FC3700A42623 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 935DC79518F8FC3600A42623 /* UIKit.framework */; };
 		935DC7BB18F8FC3700A42623 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 935DC7B918F8FC3700A42623 /* InfoPlist.strings */; };
 		935DC7BD18F8FC3700A42623 /* LAHacksTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 935DC7BC18F8FC3700A42623 /* LAHacksTests.m */; };
+		935DC7CA18F8FF4200A42623 /* SearchBar.png in Resources */ = {isa = PBXBuildFile; fileRef = 935DC7C918F8FF4200A42623 /* SearchBar.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		935DC7B818F8FC3700A42623 /* LAHacksTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LAHacksTests-Info.plist"; sourceTree = "<group>"; };
 		935DC7BA18F8FC3700A42623 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		935DC7BC18F8FC3700A42623 /* LAHacksTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LAHacksTests.m; sourceTree = "<group>"; };
+		935DC7C918F8FF4200A42623 /* SearchBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SearchBar.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +120,7 @@
 				935DC7A618F8FC3600A42623 /* ViewController.h */,
 				935DC7A718F8FC3600A42623 /* ViewController.m */,
 				935DC7A918F8FC3600A42623 /* Images.xcassets */,
+				935DC7C618F8FD7C00A42623 /* Images */,
 				935DC79818F8FC3600A42623 /* Supporting Files */,
 			);
 			path = LAHacks;
@@ -150,6 +153,14 @@
 				935DC7B918F8FC3700A42623 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		935DC7C618F8FD7C00A42623 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				935DC7C918F8FF4200A42623 /* SearchBar.png */,
+			);
+			name = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -231,6 +242,7 @@
 				935DC7AA18F8FC3600A42623 /* Images.xcassets in Resources */,
 				935DC79C18F8FC3600A42623 /* InfoPlist.strings in Resources */,
 				935DC7A518F8FC3600A42623 /* Main.storyboard in Resources */,
+				935DC7CA18F8FF4200A42623 /* SearchBar.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
