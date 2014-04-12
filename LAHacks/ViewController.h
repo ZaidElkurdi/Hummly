@@ -7,10 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "searchBar.h"
+#import "categoryTiles.h"
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController<UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate>
 {
-    IBOutlet UISearchBar *searchField;
+
 }
-@property(nonatomic, retain) UIImage *textFieldBackground;
+@property (nonatomic, retain) NSArray *pastUrls;
+@property (nonatomic, retain) NSMutableArray *autocompleteUrls;
+@property (nonatomic, retain) UITableView *autocompleteTableView;
 @end
