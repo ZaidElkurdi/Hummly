@@ -7,6 +7,7 @@
 @interface RecordViewController : UIViewController <AVAudioPlayerDelegate,EZMicrophoneDelegate,RdioDelegate,RDPlayerDelegate>
 {
     IBOutlet UIButton *stopRecording;
+    IBOutlet UIImageView *albumArtwork;
 }
 
 @property (retain) RDPlayer *player;

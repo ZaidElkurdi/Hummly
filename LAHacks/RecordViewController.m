@@ -15,6 +15,11 @@
     UIButton *_loginButton;
     RDPlayer* _player;
     BOOL _playing;
+    
+    NSMutableArray *albumArray;
+    NSMutableArray *bandArray;
+    NSMutableArray *titleArray;
+    NSArray* keys;
 }
 // Using AVPlayer for example
 @property (nonatomic,strong) AVAudioPlayer *audioPlayer;
@@ -79,6 +84,11 @@ bool alreadyStopped = NO;
   [super viewDidLoad];
   [self playClicked];
     
+    
+    bandArray = [[NSMutableArray alloc] init];
+    albumArray = [[NSMutableArray alloc] init];
+    titleArray = [[NSMutableArray alloc] init];
+    
   self.audioPlot.backgroundColor = [UIColor colorWithRed: 0.0 green: 0.0 blue: 0.0 alpha: 1.0];
   self.audioPlot.color           = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0];
   self.audioPlot.plotType        = EZPlotTypeRolling;
@@ -88,16 +98,47 @@ bool alreadyStopped = NO;
   
   NSLog(@"File written to application sandbox's documents directory: %@",[self testFilePathURL]);
   [self.view addSubview:_playButton];
-    [self loadResults:@"Don't Stop Believin'"];
+  [self loadResults:@"Tears In Heaven"];
 }
 - (void)playClicked
 {
     if (!_playing) {
-        NSArray* keys = [@"t2742133,t1992210,t7418766,t8816323" componentsSeparatedByString:@","];
+        
         [[self getPlayer] playSources:keys];
     } else {
         [[self getPlayer] togglePause];
     }
+}
+
+-(void)grabImage
+{
+    NSLog(@"First Element : %@", [albumArray objectAtIndex:0]);
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[[NSString alloc] initWithFormat:@"http://developer.echonest.com/api/v4/artist/images?api_key=ZAIMFQ6WMS5EZUABI&id=%@&format=json&results=1&start=0&license=unknown",[albumArray objectAtIndex:0]]]];
+   
+    NSLog(@"%@",request);
+    
+    NSURLResponse *resp = nil;
+    NSError *error = nil;
+    
+    
+    
+    NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:&resp error:& error];
+    
+    
+    
+    NSDictionary *rawData = [NSJSONSerialization JSONObjectWithData:response options:kNilOptions error:&error];
+    
+    NSLog(@"Grab Image: %@",rawData);
+     
+    NSDictionary *postData = [rawData objectForKey:@"response"];
+    
+    NSDictionary *postDict = [postData objectForKey:@"images"];
+  
+  
+    NSLog(@"Post Data: %@", postDict);
+    
+    
+    
 }
 /*
  * Make sure to sort by most popular
@@ -107,7 +148,9 @@ bool alreadyStopped = NO;
 {
     songName = [songName stringByReplacingOccurrencesOfString:@" " withString: @"+"];
     
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[[NSString alloc] initWithFormat:@"http://developer.echonest.com/api/v4/song/search?api_key=ZAIMFQ6WMS5EZUABI&format=json&results=100&title=%@&bucket=id:rdio-US&bucket=tracks&limit=true",songName]]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[[NSString alloc] initWithFormat:@"http://developer.echonest.com/api/v4/song/search?api_key=ZAIMFQ6WMS5EZUABI&format=json&results=10&title=%@&bucket=id:rdio-US&bucket=tracks&limit=true",songName]]];
+    
+
     
     NSURLResponse *resp = nil;
     NSError *error = nil;
@@ -115,17 +158,46 @@ bool alreadyStopped = NO;
     NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:&resp error:& error];
 
     NSDictionary *rawData = [NSJSONSerialization JSONObjectWithData:response options:kNilOptions error:&error];
+    
+    
     NSLog(@"raw: %@",rawData);
-    NSArray *postData = [rawData objectForKey:@"name"];
-    NSMutableArray *postArray;
-    for(NSDictionary *post in postData)
+
+    
+    NSDictionary *postData = [rawData objectForKey:@"response"];
+    NSArray *postDict = [postData objectForKey:@"songs"];
+    
+    //NSLog(@"raw: %@",postDict);
+    
+    NSDictionary *postDict2 = [postDict objectAtIndex:0];
+
+    for(id post in postDict)
     {
-        postArray = [[NSMutableArray alloc] init];
-        [postArray addObject:[post objectForKey:@"catalog"]];
+        NSLog(@"%@",[post objectForKey:@"artist_id"]);
+        [bandArray addObject:[post objectForKey:@"artist_name"]];
+        [albumArray addObject:[post objectForKey:@"artist_id"]];
+        [titleArray addObject:[post objectForKey:@"title"]];
+        
     }
     
-    NSLog(@"Return From JSON : %@", postArray);
+    //[self grabImage];
     
+    //Change to mutable array
+    NSString *finalArtists = [postDict2 objectForKey:@"artist_id"];
+    
+    NSArray *finalTracks = [postDict2 objectForKey:@"tracks"];
+  
+    NSMutableArray *tracks = [[NSMutableArray alloc] init];
+
+    for( int x=0; x < finalTracks.count; x++)
+    {
+        NSString * strTracks = [[finalTracks objectAtIndex:x] objectForKey:@"foreign_id"];
+        strTracks = [strTracks stringByReplacingOccurrencesOfString:@"rdio-US:track:" withString: @""];
+        [tracks addObject:strTracks];
+    }
+    
+    keys = [[tracks objectAtIndex:0],@"," componentsSeparatedByString:@","];
+    NSLog(@"Tracks: %@",tracks);
+
 }
 
 -(void)toggleRecording {
