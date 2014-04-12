@@ -53,33 +53,18 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C4L-zH-5u0">
-                                        <rect key="frame" x="20" y="440" width="49" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TrE-ls-gEq">
+                                        <rect key="frame" x="26" y="289" width="274" height="70"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="49" id="DSZ-bh-oZi"/>
-                                        </constraints>
-                                        <state key="normal" title="Play">
+                                        <state key="normal" title="Stop Recording">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="playFile:" destination="abg-vX-LHH" eventType="touchUpInside" id="ISo-Be-Qij"/>
+                                            <action selector="toggleRecording" destination="abg-vX-LHH" eventType="touchUpInside" id="Ls7-qS-Zm0"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Not Playing" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IRd-tk-dYW">
-                                        <rect key="frame" x="98" y="444" width="202" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstItem="C4L-zH-5u0" firstAttribute="leading" secondItem="8GX-l9-Hiw" secondAttribute="leading" constant="20" id="1bf-rl-Ucg"/>
-                                    <constraint firstItem="IRd-tk-dYW" firstAttribute="leading" secondItem="C4L-zH-5u0" secondAttribute="trailing" constant="29" id="31B-wP-UHx"/>
-                                    <constraint firstAttribute="trailing" secondItem="IRd-tk-dYW" secondAttribute="trailing" constant="20" id="IBv-4P-veT"/>
-                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -98,10 +83,17 @@
                         <outlet property="playButton" destination="C4L-zH-5u0" id="FIc-UZ-A1h"/>
                         <outlet property="playingTextField" destination="IRd-tk-dYW" id="V3j-bM-OAI"/>
                         <outlet property="recordSwitch" destination="AmU-7R-05Q" id="htj-om-gWJ"/>
-                        <outlet property="recordingTextField" destination="WrQ-nQ-MmO" id="0NL-zJ-R24"/>
+                        <outlet property="stopRecording" destination="TrE-ls-gEq" id="SaP-r6-Tb9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F9a-pA-S51" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Not Playing" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="IRd-tk-dYW">
+                    <rect key="frame" x="0.0" y="0.0" width="202" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="Ema-xU-XHG">
                     <rect key="frame" x="0.0" y="0.0" width="51" height="31"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -123,13 +115,19 @@
                         <action selector="toggleRecording:" destination="abg-vX-LHH" eventType="valueChanged" id="mIS-2f-D5q"/>
                     </connections>
                 </switch>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recording On" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="WrQ-nQ-MmO">
-                    <rect key="frame" x="0.0" y="0.0" width="202" height="21"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C4L-zH-5u0">
+                    <rect key="frame" x="0.0" y="0.0" width="49" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="49" id="DSZ-bh-oZi"/>
+                    </constraints>
+                    <state key="normal" title="Play">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="playFile:" destination="abg-vX-LHH" eventType="touchUpInside" id="ISo-Be-Qij"/>
+                    </connections>
+                </button>
             </objects>
             <point key="canvasLocation" x="420" y="351"/>
         </scene>

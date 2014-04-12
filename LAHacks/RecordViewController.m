@@ -30,6 +30,8 @@
 @synthesize recordSwitch;
 @synthesize recordingTextField;
 
+bool alreadyStopped = NO;
+
 #pragma mark - Initialization
 -(id)init {
   self = [super init];
@@ -147,6 +149,24 @@
   self.isRecording = (BOOL)[sender isOn];
   self.recordingTextField.text = self.isRecording ? @"Recording" : @"Not Recording";
 }
+
+-(void)toggleRecording {
+    
+    if(!alreadyStopped)
+    {
+        [self.microphone stopFetchingAudio];
+        [self.audioPlayer stop];
+        alreadyStopped = YES;
+    }
+    else
+    {
+        NSLog(@"here");
+        [self.microphone startFetchingAudio];
+        self.isRecording = YES;
+        alreadyStopped = NO;
+    }
+}
+
 
 #pragma mark - EZMicrophoneDelegate
 #warning Thread Safety
