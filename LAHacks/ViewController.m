@@ -80,8 +80,9 @@
     NSLog(@"Being called");
     if(self.autocompleteTableView.hidden==true)
     {
-        self.autocompleteTableView.hidden = FALSE;
-        autocompleteBorder.hidden = FALSE;
+        //Changed the following
+        self.autocompleteTableView.hidden = TRUE;
+        autocompleteBorder.hidden = TRUE;
     }
     
     if([string isEqualToString:@"\n"])
