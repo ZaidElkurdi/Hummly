@@ -23,13 +23,10 @@
     self.autocompleteUrls = [[NSMutableArray alloc] init];
     self.pastUrls = [[NSArray alloc] init];
     
-    
-    //autocompleteBorder = [[UIImageView alloc] initWithFrame:CGRectMake(20,215,285,130 )];
-    //autocompleteBorder.image = [UIImage imageNamed:@"autocompleteBorder.png"];
-    //autocompleteBorder.hidden = true;
-    //[self.view addSubview:autocompleteBorder];
-    
-    
+    autocompleteBorder = [[UIImageView alloc] initWithFrame:CGRectMake(20,215,285,130 )];
+    autocompleteBorder.image = [UIImage imageNamed:@"autocompleteBorder.png"];
+    autocompleteBorder.hidden = true;
+    [self.view addSubview:autocompleteBorder];
     
     searchView = [[searchBar alloc] initWithFrame:self.view.frame];
     searchView.searchField.delegate=self;
@@ -37,6 +34,7 @@
     
     UICollectionViewFlowLayout *layout=[[UICollectionViewFlowLayout alloc] init];
     layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+    [layout setSectionInset:UIEdgeInsetsMake(0, -10, -10, 0)];
     
     self.categoryView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 345, 320, 200) collectionViewLayout:layout];
     self.categoryView.backgroundColor = [UIColor clearColor];
@@ -46,18 +44,15 @@
     
     [self.view addSubview:self.categoryView];
     
-    NSArray *categories = [NSArray arrayWithObjects:@"Rock", @"Pop", @"Jazz", @"Country", @"Alternative", nil];
-    NSArray *values = [NSArray arrayWithObjects:@"100", @"65", @"30", @"24", @"103", nil];
-    NSDictionary *testDict = [NSDictionary dictionaryWithObjects:values forKeys:categories];
     
     [self.categoryView registerClass:[categoryCardCell class] forCellWithReuseIdentifier:@"categoryCellIdentifier"];
     
     self.autocompleteTableView = [[UITableView alloc] initWithFrame:CGRectMake(25, 228, 275, 111) style:UITableViewStylePlain];
-    //self.autocompleteTableView.delegate=self;
-    //self.autocompleteTableView.dataSource=self;
-    //self.autocompleteTableView.allowsSelectionDuringEditing = YES;
-    //[self.view addSubview:self.autocompleteTableView];
-    //self.autocompleteTableView.hidden = YES;
+    self.autocompleteTableView.delegate=self;
+    self.autocompleteTableView.dataSource=self;
+    self.autocompleteTableView.allowsSelectionDuringEditing = YES;
+    [self.view addSubview:self.autocompleteTableView];
+    self.autocompleteTableView.hidden = YES;
 }
 
 - (void)didReceiveMemoryWarning
@@ -92,6 +87,12 @@
         autocompleteBorder.hidden=TRUE;
     }
     
+    else if([compareText length]>4)
+    {
+        NSString *substring = [NSString stringWithString:textField.text];
+        substring = [substring stringByReplacingCharactersInRange:range withString:string];
+        [self searchAutocompleteEntriesWithSubstring:substring];
+    }
     return YES;
 }
 
@@ -155,9 +156,16 @@
 {
     // Put anything that starts with this substring into the autocompleteUrls array
     // The items in this array is what will show up in the table view
+    NSLog(@"Searching for substring");
     [self.autocompleteUrls removeAllObjects];
-    for(NSMutableString *curString in self.pastUrls) {
-        
+    
+    SerumDB *dataB = [[SerumDB alloc] init];
+    dataB.state = substring;
+    NSLog(@"Searching for: %@",substring);
+    self.pastUrls = [dataB getAllHighSchools];
+    NSLog(@"%@",self.pastUrls);
+    for(NSMutableString *curString in self.pastUrls)
+    {
         NSString * temp = [substring lowercaseString];
         NSString * temp2 = [curString lowercaseString];
         
@@ -170,20 +178,6 @@
     
     [self.autocompleteTableView reloadData];
 }
-- (BOOL)searchBar:(UISearchBar *)searchBar shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
-{
-    self.autocompleteTableView.hidden = FALSE;
-    
-    NSString *substring = [NSString stringWithString:searchBar.text];
-    substring = [substring stringByReplacingCharactersInRange:range withString:text];
-    [self searchAutocompleteEntriesWithSubstring:substring];
-    
-    NSString *compareText = [substring stringByReplacingOccurrencesOfString:@" " withString:@""];
-    if([compareText isEqualToString:@""])
-        self.autocompleteTableView.hidden = TRUE;
-    
-    return YES;
-}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -195,14 +189,14 @@
                 initWithStyle:UITableViewCellStyleDefault reuseIdentifier:AutoCompleteRowIdentifier];
     }
     
-    cell.textLabel.text = @"Search Results";
+    cell.textLabel.text = [self.autocompleteUrls objectAtIndex:indexPath.row];
     cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:15.0f];
     return cell;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger) section
 {
-    return 4;//return self.autocompleteUrls.count;
+    return self.autocompleteUrls.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

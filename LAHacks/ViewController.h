@@ -10,6 +10,7 @@
 #import "searchBar.h"
 #import "categoryCardCell.h"
 #import <sqlite3.h>
+#import "SerumDB.h"
 
 @interface ViewController : UIViewController<UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 {

@@ -44,7 +44,7 @@ static SerumDB * database;
     
     NSString *query = [NSString stringWithFormat:@"SELECT * FROM LAHacks WHERE songNames = '%@'",state];
     sqlite3_stmt * statement;
-    
+
     if(sqlite3_prepare_v2(database, [query UTF8String], -1, &statement, nil) == SQLITE_OK)
     {
         while (sqlite3_step(statement) == SQLITE_ROW) {
@@ -53,8 +53,6 @@ static SerumDB * database;
         
             NSString *finalReturn = [NSString stringWithFormat:@"%@",schoolName];
             [returnArray addObject:finalReturn];
-            
-            
         }
         
         sqlite3_finalize(statement);
