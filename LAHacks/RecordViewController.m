@@ -396,7 +396,9 @@ bool alreadyStopped = NO;
 -(void)viewDidLoad {
     
     [super viewDidLoad];
-    songChosen = [[NSString alloc] init];
+    //songChosen = [[NSString alloc] init];
+    
+    NSLog(@"Song Chosen: %@",songChosen);
     
     NSArray *dirPaths;
     NSString *docsDir;
@@ -467,7 +469,9 @@ bool alreadyStopped = NO;
     ////NSLog(@"File written to application sandbox's documents directory: %@",[self testFilePathURL]);
     
     [self.view addSubview:_playButton];
-    songChosen = @"Daylight";
+    
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];    
+    songChosen = [prefs stringForKey:@"song"];
     
     NSLog(@"Preparing..");
     [self loadResults:songChosen];
@@ -553,7 +557,6 @@ bool alreadyStopped = NO;
         
         [self grabImage];
         
-        //Change to mutable array
         NSString *finalArtists = [postDict2 objectForKey:@"artist_id"];
         
         NSArray *finalTracks = [postDict2 objectForKey:@"tracks"];
