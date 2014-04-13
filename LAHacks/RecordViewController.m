@@ -34,34 +34,16 @@
 @implementation RecordViewController
 @synthesize player;
 @synthesize audioPlot;
-@synthesize microphone;
+@synthesize audioPlayer;
 @synthesize microphoneSwitch;
 @synthesize microphoneTextField;
 @synthesize playButton;
 @synthesize playingTextField;
-@synthesize recorder;
 @synthesize recordSwitch;
 @synthesize recordingTextField;
 
 bool alreadyStopped = NO;
 
-
-#pragma mark - Initialization
--(id)init {
-  self = [super init];
-  if(self){
-    [self initializeViewController];
-  }
-  return self;
-}
-
--(id)initWithCoder:(NSCoder *)aDecoder {
-  self = [super initWithCoder:aDecoder];
-  if(self){
-    [self initializeViewController];
-  }
-  return self;
-}
 
 #pragma mark - Rdio Helper
 
@@ -73,16 +55,66 @@ bool alreadyStopped = NO;
     return _player;
 }
 
-#pragma mark - Initialize View Controller Here
--(void)initializeViewController {
-  self.microphone = [EZMicrophone microphoneWithDelegate:self];
-}
-
 #pragma mark - Customize the Audio Plot
 -(void)viewDidLoad {
   
   [super viewDidLoad];
+
+   NSArray *dirPaths;
+   NSString *docsDir;
+
+   dirPaths = NSSearchPathForDirectoriesInDomains(
+        NSDocumentDirectory, NSUserDomainMask, YES);
+   docsDir = [dirPaths objectAtIndex:0];
+   NSString *soundFilePath = [docsDir
+       stringByAppendingPathComponent:@"zaid.caf"];
+
+   NSURL *soundFileURL = [NSURL fileURLWithPath:soundFilePath];
+   
+    //Initialize audio session
+    AVAudioSession *audioSession = [AVAudioSession sharedInstance];
+    [audioSession setCategory:AVAudioSessionCategoryRecord error:nil];
     
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
+    
+    //Override record to mix with other app audio, background audio not silenced on record
+UInt32 sessionCategory = kAudioSessionCategory_PlayAndRecord;
+  AudioSessionSetProperty(kAudioSessionProperty_AudioCategory,
+     sizeof(UInt32), &sessionCategory);
+    
+    UInt32 audioRouteOverride = kAudioSessionOverrideAudioRoute_Speaker;
+    AudioSessionSetProperty (kAudioSessionProperty_OverrideAudioRoute,sizeof (audioRouteOverride),&audioRouteOverride);
+    
+    
+    [[AVAudioSession sharedInstance] setActive:YES error:nil];
+    [[AVAudioSession sharedInstance] setCategory:@"AVAudioSessionCategoryPlayAndRecord" error:nil];
+   NSDictionary *recordSettings = [NSDictionary 
+            dictionaryWithObjectsAndKeys:
+            [NSNumber numberWithInt:AVAudioQualityMin],
+            AVEncoderAudioQualityKey,
+            [NSNumber numberWithInt:16], 
+            AVEncoderBitRateKey,
+            [NSNumber numberWithInt: 2], 
+            AVNumberOfChannelsKey,
+            [NSNumber numberWithFloat:44100.0], 
+            AVSampleRateKey,
+            nil];
+
+  NSError *error = nil;
+
+  audioRecorder = [[AVAudioRecorder alloc]
+                  initWithURL:soundFileURL
+                  settings:recordSettings
+                  error:&error];
+
+   if (error)
+   {
+        NSLog(@"error: %@", [error localizedDescription]);
+   } else
+   {
+        [audioRecorder prepareToRecord];
+   }
+
   keys = [[NSMutableArray alloc] init];
   bandArray = [[NSMutableArray alloc] init];
   albumArray = [[NSMutableArray alloc] init];
@@ -93,7 +125,6 @@ bool alreadyStopped = NO;
   self.audioPlot.plotType        = EZPlotTypeRolling;
   self.audioPlot.shouldFill      = YES;
   self.audioPlot.shouldMirror    = YES;
-  [self.microphone startFetchingAudio];
   
   //NSLog(@"File written to application sandbox's documents directory: %@",[self testFilePathURL]);
   [self.view addSubview:_playButton];
@@ -208,9 +239,8 @@ bool alreadyStopped = NO;
       
         [artistName setText:[bandArray objectAtIndex:0]];
         [titleName setText:[titleArray objectAtIndex:0]];
-        dispatch_async(dispatch_get_main_queue(),^{
-            [self playClicked];
-        });
+        
+        [self playClicked];
         
     }
     
@@ -221,29 +251,70 @@ bool alreadyStopped = NO;
 
 }
 
--(void)toggleRecording {
-    
-    if(!alreadyStopped)
+#pragma mark - EZMicrophoneDelegate
+-(IBAction)recordAudio:(id)sender
+{
+     if (!audioRecorder.recording)
+     {
+        NSLog(@"Begin recording");
+        [[AVAudioSession sharedInstance] setCategory:@"AVAudioSessionCategoryPlayAndRecord" error:nil];
+        [audioRecorder record];
+     }
+}
+
+-(IBAction)stop:(id)sender
+{
+    if (audioRecorder.recording)
     {
-        [self.microphone stopFetchingAudio];
-        [self.audioPlayer stop];
-        [[self getPlayer] togglePause];
-        [stopRecording setImage:[UIImage imageNamed:@"PlayButton.png"] forState:UIControlStateNormal];
-        alreadyStopped = YES;
-    }
-    else
-    {
-        //NSLog(@"here");
-        [self.microphone startFetchingAudio];
-        self.isRecording = YES;
-        [[self getPlayer] togglePause];
-        [stopRecording setImage:[UIImage imageNamed:@"PauseButton.png"] forState:UIControlStateNormal];
-        alreadyStopped = NO;
+        NSLog(@"Stopping recording");
+        [audioRecorder stop];
+    } else if (audioPlayer.playing) {
+            [audioPlayer stop];
     }
 }
 
 
-#pragma mark - EZMicrophoneDelegate
+-(void) playAudio
+{
+    if (!audioRecorder.recording)
+    {
+        NSError *error;
+
+        audioPlayer = [[AVAudioPlayer alloc] 
+        initWithContentsOfURL:audioRecorder.url                                    
+        error:&error];
+
+        audioPlayer.delegate = self;
+
+        if (error)
+              NSLog(@"Error: %@", 
+              [error localizedDescription]);
+        else
+              [audioPlayer play];
+   }
+}
+-(void)audioPlayerDidFinishPlaying:
+(AVAudioPlayer *)player successfully:(BOOL)flag
+{
+}
+-(void)audioPlayerDecodeErrorDidOccur:
+(AVAudioPlayer *)player 
+error:(NSError *)error
+{
+        NSLog(@"Decode Error occurred");
+}
+-(void)audioRecorderDidFinishRecording:
+(AVAudioRecorder *)recorder 
+successfully:(BOOL)flag
+{
+}
+-(void)audioRecorderEncodeErrorDidOccur:
+(AVAudioRecorder *)recorder 
+error:(NSError *)error
+{
+        NSLog(@"Encode Error occurred");
+}
+
 -(void)microphone:(EZMicrophone *)microphone
  hasAudioReceived:(float **)buffer
    withBufferSize:(UInt32)bufferSize
@@ -253,40 +324,9 @@ withNumberOfChannels:(UInt32)numberOfChannels {
   });
 }
 
--(void)microphone:(EZMicrophone *)microphone hasAudioStreamBasicDescription:(AudioStreamBasicDescription)audioStreamBasicDescription {
- 
-  [EZAudio printASBD:audioStreamBasicDescription];
-  
-  self.recorder = [EZRecorder recorderWithDestinationURL:[self testFilePathURL]
-                                         andSourceFormat:audioStreamBasicDescription];
-  
-}
-
--(void)microphone:(EZMicrophone *)microphone
-    hasBufferList:(AudioBufferList *)bufferList
-   withBufferSize:(UInt32)bufferSize
-withNumberOfChannels:(UInt32)numberOfChannels {
-  
-    if( self.isRecording ){
-    [self.recorder appendDataFromBufferList:bufferList
-                             withBufferSize:bufferSize];
-  }
-  
-}
-
-#pragma mark - AVAudioPlayerDelegate
-
--(void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag {
-  self.audioPlayer = nil;
-  self.playingTextField.text = @"Finished Playing";
-  
-  [self.microphone startFetchingAudio];
-  self.microphoneSwitch.on = YES;
-  self.microphoneTextField.text = @"Microphone On";
-}
-
 #pragma mark - Utility
--(NSArray*)applicationDocuments {
+-(NSArray*)applicationDocuments
+{
   return NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 }
 
