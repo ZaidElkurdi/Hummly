@@ -8,6 +8,8 @@
 {
     IBOutlet UIButton *recordButton;
     IBOutlet UIButton *listenButton;
+    IBOutlet UIView *leftView;
+    IBOutlet UIView *rightView;
     IBOutlet UIImageView *albumArtwork;
     IBOutlet UILabel *artistName;
     IBOutlet UILabel *titleName;
@@ -17,8 +19,8 @@
 }
 -(void)stopRecording;
 -(void)stopListening;
--(IBAction)startRecording:(id)sender;
--(IBAction)startListening:(id)sender;
+-(IBAction)didTapRecord:(id)sender;
+-(IBAction)didTapListen:(id)sender;
 @property (retain) RDPlayer *player;
 @property (nonatomic,weak) IBOutlet EZAudioPlot *audioPlot;
 @property (nonatomic,strong) EZMicrophone *microphone;

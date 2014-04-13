@@ -40,11 +40,20 @@
 		935DC7F318F907B800A42623 /* CHANGELOG in Resources */ = {isa = PBXBuildFile; fileRef = 935DC7E518F907B800A42623 /* CHANGELOG */; };
 		935DC7F418F907B800A42623 /* VERSION in Resources */ = {isa = PBXBuildFile; fileRef = 935DC7E618F907B800A42623 /* VERSION */; };
 		935DC7FA18F9115700A42623 /* RecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 935DC7F918F9115700A42623 /* RecordViewController.m */; };
+		93B950DB18FA5943000165BE /* SBJson4Parser.m in Sources */ = {isa = PBXBuildFile; fileRef = 93B950CE18FA5943000165BE /* SBJson4Parser.m */; };
+		93B950DC18FA5943000165BE /* SBJson4StreamParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 93B950D018FA5943000165BE /* SBJson4StreamParser.m */; };
+		93B950DD18FA5943000165BE /* SBJson4StreamParserState.m in Sources */ = {isa = PBXBuildFile; fileRef = 93B950D218FA5943000165BE /* SBJson4StreamParserState.m */; };
+		93B950DE18FA5943000165BE /* SBJson4StreamTokeniser.m in Sources */ = {isa = PBXBuildFile; fileRef = 93B950D418FA5943000165BE /* SBJson4StreamTokeniser.m */; };
+		93B950DF18FA5943000165BE /* SBJson4StreamWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 93B950D618FA5943000165BE /* SBJson4StreamWriter.m */; };
+		93B950E018FA5943000165BE /* SBJson4StreamWriterState.m in Sources */ = {isa = PBXBuildFile; fileRef = 93B950D818FA5943000165BE /* SBJson4StreamWriterState.m */; };
+		93B950E118FA5943000165BE /* SBJson4Writer.m in Sources */ = {isa = PBXBuildFile; fileRef = 93B950DA18FA5943000165BE /* SBJson4Writer.m */; };
+		B808563618FA89FA00691393 /* LAHacks.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = B808563518FA89FA00691393 /* LAHacks.sqlite */; };
+		B808563718FA89FA00691393 /* LAHacks.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = B808563518FA89FA00691393 /* LAHacks.sqlite */; };
 		B842A61118FA67CB008A9911 /* recordButton.png in Resources */ = {isa = PBXBuildFile; fileRef = B842A61018FA67CB008A9911 /* recordButton.png */; };
 		B842A61518FA6ADF008A9911 /* calendarIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = B842A61218FA6ADF008A9911 /* calendarIcon.png */; };
 		B842A61618FA6ADF008A9911 /* commentsIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = B842A61318FA6ADF008A9911 /* commentsIcon.png */; };
 		B842A61718FA6ADF008A9911 /* personIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = B842A61418FA6ADF008A9911 /* personIcon.png */; };
-		B842A61918FA6C11008A9911 /* sortedSongs.sql in Resources */ = {isa = PBXBuildFile; fileRef = B842A61818FA6C11008A9911 /* sortedSongs.sql */; };
+		B842A61B18FA8186008A9911 /* stopIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = B842A61A18FA8186008A9911 /* stopIcon.png */; };
 		B86D4F0F18F93E390048F5A3 /* searchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = B86D4F0E18F93E390048F5A3 /* searchBar.m */; };
 		B86D4F1318F942C10048F5A3 /* searchBG.png in Resources */ = {isa = PBXBuildFile; fileRef = B86D4F1218F942C10048F5A3 /* searchBG.png */; };
 		B86D4F1518F953020048F5A3 /* magnifyingGlass.png in Resources */ = {isa = PBXBuildFile; fileRef = B86D4F1418F953020048F5A3 /* magnifyingGlass.png */; };
@@ -74,7 +83,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		9310A5DF18F9ADE500AFC475 /* LAHacks.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; name = LAHacks.sqlite; path = LAHacksTests/LAHacks.sqlite; sourceTree = SOURCE_ROOT; };
 		9310A77818F9FA1B00AFC475 /* SerumDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SerumDB.h; sourceTree = "<group>"; };
 		9310A77918F9FA1B00AFC475 /* SerumDB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SerumDB.m; sourceTree = "<group>"; };
 		9310A77B18F9FCC300AFC475 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
@@ -127,11 +135,27 @@
 		935DC7E618F907B800A42623 /* VERSION */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = VERSION; sourceTree = "<group>"; };
 		935DC7F818F9115700A42623 /* RecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordViewController.h; sourceTree = "<group>"; };
 		935DC7F918F9115700A42623 /* RecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordViewController.m; sourceTree = "<group>"; };
+		93B950CC18FA5943000165BE /* SBJson4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJson4.h; sourceTree = "<group>"; };
+		93B950CD18FA5943000165BE /* SBJson4Parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJson4Parser.h; sourceTree = "<group>"; };
+		93B950CE18FA5943000165BE /* SBJson4Parser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJson4Parser.m; sourceTree = "<group>"; };
+		93B950CF18FA5943000165BE /* SBJson4StreamParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJson4StreamParser.h; sourceTree = "<group>"; };
+		93B950D018FA5943000165BE /* SBJson4StreamParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJson4StreamParser.m; sourceTree = "<group>"; };
+		93B950D118FA5943000165BE /* SBJson4StreamParserState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJson4StreamParserState.h; sourceTree = "<group>"; };
+		93B950D218FA5943000165BE /* SBJson4StreamParserState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJson4StreamParserState.m; sourceTree = "<group>"; };
+		93B950D318FA5943000165BE /* SBJson4StreamTokeniser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJson4StreamTokeniser.h; sourceTree = "<group>"; };
+		93B950D418FA5943000165BE /* SBJson4StreamTokeniser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJson4StreamTokeniser.m; sourceTree = "<group>"; };
+		93B950D518FA5943000165BE /* SBJson4StreamWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJson4StreamWriter.h; sourceTree = "<group>"; };
+		93B950D618FA5943000165BE /* SBJson4StreamWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJson4StreamWriter.m; sourceTree = "<group>"; };
+		93B950D718FA5943000165BE /* SBJson4StreamWriterState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJson4StreamWriterState.h; sourceTree = "<group>"; };
+		93B950D818FA5943000165BE /* SBJson4StreamWriterState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJson4StreamWriterState.m; sourceTree = "<group>"; };
+		93B950D918FA5943000165BE /* SBJson4Writer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJson4Writer.h; sourceTree = "<group>"; };
+		93B950DA18FA5943000165BE /* SBJson4Writer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJson4Writer.m; sourceTree = "<group>"; };
+		B808563518FA89FA00691393 /* LAHacks.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = LAHacks.sqlite; sourceTree = "<group>"; };
 		B842A61018FA67CB008A9911 /* recordButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = recordButton.png; sourceTree = "<group>"; };
 		B842A61218FA6ADF008A9911 /* calendarIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calendarIcon.png; sourceTree = "<group>"; };
 		B842A61318FA6ADF008A9911 /* commentsIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = commentsIcon.png; sourceTree = "<group>"; };
 		B842A61418FA6ADF008A9911 /* personIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = personIcon.png; sourceTree = "<group>"; };
-		B842A61818FA6C11008A9911 /* sortedSongs.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sortedSongs.sql; sourceTree = "<group>"; };
+		B842A61A18FA8186008A9911 /* stopIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stopIcon.png; sourceTree = "<group>"; };
 		B86D4F0D18F93E390048F5A3 /* searchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = searchBar.h; sourceTree = "<group>"; };
 		B86D4F0E18F93E390048F5A3 /* searchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = searchBar.m; sourceTree = "<group>"; };
 		B86D4F1218F942C10048F5A3 /* searchBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = searchBG.png; sourceTree = "<group>"; };
@@ -238,6 +262,7 @@
 		935DC79818F8FC3600A42623 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B808563518FA89FA00691393 /* LAHacks.sqlite */,
 				93B950CC18FA5943000165BE /* SBJson4.h */,
 				93B950CD18FA5943000165BE /* SBJson4Parser.h */,
 				93B950CE18FA5943000165BE /* SBJson4Parser.m */,
@@ -253,8 +278,6 @@
 				93B950D818FA5943000165BE /* SBJson4StreamWriterState.m */,
 				93B950D918FA5943000165BE /* SBJson4Writer.h */,
 				93B950DA18FA5943000165BE /* SBJson4Writer.m */,
-				9310A5DF18F9ADE500AFC475 /* LAHacks.sqlite */,
-				B842A61818FA6C11008A9911 /* sortedSongs.sql */,
 				9310A77818F9FA1B00AFC475 /* SerumDB.h */,
 				9310A77918F9FA1B00AFC475 /* SerumDB.m */,
 				B8DC323518F9D9B600A09EB7 /* DroidSans.ttf */,
@@ -288,6 +311,7 @@
 		935DC7C618F8FD7C00A42623 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				B842A61A18FA8186008A9911 /* stopIcon.png */,
 				B842A61218FA6ADF008A9911 /* calendarIcon.png */,
 				B842A61318FA6ADF008A9911 /* commentsIcon.png */,
 				B842A61418FA6ADF008A9911 /* personIcon.png */,
@@ -451,7 +475,6 @@
 				B842A61518FA6ADF008A9911 /* calendarIcon.png in Resources */,
 				B8DC323718F9DA0D00A09EB7 /* Roboto-Black.ttf in Resources */,
 				B8DC322818F9CDBA00A09EB7 /* microphoneIcon.png in Resources */,
-				B842A61918FA6C11008A9911 /* sortedSongs.sql in Resources */,
 				B842A61618FA6ADF008A9911 /* commentsIcon.png in Resources */,
 				935DC79C18F8FC3600A42623 /* InfoPlist.strings in Resources */,
 				933298C718F9666B00DECBED /* PlayButton.png in Resources */,
@@ -462,9 +485,11 @@
 				935DC7CA18F8FF4200A42623 /* SearchBar.png in Resources */,
 				B8DC323018F9D4F800A09EB7 /* boomboxIcon.png in Resources */,
 				B86D4F1318F942C10048F5A3 /* searchBG.png in Resources */,
+				B842A61B18FA8186008A9911 /* stopIcon.png in Resources */,
 				B8DC322C18F9D3DF00A09EB7 /* familyIcon.png in Resources */,
 				B8DC322A18F9D13600A09EB7 /* countryIcon.png in Resources */,
 				B842A61718FA6ADF008A9911 /* personIcon.png in Resources */,
+				B808563618FA89FA00691393 /* LAHacks.sqlite in Resources */,
 				B86D4F2018F9A9C70048F5A3 /* autocompleteBorder.png in Resources */,
 				935DC7F318F907B800A42623 /* CHANGELOG in Resources */,
 			);
@@ -475,6 +500,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				935DC7BB18F8FC3700A42623 /* InfoPlist.strings in Resources */,
+				B808563718FA89FA00691393 /* LAHacks.sqlite in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

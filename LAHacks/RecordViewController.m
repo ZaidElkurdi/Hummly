@@ -18,6 +18,9 @@
     RDPlayer* _player;
     BOOL _playing;
     
+    BOOL isPlaying;
+    BOOL isRecording;
+    
     NSMutableArray *albumArray;
     NSMutableArray *bandArray;
     NSMutableArray *titleArray;
@@ -195,37 +198,167 @@ UInt32 sessionCategory = kAudioSessionCategory_PlayAndRecord;
   [self.view addSubview:_playButton];
   [self loadResults:@"Daylight"];
 }
-- (IBAction)startRecording:(id)sender
+-(IBAction)didTapListen:(id)sender
+{{
+    if(isPlaying==false)
+    {
+        [UIView animateWithDuration:.5
+                          delay:0
+         usingSpringWithDamping:500.0f
+          initialSpringVelocity:0.0f
+                        options:UIViewAnimationOptionCurveEaseIn
+                     animations:
+        ^{
+         CGRect newFrame = rightView.frame;
+         CGRect newViewFrame = recordButton.frame;
+         
+         newFrame.origin.x += 160;
+         newViewFrame.origin.x += 95;
+         
+         CGRect newLeftFrame = leftView.frame;
+         CGRect newLeftViewFrame = playButton.frame;
+         
+         newLeftFrame.size.width += 160;
+         newLeftViewFrame.origin.x += 80;
+
+         
+         rightView.frame=newFrame;
+         recordButton.frame = newViewFrame;
+         leftView.frame=newLeftFrame;
+         playButton.frame=newLeftViewFrame;
+         
+        NSLog(@"Begin recording");
+        [[AVAudioSession sharedInstance] setCategory:@"AVAudioSessionCategoryPlayAndRecord" error:nil];
+        [[self getPlayer] playSource:[keys objectAtIndex:0]];
+        [[self getPlayer] playSources:keys];
+        isPlaying = true;
+        [playButton setImage:[UIImage imageNamed:@"stopIcon.png"] forState:UIControlStateNormal];
+        }
+     
+                     completion:nil];
+    }
+    
+    else
+    {
+        NSLog(@"Was already playing");
+        [[self getPlayer] togglePause];
+        isPlaying=false;
+        
+        [UIView animateWithDuration:.5
+                          delay:0
+         usingSpringWithDamping:500.0f
+          initialSpringVelocity:0.0f
+                        options:UIViewAnimationOptionCurveEaseIn
+                     animations:
+     ^{
+         CGRect newFrame = rightView.frame;
+         CGRect newViewFrame = recordButton.frame;
+         
+         newFrame.origin.x -= 160;
+         newViewFrame.origin.x -= 95;
+         
+         CGRect newLeftFrame = leftView.frame;
+         CGRect newLeftViewFrame = playButton.frame;
+         
+         newLeftFrame.size.width -= 160;
+         newLeftViewFrame.origin.x -= 80;
+
+         
+         rightView.frame=newFrame;
+         recordButton.frame = newViewFrame;
+         leftView.frame=newLeftFrame;
+         playButton.frame=newLeftViewFrame;
+         
+        [playButton setImage:[UIImage imageNamed:@"PlayButton.png"] forState:UIControlStateNormal];
+     }
+     
+                     completion:nil];
+    }
+    }
+}
+
+- (IBAction)didTapRecord:(id)sender
 {
-    //NSLog(@"Here");
-    if (!audioRecorder.recording)
-     {
+    if(isRecording==false)
+    {
+        [UIView animateWithDuration:.5
+                          delay:0
+         usingSpringWithDamping:500.0f
+          initialSpringVelocity:0.0f
+                        options:UIViewAnimationOptionCurveEaseIn
+                     animations:
+        ^{
+         CGRect newFrame = rightView.frame;
+         CGRect newViewFrame = recordButton.frame;
+         
+         newFrame.size.width += 320;
+         newFrame.origin.x -= 160;
+         newViewFrame.origin.x -= 80;
+         
+         CGRect newLeftFrame = leftView.frame;
+         CGRect newLeftViewFrame = playButton.frame;
+         
+         newLeftFrame.origin.x -= 160;
+         newLeftViewFrame.origin.x -= 160;
+
+         
+         rightView.frame=newFrame;
+         recordButton.frame = newViewFrame;
+         leftView.frame=newLeftFrame;
+         playButton.frame=newLeftViewFrame;
+         
         NSLog(@"Begin recording");
         [[AVAudioSession sharedInstance] setCategory:@"AVAudioSessionCategoryPlayAndRecord" error:nil];
         [audioRecorder record];
-     }
-    
-    if (!_playing)
-    {
+        isRecording=true;
         [[self getPlayer] playSource:[keys objectAtIndex:0]];
         [[self getPlayer] playSources:keys];
+        [recordButton setImage:[UIImage imageNamed:@"stopIcon.png"] forState:UIControlStateNormal];
+        }
+     
+                     completion:nil];
     }
+    
     else
     {
+        NSLog(@"Was already recording");
+        [audioRecorder stop];
+        isRecording=false;
         [[self getPlayer] togglePause];
-    }
+        
+        [UIView animateWithDuration:.5
+                          delay:0
+         usingSpringWithDamping:500.0f
+          initialSpringVelocity:0.0f
+                        options:UIViewAnimationOptionCurveEaseIn
+                     animations:
+     ^{
+         CGRect newFrame = rightView.frame;
+         CGRect newViewFrame = recordButton.frame;
+         
+         newFrame.size.width -= 320;
+         newFrame.origin.x += 160;
+         newViewFrame.origin.x += 80;
+         
+         CGRect newLeftFrame = leftView.frame;
+         CGRect newLeftViewFrame = playButton.frame;
+         
+         newLeftFrame.origin.x += 160;
+         newLeftViewFrame.origin.x += 160;
 
+         
+         rightView.frame=newFrame;
+         recordButton.frame = newViewFrame;
+         leftView.frame=newLeftFrame;
+         playButton.frame=newLeftViewFrame;
+         
+        [recordButton setImage:[UIImage imageNamed:@"recordButton.png"] forState:UIControlStateNormal];
+     }
+     
+                     completion:nil];
+    }
 }
 
-- (IBAction)startListening:(id)sender
-{
-    if (!_playing) {
-        [[self getPlayer] playSource:[keys objectAtIndex:0]];
-        [[self getPlayer] playSources:keys];
-    } else {
-        [[self getPlayer] togglePause];
-    }
-}
 -(void)grabImage
 {
     //NSLog(@"First Element : %@", [albumArray objectAtIndex:0]);
@@ -332,7 +465,7 @@ UInt32 sessionCategory = kAudioSessionCategory_PlayAndRecord;
 {
 }
 
--(IBAction)stop:(id)sender
+-(void)stop
 {
     if (audioRecorder.recording)
     {

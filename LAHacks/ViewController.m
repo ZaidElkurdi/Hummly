@@ -166,6 +166,8 @@
         [self.firstSongArray addObject:[allSongs objectAtIndex:i]];
     }
     
+    NSLog(@"Middle is: %@",[allSongs objectAtIndex:i]);
+    
     while(i<[allSongs count])
     {
         [self.secondSongArray addObject:[allSongs objectAtIndex:i]];
@@ -184,11 +186,9 @@
     if([substring compare:@"test" options:NSCaseInsensitiveSearch])
     {
     
-    
     }
     else
     {
-    
     
     
     }
