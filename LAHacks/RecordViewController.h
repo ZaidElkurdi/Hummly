@@ -6,21 +6,25 @@
 
 @interface RecordViewController : UIViewController <AVAudioPlayerDelegate,AVAudioRecorderDelegate,RdioDelegate,RDPlayerDelegate, EZMicrophoneDelegate>
 {
-    IBOutlet UIButton *stopRecording;
-    IBOutlet UIButton *upload;
+    IBOutlet UIButton *recordButton;
+    IBOutlet UIButton *listenButton;
     IBOutlet UIImageView *albumArtwork;
     IBOutlet UILabel *artistName;
     IBOutlet UILabel *titleName;
     AVAudioRecorder *audioRecorder;
     
 }
--(IBAction)stop:(id)sender;
--(IBAction)stop:(id)sender;
+-(void)stopRecording;
+-(void)stopListening;
+-(IBAction)startRecording:(id)sender;
+-(IBAction)startListening:(id)sender;
 @property (retain) RDPlayer *player;
 @property (nonatomic,weak) IBOutlet EZAudioPlot *audioPlot;
 @property (nonatomic,strong) EZMicrophone *microphone;
 @property (nonatomic,strong) EZRecorder *recorder;
 @property (nonatomic,assign) BOOL isRecording;
+@property (nonatomic,assign) NSInteger numPeople;
+@property (nonatomic,assign) NSInteger numComments;
 
 #pragma mark - Actions
 -(IBAction)toggleRecording;

@@ -21,7 +21,8 @@
 {
     [super viewDidLoad];
     self.autocompleteUrls = [[NSMutableArray alloc] init];
-    self.pastUrls = [[NSArray alloc] init];
+    
+    [self processDatabaseArrays];
     
     autocompleteBorder = [[UIImageView alloc] initWithFrame:CGRectMake(20,215,285,130 )];
     autocompleteBorder.image = [UIImage imageNamed:@"autocompleteBorder.png"];
@@ -151,7 +152,26 @@
 }
 
 #pragma -mark autocomplete methods
+-(void)processDatabaseArrays
+{
+    self.firstSongArray = [[NSMutableArray alloc] init];
+    self.secondSongArray = [[NSMutableArray alloc] init];
+    
+    SerumDB *db = [[SerumDB alloc] init];
+    NSArray *allSongs =[db getAllSongs];
+    
+    int i = 0;
+    while(i<[allSongs count]/2)
+    {
+        [self.firstSongArray addObject:[allSongs objectAtIndex:i]];
+    }
+    
+    while(i<[allSongs count])
+    {
+        [self.secondSongArray addObject:[allSongs objectAtIndex:i]];
+    }
 
+}
 - (void)searchAutocompleteEntriesWithSubstring:(NSString *)substring
 {
     // Put anything that starts with this substring into the autocompleteUrls array
@@ -159,21 +179,18 @@
     NSLog(@"Searching for substring");
     [self.autocompleteUrls removeAllObjects];
     
-    SerumDB *dataB = [[SerumDB alloc] init];
-    dataB.state = substring;
     NSLog(@"Searching for: %@",substring);
-    self.pastUrls = [dataB getAllHighSchools];
-    NSLog(@"%@",self.pastUrls);
-    for(NSMutableString *curString in self.pastUrls)
+    
+    if([substring compare:@"test" options:NSCaseInsensitiveSearch])
     {
-        NSString * temp = [substring lowercaseString];
-        NSString * temp2 = [curString lowercaseString];
-        
-        NSRange substringRange = [temp2 rangeOfString:temp];
-        
-        if (substringRange.location != NSNotFound) {
-            [self.autocompleteUrls addObject:curString];
-        }
+    
+    
+    }
+    else
+    {
+    
+    
+    
     }
     
     [self.autocompleteTableView reloadData];
@@ -281,6 +298,23 @@
     collectionCell.backgroundColor = cardColor;
     
     return collectionCell;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    switch(indexPath.row)
+    {
+        case 0:
+            break;
+        case 1:
+            break;
+        case 2:
+            break;
+        case 3:
+            break;
+        case 4:
+            break;
+    }
 }
 
 - (NSInteger)numberOfSectionsInCollectionView: (UICollectionView *)collectionView

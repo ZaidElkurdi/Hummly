@@ -40,6 +40,11 @@
 		935DC7F318F907B800A42623 /* CHANGELOG in Resources */ = {isa = PBXBuildFile; fileRef = 935DC7E518F907B800A42623 /* CHANGELOG */; };
 		935DC7F418F907B800A42623 /* VERSION in Resources */ = {isa = PBXBuildFile; fileRef = 935DC7E618F907B800A42623 /* VERSION */; };
 		935DC7FA18F9115700A42623 /* RecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 935DC7F918F9115700A42623 /* RecordViewController.m */; };
+		B842A61118FA67CB008A9911 /* recordButton.png in Resources */ = {isa = PBXBuildFile; fileRef = B842A61018FA67CB008A9911 /* recordButton.png */; };
+		B842A61518FA6ADF008A9911 /* calendarIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = B842A61218FA6ADF008A9911 /* calendarIcon.png */; };
+		B842A61618FA6ADF008A9911 /* commentsIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = B842A61318FA6ADF008A9911 /* commentsIcon.png */; };
+		B842A61718FA6ADF008A9911 /* personIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = B842A61418FA6ADF008A9911 /* personIcon.png */; };
+		B842A61918FA6C11008A9911 /* sortedSongs.sql in Resources */ = {isa = PBXBuildFile; fileRef = B842A61818FA6C11008A9911 /* sortedSongs.sql */; };
 		B86D4F0F18F93E390048F5A3 /* searchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = B86D4F0E18F93E390048F5A3 /* searchBar.m */; };
 		B86D4F1318F942C10048F5A3 /* searchBG.png in Resources */ = {isa = PBXBuildFile; fileRef = B86D4F1218F942C10048F5A3 /* searchBG.png */; };
 		B86D4F1518F953020048F5A3 /* magnifyingGlass.png in Resources */ = {isa = PBXBuildFile; fileRef = B86D4F1418F953020048F5A3 /* magnifyingGlass.png */; };
@@ -122,6 +127,11 @@
 		935DC7E618F907B800A42623 /* VERSION */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = VERSION; sourceTree = "<group>"; };
 		935DC7F818F9115700A42623 /* RecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordViewController.h; sourceTree = "<group>"; };
 		935DC7F918F9115700A42623 /* RecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordViewController.m; sourceTree = "<group>"; };
+		B842A61018FA67CB008A9911 /* recordButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = recordButton.png; sourceTree = "<group>"; };
+		B842A61218FA6ADF008A9911 /* calendarIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calendarIcon.png; sourceTree = "<group>"; };
+		B842A61318FA6ADF008A9911 /* commentsIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = commentsIcon.png; sourceTree = "<group>"; };
+		B842A61418FA6ADF008A9911 /* personIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = personIcon.png; sourceTree = "<group>"; };
+		B842A61818FA6C11008A9911 /* sortedSongs.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sortedSongs.sql; sourceTree = "<group>"; };
 		B86D4F0D18F93E390048F5A3 /* searchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = searchBar.h; sourceTree = "<group>"; };
 		B86D4F0E18F93E390048F5A3 /* searchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = searchBar.m; sourceTree = "<group>"; };
 		B86D4F1218F942C10048F5A3 /* searchBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = searchBG.png; sourceTree = "<group>"; };
@@ -229,6 +239,7 @@
 			isa = PBXGroup;
 			children = (
 				9310A5DF18F9ADE500AFC475 /* LAHacks.sqlite */,
+				B842A61818FA6C11008A9911 /* sortedSongs.sql */,
 				9310A77818F9FA1B00AFC475 /* SerumDB.h */,
 				9310A77918F9FA1B00AFC475 /* SerumDB.m */,
 				B8DC323518F9D9B600A09EB7 /* DroidSans.ttf */,
@@ -262,6 +273,10 @@
 		935DC7C618F8FD7C00A42623 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				B842A61218FA6ADF008A9911 /* calendarIcon.png */,
+				B842A61318FA6ADF008A9911 /* commentsIcon.png */,
+				B842A61418FA6ADF008A9911 /* personIcon.png */,
+				B842A61018FA67CB008A9911 /* recordButton.png */,
 				B8DC322D18F9D45500A09EB7 /* guitarIcon.png */,
 				B8DC322F18F9D4F800A09EB7 /* boomboxIcon.png */,
 				B8DC322B18F9D3DF00A09EB7 /* familyIcon.png */,
@@ -415,10 +430,14 @@
 			files = (
 				935DC7AA18F8FC3600A42623 /* Images.xcassets in Resources */,
 				B86D4F1718F957A20048F5A3 /* mainBackground.png in Resources */,
+				B842A61118FA67CB008A9911 /* recordButton.png in Resources */,
 				B86D4F1518F953020048F5A3 /* magnifyingGlass.png in Resources */,
 				B8DC323618F9D9F500A09EB7 /* DroidSans.ttf in Resources */,
+				B842A61518FA6ADF008A9911 /* calendarIcon.png in Resources */,
 				B8DC323718F9DA0D00A09EB7 /* Roboto-Black.ttf in Resources */,
 				B8DC322818F9CDBA00A09EB7 /* microphoneIcon.png in Resources */,
+				B842A61918FA6C11008A9911 /* sortedSongs.sql in Resources */,
+				B842A61618FA6ADF008A9911 /* commentsIcon.png in Resources */,
 				935DC79C18F8FC3600A42623 /* InfoPlist.strings in Resources */,
 				933298C718F9666B00DECBED /* PlayButton.png in Resources */,
 				B8DC322E18F9D45500A09EB7 /* guitarIcon.png in Resources */,
@@ -430,6 +449,7 @@
 				B86D4F1318F942C10048F5A3 /* searchBG.png in Resources */,
 				B8DC322C18F9D3DF00A09EB7 /* familyIcon.png in Resources */,
 				B8DC322A18F9D13600A09EB7 /* countryIcon.png in Resources */,
+				B842A61718FA6ADF008A9911 /* personIcon.png in Resources */,
 				B86D4F2018F9A9C70048F5A3 /* autocompleteBorder.png in Resources */,
 				935DC7F318F907B800A42623 /* CHANGELOG in Resources */,
 			);

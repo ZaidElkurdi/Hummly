@@ -129,18 +129,37 @@ UInt32 sessionCategory = kAudioSessionCategory_PlayAndRecord;
   [self.view addSubview:_playButton];
   [self loadResults:@"Daylight"];
 }
-- (void)playClicked
+- (IBAction)startRecording:(id)sender
 {
     //NSLog(@"Here");
+    if (!audioRecorder.recording)
+     {
+        NSLog(@"Begin recording");
+        [[AVAudioSession sharedInstance] setCategory:@"AVAudioSessionCategoryPlayAndRecord" error:nil];
+        [audioRecorder record];
+     }
+    
+    if (!_playing)
+    {
+        [[self getPlayer] playSource:[keys objectAtIndex:0]];
+        [[self getPlayer] playSources:keys];
+    }
+    else
+    {
+        [[self getPlayer] togglePause];
+    }
+
+}
+
+- (IBAction)startListening:(id)sender
+{
     if (!_playing) {
         [[self getPlayer] playSource:[keys objectAtIndex:0]];
         [[self getPlayer] playSources:keys];
     } else {
         [[self getPlayer] togglePause];
     }
-
 }
-
 -(void)grabImage
 {
     //NSLog(@"First Element : %@", [albumArray objectAtIndex:0]);
@@ -189,17 +208,12 @@ UInt32 sessionCategory = kAudioSessionCategory_PlayAndRecord;
     
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[[NSString alloc] initWithFormat:@"http://developer.echonest.com/api/v4/song/search?api_key=ZAIMFQ6WMS5EZUABI&format=json&results=10&title=%@&bucket=id:rdio-US&bucket=tracks&limit=true",songName]]];
     
-
-    
     NSURLResponse *resp = nil;
     NSError *error = nil;
     
     NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:&resp error:& error];
 
     NSDictionary *rawData = [NSJSONSerialization JSONObjectWithData:response options:kNilOptions error:&error];
-    
-    
-    //NSLog(@"raw: %@",rawData);
 
     
     NSDictionary *postData = [rawData objectForKey:@"response"];
@@ -238,9 +252,6 @@ UInt32 sessionCategory = kAudioSessionCategory_PlayAndRecord;
       
         [artistName setText:[bandArray objectAtIndex:0]];
         [titleName setText:[titleArray objectAtIndex:0]];
-        
-        [self playClicked];
-        
     }
     
     else
@@ -253,12 +264,6 @@ UInt32 sessionCategory = kAudioSessionCategory_PlayAndRecord;
 #pragma mark - EZMicrophoneDelegate
 -(IBAction)recordAudio:(id)sender
 {
-     if (!audioRecorder.recording)
-     {
-        NSLog(@"Begin recording");
-        [[AVAudioSession sharedInstance] setCategory:@"AVAudioSessionCategoryPlayAndRecord" error:nil];
-        [audioRecorder record];
-     }
 }
 
 -(IBAction)stop:(id)sender

@@ -37,12 +37,11 @@ static SerumDB * database;
     
     return self;
 }
--(NSArray *)getAllHighSchools
+-(NSArray *)getAllSongs
 {
     NSMutableArray * returnArray = [[NSMutableArray alloc] init];
     
-    
-    NSString *query = [NSString stringWithFormat:@"SELECT * FROM LAHacks WHERE songNames = '%@'",state];
+    NSString *query = @"SELECT * FROM LAHacks";
     sqlite3_stmt * statement;
 
     if(sqlite3_prepare_v2(database, [query UTF8String], -1, &statement, nil) == SQLITE_OK)

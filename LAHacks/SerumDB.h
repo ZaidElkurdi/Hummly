@@ -18,5 +18,5 @@
 
 @property (nonatomic,retain) NSString *state;
 +(SerumDB *)database;
--(NSArray *)getAllHighSchools;
+-(NSArray *)getAllSongs;
 @end

@@ -17,7 +17,8 @@
         NSArray *tableData;
         sqlite3 *database;
 }
-@property (nonatomic, retain) NSArray *pastUrls;
+@property (nonatomic, retain) NSMutableArray *firstSongArray;
+@property (nonatomic, retain) NSMutableArray *secondSongArray;
 @property (nonatomic, retain) NSMutableArray *autocompleteUrls;
 @property (nonatomic, retain) UICollectionView *categoryView;
 @property (nonatomic, retain) UITableView *autocompleteTableView;
