@@ -43,7 +43,6 @@
     self.categoryView.showsHorizontalScrollIndicator = FALSE;
     
     [self.view addSubview:self.categoryView];
-    `
 
 
     [self.categoryView registerClass:[categoryCardCell class] forCellWithReuseIdentifier:@"categoryCellIdentifier"];
@@ -119,7 +118,7 @@
                      animations:
      ^{
          CGRect newFrame = searchView.frame;
-         newFrame.origin.y -= 110;
+         newFrame.origin.y -= 80;
          searchView.frame=newFrame;
      }
      
@@ -137,7 +136,7 @@
                      animations:
      ^{
          CGRect newFrame = searchView.frame;
-         newFrame.origin.y += 110;
+         newFrame.origin.y += 80;
          searchView.frame=newFrame;
      }
      
@@ -319,40 +318,7 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-UICollectionViewCell* cell = [collectionView cellForItemAtIndexPath:indexPath];
-
-    [UIView animateWithDuration:1.0
-    delay:0
-    options:(UIViewAnimationOptionAllowUserInteraction)
-    animations:^
-    {
-    NSLog(@"starting animation");
-
-    [UIView transitionFromView:cell.contentView
-                    toView:self.view
-                  duration:.5
-                   options:UIViewAnimationOptionTransitionFlipFromRight
-                completion:nil];
-    }
-    completion:^(BOOL finished)
-    {
-        NSLog(@"animation end");
-    }
-    ];
-    switch(indexPath.row)
-    {
-        case 0:
-            
-            break;
-        case 1:
-            break;
-        case 2:
-            break;
-        case 3:
-            break;
-        case 4:
-            break;
-    }
+    NSLog(@"Selected");
 }
 
 - (NSInteger)numberOfSectionsInCollectionView: (UICollectionView *)collectionView
