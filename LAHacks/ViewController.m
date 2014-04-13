@@ -89,6 +89,7 @@
     if([string isEqualToString:@"\n"])
     {
         [textField resignFirstResponder];
+        [self openResultFor:textField.text];
         return NO;
     }
     
@@ -164,6 +165,14 @@
     self.autocompleteTableView.hidden = TRUE;
     autocompleteBorder.hidden = TRUE;
 }
+
+
+- (void)openResultFor:(NSString*)query
+{
+    NSLog(@"Loading record view");
+    [self performSegueWithIdentifier: @"toMainScreen" sender: self];
+}
+
 
 #pragma -mark autocomplete methods
 //-(void)processDatabaseArrays
@@ -275,9 +284,9 @@
     {
         case 0:
             cardColor = [UIColor colorWithRed:95.0f/255.0f green:188.0f/255.0f blue:245.0f/255.0f alpha:1.0f];
-            cardGraphic = [UIImage imageNamed:@"microphoneIcon.png"];
-            cardGraphicFrame = CGRectMake(35, 20, 45, 80);
-            title = @"Popular";
+            cardGraphic = [UIImage imageNamed:@"top100Graphic.png"];
+            cardGraphicFrame = CGRectMake(25, 20, 70, 80);
+            title = @"Top 100";
             break;
         case 1:
             cardColor = [UIColor colorWithRed:233.0f/255.0f green:89.0f/255.0f blue:114.0f/255.0f alpha:1.0f];
@@ -314,9 +323,30 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
+UICollectionViewCell* cell = [collectionView cellForItemAtIndexPath:indexPath];
+
+    [UIView animateWithDuration:1.0
+    delay:0
+    options:(UIViewAnimationOptionAllowUserInteraction)
+    animations:^
+    {
+    NSLog(@"starting animation");
+
+    [UIView transitionFromView:cell.contentView
+                    toView:self.view
+                  duration:.5
+                   options:UIViewAnimationOptionTransitionFlipFromRight
+                completion:nil];
+    }
+    completion:^(BOOL finished)
+    {
+        NSLog(@"animation end");
+    }
+    ];
     switch(indexPath.row)
     {
         case 0:
+            
             break;
         case 1:
             break;

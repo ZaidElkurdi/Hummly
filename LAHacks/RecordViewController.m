@@ -121,6 +121,11 @@ bool alreadyStopped = NO;
     }
 
 }
+-(void)checkTennysonFirst
+{
+    NSString *myString = @"http://foo.bar/?key[]=value[]<>";
+    NSURL *myUrl = [NSURL URLWithString:[myString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+}
 
 -(void)uploadAudio
 {
