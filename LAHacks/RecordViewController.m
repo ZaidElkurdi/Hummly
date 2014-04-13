@@ -126,47 +126,53 @@ bool alreadyStopped = NO;
 -(void)uploadAudio
 {
     
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-
-    NSString *genre = @"Song";
+    NSFileManager *fileManager = [[NSFileManager alloc] init];
+    NSDictionary *fileAttributes = [fileManager attributesOfItemAtPath:@"/Users/aryamansharda/Library/Application Support/iPhone Simulator/7.0.3/Applications/D74CE452-4BAF-435B-96C3-830ECF76DD79/Documents/LAHacks.mp3" error: NULL];
     
-    NSString * post = [[NSString alloc] initWithFormat:@"http://107.170.193.94/song/dontstop?genre=%@",genre];
+    NSLog(@"%@",fileAttributes);
+    if (fileAttributes != nil) {
+        
+        NSNumber *fileSize;
+        fileSize = [fileAttributes objectForKey:NSFileSize];
+        NSLog(@"%@",fileSize);
+        
+        NSData *audioData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"LAHacks" ofType:@".mp3"]];
+        
+        NSString *urlString = [NSString stringWithFormat:@"http://107.170.193.94/song/dontstop?genre=%@",@"Rock"];
+        
+        
+        NSLog(@"Audio Data: %@",audioData);
+        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+        [request setURL:[NSURL URLWithString:urlString]];
+        [request setHTTPMethod:@"POST"];
+        
+        NSString *boundary = @"---------------------------14737809831466499882746641449";
+        NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@", boundary];
+        [request addValue:contentType forHTTPHeaderField:@"Content-Type"];
+        
+        NSMutableData *body = [NSMutableData data];
+        [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+        [body appendData:[@"Content-Disposition: form-data; name=\"audio\"; filename=\".mp3\"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+        [body appendData:[@"Content-Type: application/octet-stream\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+        [body appendData:[NSData dataWithData:audioData]];
+        [body appendData:[[NSString stringWithFormat:@"\r\n--%@--\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+        [request setHTTPBody:body];
+        
+        NSData *returnData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+        NSString* returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
+        
+        NSLog(@"Return: %@",returnString);
+        
+    }
     
-
-    
-    NSString *boundary = @"---------------------------";
-    NSMutableData *postData = [NSMutableData data];
-    NSString *header = [NSString stringWithFormat:@"--%@\r\n", boundary];
-    [postData appendData:[header dataUsingEncoding:NSUTF8StringEncoding]];
-    
-    //add your filename entry
-    NSString *contentDisposition = [NSString stringWithFormat:@"Content-Disposition: form-data; name=\"audio\"; filename=\%@\"\r\n",@"LAHacks.mp3"];
-    
-    
-    [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",post]]];
-    
-    
-    [postData appendData:[contentDisposition dataUsingEncoding:NSUTF8StringEncoding]];
-    
-    [postData appendData:[NSData dataWithContentsOfFile:@"/Users/aryamansharda/Library/Application Support/iPhone Simulator/7.0.3/Applications/D74CE452-4BAF-435B-96C3-830ECF76DD79/Documents/LAHacks.mp3"]];
-
-    [request setHTTPMethod:@"POST"];
-    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-    [request setHTTPBody:postData];
-    
-    NSURLConnection * conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-    NSLog(@"%@",conn);
-    
-    if (conn) NSLog(@"Connection Successful");
-}
+    }
 #pragma mark - Customize the Audio Plot
 -(void)viewDidLoad {
   
   [super viewDidLoad];
-  [self uploadAudio];
-  //[self upload:@"hi" comment:@"hi"];
-    
-   [self accessLyric];
+  [self performSelector:@selector(uploadAudio) withObject:nil];
+   [self performSelector:@selector(accessLyric) withObject:nil];
+
    NSArray *dirPaths;
    NSString *docsDir;
 
