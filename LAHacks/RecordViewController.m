@@ -491,6 +491,8 @@ UInt32 sessionCategory = kAudioSessionCategory_PlayAndRecord;
     
     [super viewDidLoad];
     //songChosen = [[NSString alloc] init];
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    songChosen = [prefs stringForKey:@"song"];
     
     NSLog(@"Song Chosen: %@",songChosen);
     
@@ -564,8 +566,7 @@ UInt32 sessionCategory = kAudioSessionCategory_PlayAndRecord;
     
     [self.view addSubview:_playButton];
     
-    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];    
-    songChosen = [prefs stringForKey:@"song"];
+    
     
     NSLog(@"Preparing..");
     [self loadResults:songChosen];
@@ -621,8 +622,13 @@ UInt32 sessionCategory = kAudioSessionCategory_PlayAndRecord;
 -(void)loadResults:(NSString *)songName
 {
 
+    NSString * format = [[NSString alloc] initWithFormat:@"http://developer.echonest.com/api/v4/song/search?api_key=ZAIMFQ6WMS5EZUABI&format=json&results=2&title=%@&bucket=id:rdio-US&bucket=tracks&limit=true",songName];
+    format = [format stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSURL *idURL = [NSURL URLWithString:format];
+    NSURLRequest *request = [NSURLRequest requestWithURL:idURL];
     
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[[NSString alloc] initWithFormat:@"http://developer.echonest.com/api/v4/song/search?api_key=ZAIMFQ6WMS5EZUABI&format=json&results=10&title=%@&bucket=id:rdio-US&bucket=tracks&limit=true",songName]]];
+    NSLog(@"URL Request: %@", request);
+    
     
     NSURLResponse *resp = nil;
     NSError *error = nil;
@@ -667,6 +673,8 @@ UInt32 sessionCategory = kAudioSessionCategory_PlayAndRecord;
       
         [artistName setText:[bandArray objectAtIndex:0]];
         [titleName setText:[titleArray objectAtIndex:0]];
+        
+        NSLog(@"Artist name: %@", artistName);
     }
     
     else
