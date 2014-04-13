@@ -68,7 +68,7 @@ bool alreadyStopped = NO;
                           options:kNilOptions 
                           error:nil];
     
-    NSLog(@"JSon: %@",json_string);
+    //NSLog(@"JSon: %@",json_string);
     
     
     NSDictionary* valid = [[[json_string objectForKey:@"message"] objectForKey:@"header"] objectForKey:@"available"];
@@ -80,8 +80,10 @@ bool alreadyStopped = NO;
         NSArray* results3 = [results2 objectForKey:@"track_list"];
         NSDictionary* results4 = [results3 objectAtIndex:0];
         NSDictionary* results5 = [results4 objectForKey:@"track"];
-        [self displayLyrics:[results5 objectForKey:@"track_id"]];
         NSLog(@"Track id: %@",[results5 objectForKey:@"track_id"]);
+        [self displayLyrics:[results5 objectForKey:@"track_id"]];
+
+        
     }
     
     
@@ -104,12 +106,16 @@ bool alreadyStopped = NO;
     if (![[NSString stringWithFormat:@"%@",valid] isEqualToString:@"0"])
 	{
         NSLog(@"Song Found in Database");
+        
         NSDictionary* results1 = [json_string objectForKey:@"message"];
         NSDictionary* results2 = [results1 objectForKey:@"body"];
-        NSArray* results3 = [results2 objectForKey:@"track_list"];
-        NSDictionary* results4 = [results3 objectAtIndex:0];
-        NSDictionary* results5 = [results4 objectForKey:@"track"];
-        NSLog(@"Track id: %@",[results5 objectForKey:@"track_id"]);
+        NSDictionary* results3 = [results2 objectForKey:@"lyrics"];
+        NSString* lyrics = [results3 objectForKey:@"lyrics_body"];
+        
+        NSRange end = [lyrics rangeOfString:@"*"];
+        lyrics = [lyrics substringWithRange:NSMakeRange(0, end.location)];
+        [lyricsDisplay setText:lyrics];
+        
     }
 
 }
