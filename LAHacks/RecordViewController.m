@@ -119,11 +119,50 @@ bool alreadyStopped = NO;
     }
 
 }
+
+-(void)uploadAudio
+{
+    
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+
+    NSString *genre = @"Song";
+    
+    NSString * post = [[NSString alloc] initWithFormat:@"http://107.170.193.94/song/dontstop?genre=%@",genre];
+    
+
+    
+    NSString *boundary = @"---------------------------14737809831466499882746641449";
+    NSMutableData *postData = [NSMutableData data];
+    NSString *header = [NSString stringWithFormat:@"--%@\r\n", boundary];
+    [postData appendData:[header dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    //add your filename entry
+    NSString *contentDisposition = [NSString stringWithFormat:@"Content-Disposition: form-data; name=\"audio\"; filename=\%@\"\r\n",@"LAHacks.mp3"];
+    
+    
+    [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",post]]];
+    
+    
+    [postData appendData:[contentDisposition dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    [postData appendData:[NSData dataWithContentsOfFile:@"/Users/aryamansharda/Library/Application Support/iPhone Simulator/7.0.3/Applications/D74CE452-4BAF-435B-96C3-830ECF76DD79/Documents/LAHacks.mp3"]];
+
+    [request setHTTPMethod:@"POST"];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    [request setHTTPBody:postData];
+    
+    NSURLConnection * conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    NSLog(@"%@",conn);
+    
+    if (conn) NSLog(@"Connection Successful");
+}
 #pragma mark - Customize the Audio Plot
 -(void)viewDidLoad {
   
   [super viewDidLoad];
-
+  [self uploadAudio];
+  //[self upload:@"hi" comment:@"hi"];
+    
    [self accessLyric];
    NSArray *dirPaths;
    NSString *docsDir;
@@ -326,13 +365,46 @@ UInt32 sessionCategory = kAudioSessionCategory_PlayAndRecord;
     }
 
 }
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [self stop];
+}
 
 #pragma mark - EZMicrophoneDelegate
 -(IBAction)recordAudio:(id)sender
 {
 }
 
--(IBAction)stop:(id)sender
+-(void)upload:(NSString *)song comment:(NSString *)comment
+{
+    
+    NSDate *currentTime = [NSDate date];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"hh-mm"];
+    NSString *resultString = [dateFormatter stringFromDate: currentTime];
+    
+    NSString * post = [[NSString alloc] initWithFormat:@"%@?comment=%@&time%@",song, comment,resultString];
+    NSLog(@"%@",post);
+    NSData * postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:NO];
+    NSString * postLength = [NSString stringWithFormat:@"%d",[postData length]];
+    
+    
+    NSMutableURLRequest * request = [[NSMutableURLRequest alloc] init];
+
+    [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://107.170.193.94/comment/%@",post]]];
+    [request setHTTPMethod:@"POST"];
+    [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    [request setHTTPBody:postData];
+    NSURLConnection * conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    NSLog(@"%@",conn);
+    
+    if (conn) NSLog(@"Connection Successful");
+    
+    
+}
+
+-(IBAction)stop
 {
     if (audioRecorder.recording)
     {
@@ -341,6 +413,10 @@ UInt32 sessionCategory = kAudioSessionCategory_PlayAndRecord;
     } else if (audioPlayer.playing) {
             [audioPlayer stop];
     }
+    
+    //Add code here to upload
+    
+    
 }
 
 
