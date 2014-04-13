@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9310A5E018F9ADE500AFC475 /* LAHacks.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 9310A5DF18F9ADE500AFC475 /* LAHacks.sqlite */; };
+		9310A77A18F9FA1B00AFC475 /* SerumDB.m in Sources */ = {isa = PBXBuildFile; fileRef = 9310A77918F9FA1B00AFC475 /* SerumDB.m */; };
+		9310A77C18F9FCC300AFC475 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9310A77B18F9FCC300AFC475 /* libsqlite3.dylib */; };
 		933298C718F9666B00DECBED /* PlayButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 933298C618F9666B00DECBED /* PlayButton.png */; };
 		935DC79218F8FC3600A42623 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 935DC79118F8FC3600A42623 /* Foundation.framework */; };
 		935DC79418F8FC3600A42623 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 935DC79318F8FC3600A42623 /* CoreGraphics.framework */; };
@@ -68,7 +69,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		9310A5DF18F9ADE500AFC475 /* LAHacks.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = LAHacks.sqlite; sourceTree = "<group>"; };
+		9310A5DF18F9ADE500AFC475 /* LAHacks.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; name = LAHacks.sqlite; path = LAHacksTests/LAHacks.sqlite; sourceTree = SOURCE_ROOT; };
+		9310A77818F9FA1B00AFC475 /* SerumDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SerumDB.h; sourceTree = "<group>"; };
+		9310A77918F9FA1B00AFC475 /* SerumDB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SerumDB.m; sourceTree = "<group>"; };
+		9310A77B18F9FCC300AFC475 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		933298C618F9666B00DECBED /* PlayButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PlayButton.png; sourceTree = "<group>"; };
 		935DC78E18F8FC3600A42623 /* LAHacks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LAHacks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		935DC79118F8FC3600A42623 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -143,6 +147,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9310A77C18F9FCC300AFC475 /* libsqlite3.dylib in Frameworks */,
 				B86D4F1E18F9A0A40048F5A3 /* SystemConfiguration.framework in Frameworks */,
 				B86D4F1C18F99F770048F5A3 /* Rdio.framework in Frameworks */,
 				935DC79418F8FC3600A42623 /* CoreGraphics.framework in Frameworks */,
@@ -186,6 +191,7 @@
 		935DC79018F8FC3600A42623 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9310A77B18F9FCC300AFC475 /* libsqlite3.dylib */,
 				B86D4F1D18F9A0A40048F5A3 /* SystemConfiguration.framework */,
 				B86D4F1B18F99F770048F5A3 /* Rdio.framework */,
 				935DC7FF18F9426B00A42623 /* rdio-ios-1.3.6 */,
@@ -222,6 +228,9 @@
 		935DC79818F8FC3600A42623 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				9310A5DF18F9ADE500AFC475 /* LAHacks.sqlite */,
+				9310A77818F9FA1B00AFC475 /* SerumDB.h */,
+				9310A77918F9FA1B00AFC475 /* SerumDB.m */,
 				B8DC323518F9D9B600A09EB7 /* DroidSans.ttf */,
 				B8DC323418F9D8FC00A09EB7 /* Roboto-Black.ttf */,
 				935DC79918F8FC3600A42623 /* LAHacks-Info.plist */,
@@ -244,7 +253,6 @@
 		935DC7B718F8FC3700A42623 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				9310A5DF18F9ADE500AFC475 /* LAHacks.sqlite */,
 				935DC7B818F8FC3700A42623 /* LAHacksTests-Info.plist */,
 				935DC7B918F8FC3700A42623 /* InfoPlist.strings */,
 			);
@@ -456,6 +464,7 @@
 				935DC79E18F8FC3600A42623 /* main.m in Sources */,
 				935DC7F118F907B800A42623 /* EZRecorder.m in Sources */,
 				935DC7E818F907B800A42623 /* EZAudio.m in Sources */,
+				9310A77A18F9FA1B00AFC475 /* SerumDB.m in Sources */,
 				935DC7EE18F907B800A42623 /* EZMicrophone.m in Sources */,
 				935DC7F018F907B800A42623 /* EZPlot.m in Sources */,
 				935DC7FA18F9115700A42623 /* RecordViewController.m in Sources */,

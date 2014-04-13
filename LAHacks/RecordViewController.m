@@ -42,7 +42,7 @@
 @synthesize recorder;
 @synthesize recordSwitch;
 @synthesize recordingTextField;
-
+@synthesize songName;
 bool alreadyStopped = NO;
 
 
@@ -82,6 +82,8 @@ bool alreadyStopped = NO;
 -(void)viewDidLoad {
   
   [super viewDidLoad];
+
+    NSLog(@"Song Choice: %@", self.songName);
     
   keys = [[NSMutableArray alloc] init];
   bandArray = [[NSMutableArray alloc] init];
@@ -97,7 +99,7 @@ bool alreadyStopped = NO;
   
   //NSLog(@"File written to application sandbox's documents directory: %@",[self testFilePathURL]);
   [self.view addSubview:_playButton];
-  [self loadResults:@"Daylight"];
+  [self loadResults:songName];
 }
 -(IBAction)upload
 {
