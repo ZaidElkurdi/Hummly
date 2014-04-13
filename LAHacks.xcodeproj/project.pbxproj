@@ -40,6 +40,13 @@
 		935DC7F318F907B800A42623 /* CHANGELOG in Resources */ = {isa = PBXBuildFile; fileRef = 935DC7E518F907B800A42623 /* CHANGELOG */; };
 		935DC7F418F907B800A42623 /* VERSION in Resources */ = {isa = PBXBuildFile; fileRef = 935DC7E618F907B800A42623 /* VERSION */; };
 		935DC7FA18F9115700A42623 /* RecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 935DC7F918F9115700A42623 /* RecordViewController.m */; };
+		93B950DB18FA5943000165BE /* SBJson4Parser.m in Sources */ = {isa = PBXBuildFile; fileRef = 93B950CE18FA5943000165BE /* SBJson4Parser.m */; };
+		93B950DC18FA5943000165BE /* SBJson4StreamParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 93B950D018FA5943000165BE /* SBJson4StreamParser.m */; };
+		93B950DD18FA5943000165BE /* SBJson4StreamParserState.m in Sources */ = {isa = PBXBuildFile; fileRef = 93B950D218FA5943000165BE /* SBJson4StreamParserState.m */; };
+		93B950DE18FA5943000165BE /* SBJson4StreamTokeniser.m in Sources */ = {isa = PBXBuildFile; fileRef = 93B950D418FA5943000165BE /* SBJson4StreamTokeniser.m */; };
+		93B950DF18FA5943000165BE /* SBJson4StreamWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 93B950D618FA5943000165BE /* SBJson4StreamWriter.m */; };
+		93B950E018FA5943000165BE /* SBJson4StreamWriterState.m in Sources */ = {isa = PBXBuildFile; fileRef = 93B950D818FA5943000165BE /* SBJson4StreamWriterState.m */; };
+		93B950E118FA5943000165BE /* SBJson4Writer.m in Sources */ = {isa = PBXBuildFile; fileRef = 93B950DA18FA5943000165BE /* SBJson4Writer.m */; };
 		B86D4F0F18F93E390048F5A3 /* searchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = B86D4F0E18F93E390048F5A3 /* searchBar.m */; };
 		B86D4F1318F942C10048F5A3 /* searchBG.png in Resources */ = {isa = PBXBuildFile; fileRef = B86D4F1218F942C10048F5A3 /* searchBG.png */; };
 		B86D4F1518F953020048F5A3 /* magnifyingGlass.png in Resources */ = {isa = PBXBuildFile; fileRef = B86D4F1418F953020048F5A3 /* magnifyingGlass.png */; };
@@ -122,6 +129,21 @@
 		935DC7E618F907B800A42623 /* VERSION */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = VERSION; sourceTree = "<group>"; };
 		935DC7F818F9115700A42623 /* RecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordViewController.h; sourceTree = "<group>"; };
 		935DC7F918F9115700A42623 /* RecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordViewController.m; sourceTree = "<group>"; };
+		93B950CC18FA5943000165BE /* SBJson4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJson4.h; sourceTree = "<group>"; };
+		93B950CD18FA5943000165BE /* SBJson4Parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJson4Parser.h; sourceTree = "<group>"; };
+		93B950CE18FA5943000165BE /* SBJson4Parser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJson4Parser.m; sourceTree = "<group>"; };
+		93B950CF18FA5943000165BE /* SBJson4StreamParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJson4StreamParser.h; sourceTree = "<group>"; };
+		93B950D018FA5943000165BE /* SBJson4StreamParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJson4StreamParser.m; sourceTree = "<group>"; };
+		93B950D118FA5943000165BE /* SBJson4StreamParserState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJson4StreamParserState.h; sourceTree = "<group>"; };
+		93B950D218FA5943000165BE /* SBJson4StreamParserState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJson4StreamParserState.m; sourceTree = "<group>"; };
+		93B950D318FA5943000165BE /* SBJson4StreamTokeniser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJson4StreamTokeniser.h; sourceTree = "<group>"; };
+		93B950D418FA5943000165BE /* SBJson4StreamTokeniser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJson4StreamTokeniser.m; sourceTree = "<group>"; };
+		93B950D518FA5943000165BE /* SBJson4StreamWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJson4StreamWriter.h; sourceTree = "<group>"; };
+		93B950D618FA5943000165BE /* SBJson4StreamWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJson4StreamWriter.m; sourceTree = "<group>"; };
+		93B950D718FA5943000165BE /* SBJson4StreamWriterState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJson4StreamWriterState.h; sourceTree = "<group>"; };
+		93B950D818FA5943000165BE /* SBJson4StreamWriterState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJson4StreamWriterState.m; sourceTree = "<group>"; };
+		93B950D918FA5943000165BE /* SBJson4Writer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJson4Writer.h; sourceTree = "<group>"; };
+		93B950DA18FA5943000165BE /* SBJson4Writer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJson4Writer.m; sourceTree = "<group>"; };
 		B86D4F0D18F93E390048F5A3 /* searchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = searchBar.h; sourceTree = "<group>"; };
 		B86D4F0E18F93E390048F5A3 /* searchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = searchBar.m; sourceTree = "<group>"; };
 		B86D4F1218F942C10048F5A3 /* searchBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = searchBG.png; sourceTree = "<group>"; };
@@ -228,6 +250,21 @@
 		935DC79818F8FC3600A42623 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				93B950CC18FA5943000165BE /* SBJson4.h */,
+				93B950CD18FA5943000165BE /* SBJson4Parser.h */,
+				93B950CE18FA5943000165BE /* SBJson4Parser.m */,
+				93B950CF18FA5943000165BE /* SBJson4StreamParser.h */,
+				93B950D018FA5943000165BE /* SBJson4StreamParser.m */,
+				93B950D118FA5943000165BE /* SBJson4StreamParserState.h */,
+				93B950D218FA5943000165BE /* SBJson4StreamParserState.m */,
+				93B950D318FA5943000165BE /* SBJson4StreamTokeniser.h */,
+				93B950D418FA5943000165BE /* SBJson4StreamTokeniser.m */,
+				93B950D518FA5943000165BE /* SBJson4StreamWriter.h */,
+				93B950D618FA5943000165BE /* SBJson4StreamWriter.m */,
+				93B950D718FA5943000165BE /* SBJson4StreamWriterState.h */,
+				93B950D818FA5943000165BE /* SBJson4StreamWriterState.m */,
+				93B950D918FA5943000165BE /* SBJson4Writer.h */,
+				93B950DA18FA5943000165BE /* SBJson4Writer.m */,
 				9310A5DF18F9ADE500AFC475 /* LAHacks.sqlite */,
 				9310A77818F9FA1B00AFC475 /* SerumDB.h */,
 				9310A77918F9FA1B00AFC475 /* SerumDB.m */,
@@ -454,13 +491,17 @@
 				935DC7EF18F907B800A42623 /* EZOutput.m in Sources */,
 				935DC7EB18F907B800A42623 /* EZAudioPlot.m in Sources */,
 				935DC7F218F907B800A42623 /* TPCircularBuffer.c in Sources */,
+				93B950DD18FA5943000165BE /* SBJson4StreamParserState.m in Sources */,
 				935DC7A818F8FC3600A42623 /* ViewController.m in Sources */,
 				935DC7EA18F907B800A42623 /* EZAudioPlayer.m in Sources */,
 				935DC7E718F907B800A42623 /* AEFloatConverter.m in Sources */,
 				B86D4F0F18F93E390048F5A3 /* searchBar.m in Sources */,
+				93B950DE18FA5943000165BE /* SBJson4StreamTokeniser.m in Sources */,
 				935DC7A218F8FC3600A42623 /* AppDelegate.m in Sources */,
+				93B950E018FA5943000165BE /* SBJson4StreamWriterState.m in Sources */,
 				935DC7EC18F907B800A42623 /* EZAudioPlotGL.m in Sources */,
 				935DC7E918F907B800A42623 /* EZAudioFile.m in Sources */,
+				93B950E118FA5943000165BE /* SBJson4Writer.m in Sources */,
 				935DC79E18F8FC3600A42623 /* main.m in Sources */,
 				935DC7F118F907B800A42623 /* EZRecorder.m in Sources */,
 				935DC7E818F907B800A42623 /* EZAudio.m in Sources */,
@@ -468,7 +509,10 @@
 				935DC7EE18F907B800A42623 /* EZMicrophone.m in Sources */,
 				935DC7F018F907B800A42623 /* EZPlot.m in Sources */,
 				935DC7FA18F9115700A42623 /* RecordViewController.m in Sources */,
+				93B950DF18FA5943000165BE /* SBJson4StreamWriter.m in Sources */,
+				93B950DB18FA5943000165BE /* SBJson4Parser.m in Sources */,
 				B8DC323318F9D54E00A09EB7 /* categoryCardCell.m in Sources */,
+				93B950DC18FA5943000165BE /* SBJson4StreamParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
