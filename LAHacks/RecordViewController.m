@@ -122,11 +122,50 @@ bool alreadyStopped = NO;
     }
 
 }
+
+-(void)uploadAudio
+{
+    
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+
+    NSString *genre = @"Song";
+    
+    NSString * post = [[NSString alloc] initWithFormat:@"http://107.170.193.94/song/dontstop?genre=%@",genre];
+    
+
+    
+    NSString *boundary = @"---------------------------";
+    NSMutableData *postData = [NSMutableData data];
+    NSString *header = [NSString stringWithFormat:@"--%@\r\n", boundary];
+    [postData appendData:[header dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    //add your filename entry
+    NSString *contentDisposition = [NSString stringWithFormat:@"Content-Disposition: form-data; name=\"audio\"; filename=\%@\"\r\n",@"LAHacks.mp3"];
+    
+    
+    [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",post]]];
+    
+    
+    [postData appendData:[contentDisposition dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    [postData appendData:[NSData dataWithContentsOfFile:@"/Users/aryamansharda/Library/Application Support/iPhone Simulator/7.0.3/Applications/D74CE452-4BAF-435B-96C3-830ECF76DD79/Documents/LAHacks.mp3"]];
+
+    [request setHTTPMethod:@"POST"];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    [request setHTTPBody:postData];
+    
+    NSURLConnection * conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    NSLog(@"%@",conn);
+    
+    if (conn) NSLog(@"Connection Successful");
+}
 #pragma mark - Customize the Audio Plot
 -(void)viewDidLoad {
   
   [super viewDidLoad];
-
+  [self uploadAudio];
+  //[self upload:@"hi" comment:@"hi"];
+    
    [self accessLyric];
    NSArray *dirPaths;
    NSString *docsDir;
@@ -459,6 +498,10 @@ UInt32 sessionCategory = kAudioSessionCategory_PlayAndRecord;
     }
 
 }
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [self stop];
+}
 
 #pragma mark - EZMicrophoneDelegate
 -(IBAction)recordAudio:(id)sender
@@ -474,6 +517,10 @@ UInt32 sessionCategory = kAudioSessionCategory_PlayAndRecord;
     } else if (audioPlayer.playing) {
             [audioPlayer stop];
     }
+    
+    //Add code here to upload
+    
+    
 }
 
 
