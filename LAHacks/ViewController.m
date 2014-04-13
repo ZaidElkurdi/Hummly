@@ -43,7 +43,7 @@
     self.categoryView.showsHorizontalScrollIndicator = FALSE;
     
     [self.view addSubview:self.categoryView];
-    
+    `
 
 
     [self.categoryView registerClass:[categoryCardCell class] forCellWithReuseIdentifier:@"categoryCellIdentifier"];
