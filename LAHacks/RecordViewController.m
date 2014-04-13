@@ -10,6 +10,7 @@
 #import "Rdio/Rdio.h"
 #import "AppDelegate.h"
 #import "SBJson4.h"
+#import <AVFoundation/AVFoundation.h>
 
 @interface RecordViewController ()
 {
@@ -46,6 +47,7 @@
 @synthesize playingTextField;
 @synthesize recordSwitch;
 @synthesize recordingTextField;
+@synthesize songChosen;
 bool alreadyStopped = NO;
 
 
@@ -61,7 +63,7 @@ bool alreadyStopped = NO;
 }
 -(void)accessLyric
 {
-    
+
     NSURL *idURL = [NSURL URLWithString:@"http://api.musixmatch.com/ws/1.1/track.search?apikey=87600b0ccf64e49602b54a6a5315c51b&s_track_rating=DESC&&q_track=lights&format=json&page_size=1&page=1&f_has_lyrics=1"];
     
     NSURLRequest *request = [NSURLRequest requestWithURL:idURL];    
@@ -70,9 +72,6 @@ bool alreadyStopped = NO;
                           JSONObjectWithData:response
                           options:kNilOptions 
                           error:nil];
-    
-    ////NSLog(@"JSon: %@",json_string);
-    
     
     NSDictionary* valid = [[[json_string objectForKey:@"message"] objectForKey:@"header"] objectForKey:@"available"];
     if (![[NSString stringWithFormat:@"%@",valid] isEqualToString:@"0"])
@@ -126,8 +125,22 @@ bool alreadyStopped = NO;
 -(void)uploadAudio
 {
     
+    NSLog(@"Uploading audio");
+    
+    NSArray *dirPaths;
+    NSString *docsDir;
+    
+    dirPaths = NSSearchPathForDirectoriesInDomains(
+                                                   NSDocumentDirectory, NSUserDomainMask, YES);
+    docsDir = [dirPaths objectAtIndex:0];
+    NSString *soundFilePath = [docsDir
+                               stringByAppendingPathComponent:@"LAHacks.mp3"];
+    
+
+    
+    
     NSFileManager *fileManager = [[NSFileManager alloc] init];
-    NSDictionary *fileAttributes = [fileManager attributesOfItemAtPath:@"/Users/aryamansharda/Library/Application Support/iPhone Simulator/7.0.3/Applications/D74CE452-4BAF-435B-96C3-830ECF76DD79/Documents/LAHacks.mp3" error: NULL];
+    NSDictionary *fileAttributes = [fileManager attributesOfItemAtPath:soundFilePath error: NULL];
     
     //NSLog(@"%@",fileAttributes);
     if (fileAttributes != nil) {
@@ -138,10 +151,10 @@ bool alreadyStopped = NO;
         
         NSData *audioData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"LAHacks" ofType:@".mp3"]];
         
-        NSString *urlString = [NSString stringWithFormat:@"http://107.170.193.94/song/dontstop?genre=%@",@"Rock"];
+        NSString *urlString = [NSString stringWithFormat:@"http://107.170.193.94/song/%@?genre=%@",songChosen, @"Rock"];
         
         
-        //NSLog(@"Audio Data: %@",audioData);
+        NSLog(@"Audio Data: %@",audioData);
         NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
         [request setURL:[NSURL URLWithString:urlString]];
         [request setHTTPMethod:@"POST"];
@@ -165,84 +178,8 @@ bool alreadyStopped = NO;
         
     }
     
-    }
-#pragma mark - Customize the Audio Plot
--(void)viewDidLoad {
-  
-  [super viewDidLoad];
-  [self performSelector:@selector(uploadAudio) withObject:nil];
-   [self performSelector:@selector(accessLyric) withObject:nil];
-
-   NSArray *dirPaths;
-   NSString *docsDir;
-
-   dirPaths = NSSearchPathForDirectoriesInDomains(
-        NSDocumentDirectory, NSUserDomainMask, YES);
-   docsDir = [dirPaths objectAtIndex:0];
-   NSString *soundFilePath = [docsDir
-       stringByAppendingPathComponent:@"zaid.caf"];
-
-   NSURL *soundFileURL = [NSURL fileURLWithPath:soundFilePath];
-   
-    //Initialize audio session
-    AVAudioSession *audioSession = [AVAudioSession sharedInstance];
-    [audioSession setCategory:AVAudioSessionCategoryRecord error:nil];
-    
-    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
-    
-    //Override record to mix with other app audio, background audio not silenced on record
-UInt32 sessionCategory = kAudioSessionCategory_PlayAndRecord;
-  AudioSessionSetProperty(kAudioSessionProperty_AudioCategory,
-     sizeof(UInt32), &sessionCategory);
-    
-    UInt32 audioRouteOverride = kAudioSessionOverrideAudioRoute_Speaker;
-    AudioSessionSetProperty (kAudioSessionProperty_OverrideAudioRoute,sizeof (audioRouteOverride),&audioRouteOverride);
-    
-    
-    [[AVAudioSession sharedInstance] setActive:YES error:nil];
-    [[AVAudioSession sharedInstance] setCategory:@"AVAudioSessionCategoryPlayAndRecord" error:nil];
-   NSDictionary *recordSettings = [NSDictionary 
-            dictionaryWithObjectsAndKeys:
-            [NSNumber numberWithInt:AVAudioQualityMin],
-            AVEncoderAudioQualityKey,
-            [NSNumber numberWithInt:16], 
-            AVEncoderBitRateKey,
-            [NSNumber numberWithInt: 2], 
-            AVNumberOfChannelsKey,
-            [NSNumber numberWithFloat:44100.0], 
-            AVSampleRateKey,
-            nil];
-
-  NSError *error = nil;
-
-  audioRecorder = [[AVAudioRecorder alloc]
-                  initWithURL:soundFileURL
-                  settings:recordSettings
-                  error:&error];
-
-   if (error)
-   {
-        //NSLog(@"error: %@", [error localizedDescription]);
-   } else
-   {
-        [audioRecorder prepareToRecord];
-   }
-
-  keys = [[NSMutableArray alloc] init];
-  bandArray = [[NSMutableArray alloc] init];
-  albumArray = [[NSMutableArray alloc] init];
-  titleArray = [[NSMutableArray alloc] init];
-    
-  self.audioPlot.backgroundColor = [UIColor colorWithRed: 0.0 green: 0.0 blue: 0.0 alpha: 1.0];
-  self.audioPlot.color           = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0];
-  self.audioPlot.plotType        = EZPlotTypeRolling;
-  self.audioPlot.shouldFill      = YES;
-  self.audioPlot.shouldMirror    = YES;
-  
-  ////NSLog(@"File written to application sandbox's documents directory: %@",[self testFilePathURL]);
-  [self.view addSubview:_playButton];
-  [self loadResults:@"Daylight"];
 }
+
 -(IBAction)didTapListen:(id)sender
 {{
     if(isPlaying==false)
@@ -272,7 +209,8 @@ UInt32 sessionCategory = kAudioSessionCategory_PlayAndRecord;
          leftView.frame=newLeftFrame;
          playButton.frame=newLeftViewFrame;
          
-        //NSLog(@"Begin recording");
+        NSLog(@"Begin recording");
+         
         [[AVAudioSession sharedInstance] setCategory:@"AVAudioSessionCategoryPlayAndRecord" error:nil];
         [[self getPlayer] playSource:[keys objectAtIndex:0]];
         [[self getPlayer] playSources:keys];
@@ -353,12 +291,19 @@ UInt32 sessionCategory = kAudioSessionCategory_PlayAndRecord;
          playButton.frame=newLeftViewFrame;
          
         //NSLog(@"Begin recording");
+          
+        [self performSelector:@selector(downloadContent) withObject:nil];
+            
+        
         [[AVAudioSession sharedInstance] setCategory:@"AVAudioSessionCategoryPlayAndRecord" error:nil];
         [audioRecorder record];
         isRecording=true;
         [[self getPlayer] playSource:[keys objectAtIndex:0]];
         [[self getPlayer] playSources:keys];
         [recordButton setImage:[UIImage imageNamed:@"stopIcon.png"] forState:UIControlStateNormal];
+         
+         
+            
         }
      
                      completion:nil];
@@ -402,6 +347,8 @@ UInt32 sessionCategory = kAudioSessionCategory_PlayAndRecord;
      
                      completion:nil];
     }
+    
+    [self uploadAudio];
 }
 
 -(void)grabImage
@@ -440,15 +387,137 @@ UInt32 sessionCategory = kAudioSessionCategory_PlayAndRecord;
     
     
 }
+#pragma mark - Customize the Audio Plot
+-(void)viewDidLoad {
+    
+    [super viewDidLoad];
+    songChosen = [[NSString alloc] init];
+    
+    NSArray *dirPaths;
+    NSString *docsDir;
+    
+    dirPaths = NSSearchPathForDirectoriesInDomains(
+                                                   NSDocumentDirectory, NSUserDomainMask, YES);
+    docsDir = [dirPaths objectAtIndex:0];
+    NSString *soundFilePath = [docsDir
+                               stringByAppendingPathComponent:@"LAHacks.mp3"];
+    
+    NSURL *soundFileURL = [NSURL fileURLWithPath:soundFilePath];
+    
+    //Initialize audio session
+    AVAudioSession *audioSession = [AVAudioSession sharedInstance];
+    [audioSession setCategory:AVAudioSessionCategoryRecord error:nil];
+    
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
+    
+    //Override record to mix with other app audio, background audio not silenced on record
+    UInt32 sessionCategory = kAudioSessionCategory_PlayAndRecord;
+    AudioSessionSetProperty(kAudioSessionProperty_AudioCategory,
+                            sizeof(UInt32), &sessionCategory);
+    
+    UInt32 audioRouteOverride = kAudioSessionOverrideAudioRoute_Speaker;
+    AudioSessionSetProperty (kAudioSessionProperty_OverrideAudioRoute,sizeof (audioRouteOverride),&audioRouteOverride);
+    
+    
+    [[AVAudioSession sharedInstance] setActive:YES error:nil];
+    [[AVAudioSession sharedInstance] setCategory:@"AVAudioSessionCategoryPlayAndRecord" error:nil];
+    NSDictionary *recordSettings = [NSDictionary
+                                    dictionaryWithObjectsAndKeys:
+                                    [NSNumber numberWithInt:AVAudioQualityMin],
+                                    AVEncoderAudioQualityKey,
+                                    [NSNumber numberWithInt:16],
+                                    AVEncoderBitRateKey,
+                                    [NSNumber numberWithInt: 2],
+                                    AVNumberOfChannelsKey,
+                                    [NSNumber numberWithFloat:44100.0],
+                                    AVSampleRateKey,
+                                    nil];
+    
+    NSError *error = nil;
+    
+    audioRecorder = [[AVAudioRecorder alloc]
+                     initWithURL:soundFileURL
+                     settings:recordSettings
+                     error:&error];
+    
+    if (error)
+    {
+        //NSLog(@"error: %@", [error localizedDescription]);
+    } else
+    {
+        [audioRecorder prepareToRecord];
+    }
+    
+    keys = [[NSMutableArray alloc] init];
+    bandArray = [[NSMutableArray alloc] init];
+    albumArray = [[NSMutableArray alloc] init];
+    titleArray = [[NSMutableArray alloc] init];
+    
+    self.audioPlot.backgroundColor = [UIColor colorWithRed: 0.0 green: 0.0 blue: 0.0 alpha: 1.0];
+    self.audioPlot.color           = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0];
+    self.audioPlot.plotType        = EZPlotTypeRolling;
+    self.audioPlot.shouldFill      = YES;
+    self.audioPlot.shouldMirror    = YES;
+    
+    ////NSLog(@"File written to application sandbox's documents directory: %@",[self testFilePathURL]);
+    
+    [self.view addSubview:_playButton];
+    songChosen = @"Daylight";
+    
+    NSLog(@"Preparing..");
+    [self loadResults:songChosen];
+    [self performSelector:@selector(uploadAudio) withObject:nil];
+    [self performSelector:@selector(accessLyric) withObject:nil];
+
+    NSLog(@"Complete.");
+}
+-(void)downloadContent
+{
+    NSString *url = [NSString stringWithFormat:@"http://107.170.193.94/song/%@",songChosen];
+    
+    NSLog(@"URL: %@",url);
+    NSURL* checkURL = [NSURL URLWithString:url];
+    
+    NSData* checkData = [[NSData alloc] initWithContentsOfURL:checkURL];
+    
+    NSString* HTMLFromURL = [[NSString alloc] initWithData:checkData encoding:NSASCIIStringEncoding];
+    
+    NSArray* HTMLStole = [HTMLFromURL componentsSeparatedByString: @","];
+    
+    NSLog(@"HTMLStole %@",[HTMLStole objectAtIndex:0]);
+    
+    NSString* day = [HTMLStole objectAtIndex: 0];
+    NSString* songName = [NSString alloc];
+    
+    songName = [day substringWithRange:NSMakeRange(9, [day length] - 10)];
+    
+    NSLog(@"Song Name: %@", songName);
+    
+    NSString *updatedUrl = [NSString stringWithFormat:@"http://107.170.193.94/%@",songName];
+    
+    NSLog(@"Processed URL: %@", updatedUrl);
+    
+    NSURL *urlDownload = [NSURL URLWithString:updatedUrl];
+                  
+                  
+    playerItem = [AVPlayerItem playerItemWithURL:urlDownload];
+    self.player = [AVPlayer playerWithPlayerItem:playerItem];
+    
+    
+    self.player = [AVPlayer playerWithURL:urlDownload];
+    [player play];
+                  
+    
+    //Song name now contains the file that everyone contains
+    
+}
 /*
  * Make sure to sort by most popular
  * Double listings
  */
 -(void)loadResults:(NSString *)songName
 {
-    songName = [songName stringByReplacingOccurrencesOfString:@" " withString: @"+"];
-    
-    
+
     
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[[NSString alloc] initWithFormat:@"http://developer.echonest.com/api/v4/song/search?api_key=ZAIMFQ6WMS5EZUABI&format=json&results=10&title=%@&bucket=id:rdio-US&bucket=tracks&limit=true",songName]]];
     

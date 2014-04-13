@@ -10,6 +10,7 @@
 		9310A77A18F9FA1B00AFC475 /* SerumDB.m in Sources */ = {isa = PBXBuildFile; fileRef = 9310A77918F9FA1B00AFC475 /* SerumDB.m */; };
 		9310A77C18F9FCC300AFC475 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9310A77B18F9FCC300AFC475 /* libsqlite3.dylib */; };
 		933298C718F9666B00DECBED /* PlayButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 933298C618F9666B00DECBED /* PlayButton.png */; };
+		935C12E518FACA7200306C9F /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 935C12E418FACA7200306C9F /* AVFoundation.framework */; };
 		935DC79218F8FC3600A42623 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 935DC79118F8FC3600A42623 /* Foundation.framework */; };
 		935DC79418F8FC3600A42623 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 935DC79318F8FC3600A42623 /* CoreGraphics.framework */; };
 		935DC79618F8FC3600A42623 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 935DC79518F8FC3600A42623 /* UIKit.framework */; };
@@ -87,6 +88,7 @@
 		9310A77918F9FA1B00AFC475 /* SerumDB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SerumDB.m; sourceTree = "<group>"; };
 		9310A77B18F9FCC300AFC475 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		933298C618F9666B00DECBED /* PlayButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PlayButton.png; sourceTree = "<group>"; };
+		935C12E418FACA7200306C9F /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		935DC78E18F8FC3600A42623 /* LAHacks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LAHacks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		935DC79118F8FC3600A42623 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		935DC79318F8FC3600A42623 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -181,6 +183,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				935C12E518FACA7200306C9F /* AVFoundation.framework in Frameworks */,
 				9310A77C18F9FCC300AFC475 /* libsqlite3.dylib in Frameworks */,
 				B86D4F1E18F9A0A40048F5A3 /* SystemConfiguration.framework in Frameworks */,
 				B86D4F1C18F99F770048F5A3 /* Rdio.framework in Frameworks */,
@@ -225,6 +228,7 @@
 		935DC79018F8FC3600A42623 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				935C12E418FACA7200306C9F /* AVFoundation.framework */,
 				9310A77B18F9FCC300AFC475 /* libsqlite3.dylib */,
 				B86D4F1D18F9A0A40048F5A3 /* SystemConfiguration.framework */,
 				B86D4F1B18F99F770048F5A3 /* Rdio.framework */,

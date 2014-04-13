@@ -52,6 +52,7 @@
     [searchButton setTitle:@"Search" forState:UIControlStateNormal];
     searchButton.frame = CGRectMake(80.0, 210.0, 160.0, 40.0);
     searchButton.alpha = 0.0;
+    [searchButton setBackgroundImage:[UIImage imageNamed:@"microphoneIcon.png"] forState:UIControlStateNormal];
     [self.view addSubview:searchButton];
     
     [self.categoryView registerClass:[categoryCardCell class] forCellWithReuseIdentifier:@"categoryCellIdentifier"];
@@ -111,7 +112,7 @@
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    searchButton.alpha = 1.0;
+   
     [UIView animateWithDuration:.5
                           delay:0
          usingSpringWithDamping:500.0f
