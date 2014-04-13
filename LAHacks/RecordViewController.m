@@ -131,7 +131,7 @@ bool alreadyStopped = NO;
     
 
     
-    NSString *boundary = @"---------------------------14737809831466499882746641449";
+    NSString *boundary = @"---------------------------";
     NSMutableData *postData = [NSMutableData data];
     NSString *header = [NSString stringWithFormat:@"--%@\r\n", boundary];
     [postData appendData:[header dataUsingEncoding:NSUTF8StringEncoding]];
