@@ -122,10 +122,13 @@ bool alreadyStopped = NO;
     }
 
 }
-
+-(void)checkTennysonFirst
+{
+    NSString *myString = @"http://foo.bar/?key[]=value[]<>";
+    NSURL *myUrl = [NSURL URLWithString:[myString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+}
 -(void)uploadAudio
 {
-    
     NSFileManager *fileManager = [[NSFileManager alloc] init];
     NSDictionary *fileAttributes = [fileManager attributesOfItemAtPath:@"/Users/aryamansharda/Library/Application Support/iPhone Simulator/7.0.3/Applications/D74CE452-4BAF-435B-96C3-830ECF76DD79/Documents/LAHacks.mp3" error: NULL];
     

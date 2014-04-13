@@ -47,8 +47,9 @@
 		93B950DF18FA5943000165BE /* SBJson4StreamWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 93B950D618FA5943000165BE /* SBJson4StreamWriter.m */; };
 		93B950E018FA5943000165BE /* SBJson4StreamWriterState.m in Sources */ = {isa = PBXBuildFile; fileRef = 93B950D818FA5943000165BE /* SBJson4StreamWriterState.m */; };
 		93B950E118FA5943000165BE /* SBJson4Writer.m in Sources */ = {isa = PBXBuildFile; fileRef = 93B950DA18FA5943000165BE /* SBJson4Writer.m */; };
-		B808563618FA89FA00691393 /* LAHacks.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = B808563518FA89FA00691393 /* LAHacks.sqlite */; };
-		B808563718FA89FA00691393 /* LAHacks.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = B808563518FA89FA00691393 /* LAHacks.sqlite */; };
+		B808563918FAA36700691393 /* LAHacks.sqlite3 in Resources */ = {isa = PBXBuildFile; fileRef = B808563818FAA31E00691393 /* LAHacks.sqlite3 */; };
+		B808563B18FAA94800691393 /* top100Graphic.png in Resources */ = {isa = PBXBuildFile; fileRef = B808563A18FAA94800691393 /* top100Graphic.png */; };
+		B808563C18FAA94800691393 /* top100Graphic.png in Resources */ = {isa = PBXBuildFile; fileRef = B808563A18FAA94800691393 /* top100Graphic.png */; };
 		B842A61118FA67CB008A9911 /* recordButton.png in Resources */ = {isa = PBXBuildFile; fileRef = B842A61018FA67CB008A9911 /* recordButton.png */; };
 		B842A61518FA6ADF008A9911 /* calendarIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = B842A61218FA6ADF008A9911 /* calendarIcon.png */; };
 		B842A61618FA6ADF008A9911 /* commentsIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = B842A61318FA6ADF008A9911 /* commentsIcon.png */; };
@@ -150,7 +151,8 @@
 		93B950D818FA5943000165BE /* SBJson4StreamWriterState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJson4StreamWriterState.m; sourceTree = "<group>"; };
 		93B950D918FA5943000165BE /* SBJson4Writer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJson4Writer.h; sourceTree = "<group>"; };
 		93B950DA18FA5943000165BE /* SBJson4Writer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJson4Writer.m; sourceTree = "<group>"; };
-		B808563518FA89FA00691393 /* LAHacks.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = LAHacks.sqlite; sourceTree = "<group>"; };
+		B808563818FAA31E00691393 /* LAHacks.sqlite3 */ = {isa = PBXFileReference; lastKnownFileType = file; path = LAHacks.sqlite3; sourceTree = "<group>"; };
+		B808563A18FAA94800691393 /* top100Graphic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = top100Graphic.png; sourceTree = "<group>"; };
 		B842A61018FA67CB008A9911 /* recordButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = recordButton.png; sourceTree = "<group>"; };
 		B842A61218FA6ADF008A9911 /* calendarIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calendarIcon.png; sourceTree = "<group>"; };
 		B842A61318FA6ADF008A9911 /* commentsIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = commentsIcon.png; sourceTree = "<group>"; };
@@ -262,7 +264,7 @@
 		935DC79818F8FC3600A42623 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				B808563518FA89FA00691393 /* LAHacks.sqlite */,
+				B808563818FAA31E00691393 /* LAHacks.sqlite3 */,
 				93B950CC18FA5943000165BE /* SBJson4.h */,
 				93B950CD18FA5943000165BE /* SBJson4Parser.h */,
 				93B950CE18FA5943000165BE /* SBJson4Parser.m */,
@@ -311,6 +313,7 @@
 		935DC7C618F8FD7C00A42623 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				B808563A18FAA94800691393 /* top100Graphic.png */,
 				B842A61A18FA8186008A9911 /* stopIcon.png */,
 				B842A61218FA6ADF008A9911 /* calendarIcon.png */,
 				B842A61318FA6ADF008A9911 /* commentsIcon.png */,
@@ -468,6 +471,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				935DC7AA18F8FC3600A42623 /* Images.xcassets in Resources */,
+				B808563918FAA36700691393 /* LAHacks.sqlite3 in Resources */,
 				B86D4F1718F957A20048F5A3 /* mainBackground.png in Resources */,
 				B842A61118FA67CB008A9911 /* recordButton.png in Resources */,
 				B86D4F1518F953020048F5A3 /* magnifyingGlass.png in Resources */,
@@ -489,8 +493,8 @@
 				B8DC322C18F9D3DF00A09EB7 /* familyIcon.png in Resources */,
 				B8DC322A18F9D13600A09EB7 /* countryIcon.png in Resources */,
 				B842A61718FA6ADF008A9911 /* personIcon.png in Resources */,
-				B808563618FA89FA00691393 /* LAHacks.sqlite in Resources */,
 				B86D4F2018F9A9C70048F5A3 /* autocompleteBorder.png in Resources */,
+				B808563B18FAA94800691393 /* top100Graphic.png in Resources */,
 				935DC7F318F907B800A42623 /* CHANGELOG in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -499,8 +503,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B808563C18FAA94800691393 /* top100Graphic.png in Resources */,
 				935DC7BB18F8FC3700A42623 /* InfoPlist.strings in Resources */,
-				B808563718FA89FA00691393 /* LAHacks.sqlite in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
