@@ -25,6 +25,8 @@
     NSMutableArray *bandArray;
     NSMutableArray *titleArray;
     NSMutableArray* keys;
+    
+    NSTimer *songTimer;
 }
 // Using AVPlayer for example
 @property (nonatomic,strong) AVAudioPlayer *audioPlayer;
@@ -170,7 +172,18 @@ bool alreadyStopped = NO;
         
     }
     
-    }
+}
+
+-(void)songCompleted
+{
+    if(isPlaying)
+        [self didTapListen:nil];
+    else if(isRecording)
+        [self didTapRecord:nil];
+    
+    [self uploadAudio];
+}
+
 #pragma mark - Customize the Audio Plot
 -(void)viewDidLoad {
   
@@ -286,12 +299,14 @@ UInt32 sessionCategory = kAudioSessionCategory_PlayAndRecord;
         }
      
                      completion:nil];
+        songTimer = [NSTimer scheduledTimerWithTimeInterval:30.0 target:self selector:@selector(songCompleted) userInfo:nil repeats:NO];
     }
     
     else
     {
         //NSLog(@"Was already playing");
         [[self getPlayer] togglePause];
+        [songTimer invalidate];
         isPlaying=false;
         
         [UIView animateWithDuration:.5
@@ -367,12 +382,14 @@ UInt32 sessionCategory = kAudioSessionCategory_PlayAndRecord;
         }
      
                      completion:nil];
+        songTimer = [NSTimer scheduledTimerWithTimeInterval:30.0 target:self selector:@selector(songCompleted) userInfo:nil repeats:NO];
     }
     
     else
     {
         //NSLog(@"Was already recording");
         [audioRecorder stop];
+        [songTimer invalidate];
         isRecording=false;
         [[self getPlayer] togglePause];
         
@@ -564,25 +581,28 @@ UInt32 sessionCategory = kAudioSessionCategory_PlayAndRecord;
 }
 
 
--(void) playAudio
-{
-    if (!audioRecorder.recording)
-    {
-        NSError *error;
-
-        audioPlayer = [[AVAudioPlayer alloc] 
-        initWithContentsOfURL:audioRecorder.url                                    
-        error:&error];
-
-        audioPlayer.delegate = self;
-
-        if (error)
-              //NSLog(@"Error: %@");
-              [error localizedDescription];
-        else
-              [audioPlayer play];
-   }
-}
+//-(void) playAudio
+//{
+//    if (!audioRecorder.recording)
+//    {
+//        NSError *error;
+//
+//        audioPlayer = [[AVAudioPlayer alloc] 
+//        initWithContentsOfURL:audioRecorder.url                                    
+//        error:&error];
+//
+//        audioPlayer.delegate = self;
+//
+//        if (error)
+//              //NSLog(@"Error: %@");
+//              [error localizedDescription];
+//        else
+//        {
+//
+//            [audioPlayer play];
+//        }
+//   }
+//}
 -(void)audioPlayerDidFinishPlaying:
 (AVAudioPlayer *)player successfully:(BOOL)flag
 {
