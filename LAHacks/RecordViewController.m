@@ -62,8 +62,9 @@ bool alreadyStopped = NO;
 -(void)accessLyric
 {
     
-    NSURL *idURL = [NSURL URLWithString:@"http://api.musixmatch.com/ws/1.1/track.search?apikey=87600b0ccf64e49602b54a6a5315c51b&s_track_rating=DESC&&q_track=lights&format=json&page_size=1&page=1&f_has_lyrics=1"];
-    
+    NSString *format = [NSString stringWithFormat:@"http://api.musixmatch.com/ws/1.1/track.search?apikey=87600b0ccf64e49602b54a6a5315c51b&s_track_rating=DESC&&q_track=%@&format=json&page_size=1&page=1&f_has_lyrics=1",self.query];
+    format=[format stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSURL *idURL = [NSURL URLWithString:format];
     NSURLRequest *request = [NSURLRequest requestWithURL:idURL];
     NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
     NSDictionary* json_string = [NSJSONSerialization
@@ -127,6 +128,7 @@ bool alreadyStopped = NO;
     NSString *myString = @"http://foo.bar/?key[]=value[]<>";
     NSURL *myUrl = [NSURL URLWithString:[myString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
 }
+
 -(void)uploadAudio
 {
     NSFileManager *fileManager = [[NSFileManager alloc] init];
@@ -244,7 +246,7 @@ UInt32 sessionCategory = kAudioSessionCategory_PlayAndRecord;
   
   //NSLog(@"File written to application sandbox's documents directory: %@",[self testFilePathURL]);
   [self.view addSubview:_playButton];
-  [self loadResults:@"Daylight"];
+  [self loadResults:self.query];
 }
 -(IBAction)didTapListen:(id)sender
 {{

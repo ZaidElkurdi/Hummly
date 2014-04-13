@@ -74,6 +74,7 @@
     if([string isEqualToString:@"\n"])
     {
         [textField resignFirstResponder];
+        [self openResultFor:textField.text];
         return NO;
     }
     
@@ -148,6 +149,14 @@
     self.autocompleteTableView.hidden = TRUE;
     autocompleteBorder.hidden = TRUE;
 }
+
+
+- (void)openResultFor:(NSString*)query
+{
+    NSLog(@"Loading record view");
+    [self performSegueWithIdentifier: @"toMainScreen" sender: self];
+}
+
 
 #pragma -mark autocomplete methods
 //-(void)processDatabaseArrays

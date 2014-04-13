@@ -11,6 +11,7 @@
 #import "categoryCardCell.h"
 #import <sqlite3.h>
 #import "SerumDB.h"
+#import "RecordViewController.h"
 
 @interface ViewController : UIViewController<UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 {

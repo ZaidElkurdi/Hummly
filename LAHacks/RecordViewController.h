@@ -28,6 +28,7 @@
 @property (nonatomic,assign) BOOL isRecording;
 @property (nonatomic,assign) NSInteger numPeople;
 @property (nonatomic,assign) NSInteger numComments;
+@property (nonatomic,assign) NSString *query;
 
 #pragma mark - Actions
 -(IBAction)toggleRecording;
