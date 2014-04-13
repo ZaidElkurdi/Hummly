@@ -9,6 +9,8 @@
 #import "RecordViewController.h"
 #import "Rdio/Rdio.h"
 #import "AppDelegate.h"
+#import "SBJson4.h"
+
 @interface RecordViewController ()
 {
     UIButton *_playButton;
@@ -44,6 +46,7 @@
 bool alreadyStopped = NO;
 
 
+
 #pragma mark - Rdio Helper
 
 - (RDPlayer*)getPlayer
@@ -53,12 +56,75 @@ bool alreadyStopped = NO;
     }
     return _player;
 }
+-(void)accessLyric
+{
+    
+    NSURL *idURL = [NSURL URLWithString:@"http://api.musixmatch.com/ws/1.1/track.search?apikey=87600b0ccf64e49602b54a6a5315c51b&s_track_rating=DESC&&q_track=lights&format=json&page_size=1&page=1&f_has_lyrics=1"];
+    
+    NSURLRequest *request = [NSURLRequest requestWithURL:idURL];
+    NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+    NSDictionary* json_string = [NSJSONSerialization
+                          JSONObjectWithData:response
+                          options:kNilOptions 
+                          error:nil];
+    
+    //NSLog(@"JSon: %@",json_string);
+    
+    
+    NSDictionary* valid = [[[json_string objectForKey:@"message"] objectForKey:@"header"] objectForKey:@"available"];
+    if (![[NSString stringWithFormat:@"%@",valid] isEqualToString:@"0"])
+	{
+        NSLog(@"Song Found in Database");
+        NSDictionary* results1 = [json_string objectForKey:@"message"];
+        NSDictionary* results2 = [results1 objectForKey:@"body"];
+        NSArray* results3 = [results2 objectForKey:@"track_list"];
+        NSDictionary* results4 = [results3 objectAtIndex:0];
+        NSDictionary* results5 = [results4 objectForKey:@"track"];
+        NSLog(@"Track id: %@",[results5 objectForKey:@"track_id"]);
+        [self displayLyrics:[results5 objectForKey:@"track_id"]];
 
+        
+    }
+    
+    
+}
+-(void)displayLyrics:(NSString *)trackS
+{
+    NSURL *idURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://api.musixmatch.com/ws/1.1/track.lyrics.get?track_id=%@&apikey=87600b0ccf64e49602b54a6a5315c51b",trackS]];
+    
+    NSURLRequest *request = [NSURLRequest requestWithURL:idURL];
+    NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+    NSDictionary* json_string = [NSJSONSerialization
+                                 JSONObjectWithData:response
+                                 options:kNilOptions
+                                 error:nil];
+    
+    NSLog(@"JSon: %@",json_string);
+    
+    
+    NSDictionary* valid = [[[json_string objectForKey:@"message"] objectForKey:@"header"] objectForKey:@"available"];
+    if (![[NSString stringWithFormat:@"%@",valid] isEqualToString:@"0"])
+	{
+        NSLog(@"Song Found in Database");
+        
+        NSDictionary* results1 = [json_string objectForKey:@"message"];
+        NSDictionary* results2 = [results1 objectForKey:@"body"];
+        NSDictionary* results3 = [results2 objectForKey:@"lyrics"];
+        NSString* lyrics = [results3 objectForKey:@"lyrics_body"];
+        
+        NSRange end = [lyrics rangeOfString:@"*"];
+        lyrics = [lyrics substringWithRange:NSMakeRange(0, end.location)];
+        [lyricsDisplay setText:lyrics];
+        
+    }
+
+}
 #pragma mark - Customize the Audio Plot
 -(void)viewDidLoad {
   
   [super viewDidLoad];
 
+   [self accessLyric];
    NSArray *dirPaths;
    NSString *docsDir;
 

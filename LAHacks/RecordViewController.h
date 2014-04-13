@@ -11,6 +11,7 @@
     IBOutlet UIImageView *albumArtwork;
     IBOutlet UILabel *artistName;
     IBOutlet UILabel *titleName;
+    IBOutlet UITextView *lyricsDisplay;
     AVAudioRecorder *audioRecorder;
     
 }
