@@ -16,7 +16,7 @@
 
 //Hello, Zaid. I am your father.
 
-@property (nonatomic,retain) NSString *state;
+@property (nonatomic,retain) NSString *substring;
 +(SerumDB *)database;
 -(NSArray *)getAllSongs;
 @end

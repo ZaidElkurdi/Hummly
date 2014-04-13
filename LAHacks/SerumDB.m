@@ -9,7 +9,7 @@
 #import "SerumDB.h"
 
 @implementation SerumDB
-@synthesize state;
+@synthesize substring;
 static SerumDB * database;
 
 //Hello, Zaid. I am your father.
@@ -27,7 +27,7 @@ static SerumDB * database;
     self = [super init];
     if(self)
     {
-        NSString * sqliteDb  = [[NSBundle mainBundle] pathForResource:@"LAHacks" ofType:@"sqlite"];
+        NSString * sqliteDb  = [[NSBundle mainBundle] pathForResource:@"LAHacks" ofType:@"sqlite3"];
         
         if(sqlite3_open([sqliteDb UTF8String], &database) != SQLITE_OK)
         {
@@ -41,7 +41,10 @@ static SerumDB * database;
 {
     NSMutableArray * returnArray = [[NSMutableArray alloc] init];
     
-    NSString *query = @"SELECT * FROM LAHacks";
+    NSString *query = [NSString stringWithFormat:@"SELECT * FROM LAHacks WHERE songNames LIKE '%@'",substring];
+    
+    NSLog(@"Looking for %@", query);
+    
     sqlite3_stmt * statement;
 
     if(sqlite3_prepare_v2(database, [query UTF8String], -1, &statement, nil) == SQLITE_OK)
@@ -51,6 +54,7 @@ static SerumDB * database;
             NSString *schoolName = [[NSString alloc] initWithUTF8String:highSchoolName];
         
             NSString *finalReturn = [NSString stringWithFormat:@"%@",schoolName];
+            NSLog(@"Final: %@",finalReturn);
             [returnArray addObject:finalReturn];
         }
         

@@ -15,12 +15,11 @@
 @interface ViewController : UIViewController<UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 {
         NSArray *tableData;
-        sqlite3 *database;
 }
-@property (nonatomic, retain) NSMutableArray *firstSongArray;
-@property (nonatomic, retain) NSMutableArray *secondSongArray;
+@property (nonatomic, retain) NSMutableArray *songArray;
 @property (nonatomic, retain) NSMutableArray *autocompleteUrls;
 @property (nonatomic, retain) UICollectionView *categoryView;
 @property (nonatomic, retain) UITableView *autocompleteTableView;
+@property (nonatomic) sqlite3 *database;
 - (void)searchAutocompleteEntriesWithSubstring:(NSString *)substring;
 @end

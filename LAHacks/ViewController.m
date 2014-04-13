@@ -22,8 +22,6 @@
     [super viewDidLoad];
     self.autocompleteUrls = [[NSMutableArray alloc] init];
     
-    [self processDatabaseArrays];
-    
     autocompleteBorder = [[UIImageView alloc] initWithFrame:CGRectMake(20,215,285,130 )];
     autocompleteBorder.image = [UIImage imageNamed:@"autocompleteBorder.png"];
     autocompleteBorder.hidden = true;
@@ -152,28 +150,28 @@
 }
 
 #pragma -mark autocomplete methods
--(void)processDatabaseArrays
-{
-    self.firstSongArray = [[NSMutableArray alloc] init];
-    self.secondSongArray = [[NSMutableArray alloc] init];
-    
-    SerumDB *db = [[SerumDB alloc] init];
-    NSArray *allSongs =[db getAllSongs];
-    
-    int i = 0;
-    while(i<[allSongs count]/2)
-    {
-        [self.firstSongArray addObject:[allSongs objectAtIndex:i]];
-    }
-    
-    NSLog(@"Middle is: %@",[allSongs objectAtIndex:i]);
-    
-    while(i<[allSongs count])
-    {
-        [self.secondSongArray addObject:[allSongs objectAtIndex:i]];
-    }
-
-}
+//-(void)processDatabaseArrays
+//{
+//    self.firstSongArray = [[NSMutableArray alloc] init];
+//    self.secondSongArray = [[NSMutableArray alloc] init];
+//    
+//    SerumDB *db = [[SerumDB alloc] init];
+//    NSArray *allSongs =[db getAllSongs];
+//    
+//    int i = 0;
+//    while(i<[allSongs count]/2)
+//    {
+//        [self.firstSongArray addObject:[allSongs objectAtIndex:i]];
+//    }
+//    
+//    NSLog(@"Middle is: %@",[allSongs objectAtIndex:i]);
+//    
+//    while(i<[allSongs count])
+//    {
+//        [self.secondSongArray addObject:[allSongs objectAtIndex:i]];
+//    }
+//
+//}
 - (void)searchAutocompleteEntriesWithSubstring:(NSString *)substring
 {
     // Put anything that starts with this substring into the autocompleteUrls array
@@ -183,15 +181,13 @@
     
     NSLog(@"Searching for: %@",substring);
     
-    if([substring compare:@"test" options:NSCaseInsensitiveSearch])
-    {
-    
-    }
-    else
-    {
-    
-    
-    }
+    SerumDB *db = [[SerumDB alloc] init];
+    db.substring = substring;
+    self.songArray = [db getAllSongs];
+
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF contains %@",substring]; // if you need case Zsensitive search avoid '[c]' in the predicate
+
+    self.songArray = [self.songArray filteredArrayUsingPredicate:predicate];
     
     [self.autocompleteTableView reloadData];
 }
