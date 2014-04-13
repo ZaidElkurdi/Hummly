@@ -15,6 +15,7 @@
 {
     searchBar *searchView;
     UIImageView *autocompleteBorder;
+    UIButton *searchButton;
 }
 
 - (void)viewDidLoad
@@ -43,6 +44,15 @@
     
     [self.view addSubview:self.categoryView];
     
+
+    searchButton= [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [searchButton addTarget:self
+               action:@selector(transitionView)
+     forControlEvents:UIControlEventTouchUpInside];
+    [searchButton setTitle:@"Search" forState:UIControlStateNormal];
+    searchButton.frame = CGRectMake(80.0, 210.0, 160.0, 40.0);
+    searchButton.alpha = 0.0;
+    [self.view addSubview:searchButton];
     
     [self.categoryView registerClass:[categoryCardCell class] forCellWithReuseIdentifier:@"categoryCellIdentifier"];
     
@@ -53,7 +63,10 @@
     [self.view addSubview:self.autocompleteTableView];
     self.autocompleteTableView.hidden = YES;
 }
-
+-(void)transitionView
+{
+    [self performSegueWithIdentifier:@"toMainScreen" sender:self];
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -97,6 +110,7 @@
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
+    searchButton.alpha = 1.0;
     [UIView animateWithDuration:.5
                           delay:0
          usingSpringWithDamping:500.0f

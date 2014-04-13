@@ -64,26 +64,26 @@ bool alreadyStopped = NO;
     
     NSURL *idURL = [NSURL URLWithString:@"http://api.musixmatch.com/ws/1.1/track.search?apikey=87600b0ccf64e49602b54a6a5315c51b&s_track_rating=DESC&&q_track=lights&format=json&page_size=1&page=1&f_has_lyrics=1"];
     
-    NSURLRequest *request = [NSURLRequest requestWithURL:idURL];
+    NSURLRequest *request = [NSURLRequest requestWithURL:idURL];    
     NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
     NSDictionary* json_string = [NSJSONSerialization
                           JSONObjectWithData:response
                           options:kNilOptions 
                           error:nil];
     
-    //NSLog(@"JSon: %@",json_string);
+    ////NSLog(@"JSon: %@",json_string);
     
     
     NSDictionary* valid = [[[json_string objectForKey:@"message"] objectForKey:@"header"] objectForKey:@"available"];
     if (![[NSString stringWithFormat:@"%@",valid] isEqualToString:@"0"])
 	{
-        NSLog(@"Song Found in Database");
+        //NSLog(@"Song Found in Database");
         NSDictionary* results1 = [json_string objectForKey:@"message"];
         NSDictionary* results2 = [results1 objectForKey:@"body"];
         NSArray* results3 = [results2 objectForKey:@"track_list"];
         NSDictionary* results4 = [results3 objectAtIndex:0];
         NSDictionary* results5 = [results4 objectForKey:@"track"];
-        NSLog(@"Track id: %@",[results5 objectForKey:@"track_id"]);
+        //NSLog(@"Track id: %@",[results5 objectForKey:@"track_id"]);
         [self displayLyrics:[results5 objectForKey:@"track_id"]];
 
         
@@ -102,13 +102,13 @@ bool alreadyStopped = NO;
                                  options:kNilOptions
                                  error:nil];
     
-    NSLog(@"JSon: %@",json_string);
+    //NSLog(@"JSon: %@",json_string);
     
     
     NSDictionary* valid = [[[json_string objectForKey:@"message"] objectForKey:@"header"] objectForKey:@"available"];
     if (![[NSString stringWithFormat:@"%@",valid] isEqualToString:@"0"])
 	{
-        NSLog(@"Song Found in Database");
+        //NSLog(@"Song Found in Database");
         
         NSDictionary* results1 = [json_string objectForKey:@"message"];
         NSDictionary* results2 = [results1 objectForKey:@"body"];
@@ -129,19 +129,19 @@ bool alreadyStopped = NO;
     NSFileManager *fileManager = [[NSFileManager alloc] init];
     NSDictionary *fileAttributes = [fileManager attributesOfItemAtPath:@"/Users/aryamansharda/Library/Application Support/iPhone Simulator/7.0.3/Applications/D74CE452-4BAF-435B-96C3-830ECF76DD79/Documents/LAHacks.mp3" error: NULL];
     
-    NSLog(@"%@",fileAttributes);
+    //NSLog(@"%@",fileAttributes);
     if (fileAttributes != nil) {
         
         NSNumber *fileSize;
         fileSize = [fileAttributes objectForKey:NSFileSize];
-        NSLog(@"%@",fileSize);
+        //NSLog(@"%@",fileSize);
         
         NSData *audioData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"LAHacks" ofType:@".mp3"]];
         
         NSString *urlString = [NSString stringWithFormat:@"http://107.170.193.94/song/dontstop?genre=%@",@"Rock"];
         
         
-        NSLog(@"Audio Data: %@",audioData);
+        //NSLog(@"Audio Data: %@",audioData);
         NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
         [request setURL:[NSURL URLWithString:urlString]];
         [request setHTTPMethod:@"POST"];
@@ -161,7 +161,7 @@ bool alreadyStopped = NO;
         NSData *returnData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
         NSString* returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
         
-        NSLog(@"Return: %@",returnString);
+        //NSLog(@"Return: %@",returnString);
         
     }
     
@@ -222,7 +222,7 @@ UInt32 sessionCategory = kAudioSessionCategory_PlayAndRecord;
 
    if (error)
    {
-        NSLog(@"error: %@", [error localizedDescription]);
+        //NSLog(@"error: %@", [error localizedDescription]);
    } else
    {
         [audioRecorder prepareToRecord];
@@ -239,7 +239,7 @@ UInt32 sessionCategory = kAudioSessionCategory_PlayAndRecord;
   self.audioPlot.shouldFill      = YES;
   self.audioPlot.shouldMirror    = YES;
   
-  //NSLog(@"File written to application sandbox's documents directory: %@",[self testFilePathURL]);
+  ////NSLog(@"File written to application sandbox's documents directory: %@",[self testFilePathURL]);
   [self.view addSubview:_playButton];
   [self loadResults:@"Daylight"];
 }
@@ -272,7 +272,7 @@ UInt32 sessionCategory = kAudioSessionCategory_PlayAndRecord;
          leftView.frame=newLeftFrame;
          playButton.frame=newLeftViewFrame;
          
-        NSLog(@"Begin recording");
+        //NSLog(@"Begin recording");
         [[AVAudioSession sharedInstance] setCategory:@"AVAudioSessionCategoryPlayAndRecord" error:nil];
         [[self getPlayer] playSource:[keys objectAtIndex:0]];
         [[self getPlayer] playSources:keys];
@@ -285,7 +285,7 @@ UInt32 sessionCategory = kAudioSessionCategory_PlayAndRecord;
     
     else
     {
-        NSLog(@"Was already playing");
+        //NSLog(@"Was already playing");
         [[self getPlayer] togglePause];
         isPlaying=false;
         
@@ -352,7 +352,7 @@ UInt32 sessionCategory = kAudioSessionCategory_PlayAndRecord;
          leftView.frame=newLeftFrame;
          playButton.frame=newLeftViewFrame;
          
-        NSLog(@"Begin recording");
+        //NSLog(@"Begin recording");
         [[AVAudioSession sharedInstance] setCategory:@"AVAudioSessionCategoryPlayAndRecord" error:nil];
         [audioRecorder record];
         isRecording=true;
@@ -366,7 +366,7 @@ UInt32 sessionCategory = kAudioSessionCategory_PlayAndRecord;
     
     else
     {
-        NSLog(@"Was already recording");
+        //NSLog(@"Was already recording");
         [audioRecorder stop];
         isRecording=false;
         [[self getPlayer] togglePause];
@@ -406,10 +406,10 @@ UInt32 sessionCategory = kAudioSessionCategory_PlayAndRecord;
 
 -(void)grabImage
 {
-    //NSLog(@"First Element : %@", [albumArray objectAtIndex:0]);
+    ////NSLog(@"First Element : %@", [albumArray objectAtIndex:0]);
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[[NSString alloc] initWithFormat:@"http://developer.echonest.com/api/v4/artist/images?api_key=ZAIMFQ6WMS5EZUABI&id=%@&format=json&results=1&start=0&license=unknown",[albumArray objectAtIndex:0]]]];
    
-    //NSLog(@"%@",request);
+    ////NSLog(@"%@",request);
     
     NSURLResponse *resp = nil;
     NSError *error = nil;
@@ -422,15 +422,15 @@ UInt32 sessionCategory = kAudioSessionCategory_PlayAndRecord;
     
     NSDictionary *rawData = [NSJSONSerialization JSONObjectWithData:response options:kNilOptions error:&error];
     
-    //NSLog(@"Grab Image: %@",rawData);
+    ////NSLog(@"Grab Image: %@",rawData);
      
     NSDictionary *postData = [rawData objectForKey:@"response"];
     
     NSArray *postDict = [postData objectForKey:@"images"];
   
     
-    //NSLog(@"Post Data: %@", postDict);
-    //NSLog(@"URL: %@",[[postDict objectAtIndex:0] objectForKey:@"url"]);
+    ////NSLog(@"Post Data: %@", postDict);
+    ////NSLog(@"URL: %@",[[postDict objectAtIndex:0] objectForKey:@"url"]);
     
     NSURL * imageURL = [NSURL URLWithString:[[postDict objectAtIndex:0] objectForKey:@"url"]];
     NSData * imageData = [NSData dataWithContentsOfURL:imageURL];
@@ -463,14 +463,14 @@ UInt32 sessionCategory = kAudioSessionCategory_PlayAndRecord;
     NSDictionary *postData = [rawData objectForKey:@"response"];
     NSArray *postDict = [postData objectForKey:@"songs"];
     
-    //NSLog(@"raw: %@",postDict);
+    ////NSLog(@"raw: %@",postDict);
     if([postDict count]>1)
     {
         NSDictionary *postDict2 = [postDict objectAtIndex:0];
 
         for(id post in postDict)
         {
-            NSLog(@"%@",[post objectForKey:@"artist_id"]);
+            //NSLog(@"%@",[post objectForKey:@"artist_id"]);
             [bandArray addObject:[post objectForKey:@"artist_name"]];
             [albumArray addObject:[post objectForKey:@"artist_id"]];
             [titleArray addObject:[post objectForKey:@"title"]];
@@ -500,7 +500,7 @@ UInt32 sessionCategory = kAudioSessionCategory_PlayAndRecord;
     
     else
     {
-        NSLog(@"There were no results!");
+        //NSLog(@"There were no results!");
     }
 
 }
@@ -523,7 +523,7 @@ UInt32 sessionCategory = kAudioSessionCategory_PlayAndRecord;
     NSString *resultString = [dateFormatter stringFromDate: currentTime];
     
     NSString * post = [[NSString alloc] initWithFormat:@"%@?comment=%@&time%@",song, comment,resultString];
-    NSLog(@"%@",post);
+    //NSLog(@"%@",post);
     NSData * postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:NO];
     NSString * postLength = [NSString stringWithFormat:@"%d",[postData length]];
     
@@ -536,7 +536,7 @@ UInt32 sessionCategory = kAudioSessionCategory_PlayAndRecord;
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     [request setHTTPBody:postData];
     NSURLConnection * conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-    NSLog(@"%@",conn);
+    //NSLog(@"%@",conn);
     
     if (conn) NSLog(@"Connection Successful");
     
@@ -547,7 +547,7 @@ UInt32 sessionCategory = kAudioSessionCategory_PlayAndRecord;
 {
     if (audioRecorder.recording)
     {
-        NSLog(@"Stopping recording");
+        //NSLog(@"Stopping recording");
         [audioRecorder stop];
     } else if (audioPlayer.playing) {
             [audioPlayer stop];
@@ -572,8 +572,8 @@ UInt32 sessionCategory = kAudioSessionCategory_PlayAndRecord;
         audioPlayer.delegate = self;
 
         if (error)
-              NSLog(@"Error: %@", 
-              [error localizedDescription]);
+              //NSLog(@"Error: %@");
+              [error localizedDescription];
         else
               [audioPlayer play];
    }
@@ -586,7 +586,7 @@ UInt32 sessionCategory = kAudioSessionCategory_PlayAndRecord;
 (AVAudioPlayer *)player 
 error:(NSError *)error
 {
-        NSLog(@"Decode Error occurred");
+        //NSLog(@"Decode Error occurred");
 }
 -(void)audioRecorderDidFinishRecording:
 (AVAudioRecorder *)recorder 
@@ -597,7 +597,7 @@ successfully:(BOOL)flag
 (AVAudioRecorder *)recorder 
 error:(NSError *)error
 {
-        NSLog(@"Encode Error occurred");
+        //NSLog(@"Encode Error occurred");
 }
 
 -(void)microphone:(EZMicrophone *)microphone
