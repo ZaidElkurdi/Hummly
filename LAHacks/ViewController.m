@@ -45,15 +45,7 @@
     [self.view addSubview:self.categoryView];
     
 
-    searchButton= [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [searchButton addTarget:self
-               action:@selector(transitionView)
-     forControlEvents:UIControlEventTouchUpInside];
-    [searchButton setTitle:@"Search" forState:UIControlStateNormal];
-    searchButton.frame = CGRectMake(80.0, 210.0, 160.0, 40.0);
-    searchButton.alpha = 0.0;
-    [self.view addSubview:searchButton];
-    
+
     [self.categoryView registerClass:[categoryCardCell class] forCellWithReuseIdentifier:@"categoryCellIdentifier"];
     
     self.autocompleteTableView = [[UITableView alloc] initWithFrame:CGRectMake(25, 228, 275, 111) style:UITableViewStylePlain];
@@ -77,6 +69,8 @@
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    [prefs setObject:textField.text forKey:@"song"];
     NSLog(@"Being called");
     if(self.autocompleteTableView.hidden==true)
     {
@@ -89,6 +83,10 @@
     {
         [textField resignFirstResponder];
         [self openResultFor:textField.text];
+        NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+        [prefs setObject:textField.text forKey:@"song"];
+        
+
         return NO;
     }
     
@@ -112,7 +110,7 @@
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    searchButton.alpha = 1.0;
+   
     [UIView animateWithDuration:.5
                           delay:0
          usingSpringWithDamping:500.0f
@@ -171,7 +169,6 @@
     NSLog(@"Loading record view");
     [self performSegueWithIdentifier: @"toMainScreen" sender: self];
 }
-
 
 #pragma -mark autocomplete methods
 //-(void)processDatabaseArrays

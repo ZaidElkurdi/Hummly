@@ -15,6 +15,8 @@
     IBOutlet UILabel *titleName;
     IBOutlet UITextView *lyricsDisplay;
     AVAudioRecorder *audioRecorder;
+    AVPlayerItem *playerItem;
+
     
 }
 -(void)stopRecording;
@@ -28,8 +30,7 @@
 @property (nonatomic,assign) BOOL isRecording;
 @property (nonatomic,assign) NSInteger numPeople;
 @property (nonatomic,assign) NSInteger numComments;
-@property (nonatomic,assign) NSString *query;
-
+@property (nonatomic,retain) NSString *songChosen;
 #pragma mark - Actions
 -(IBAction)toggleRecording;
 -(IBAction)upload;
