@@ -23,13 +23,13 @@
     self.autocompleteUrls = [[NSMutableArray alloc] init];
     self.pastUrls = [[NSArray alloc] init];
     
-        
-    autocompleteBorder = [[UIImageView alloc] initWithFrame:CGRectMake(20,215,285,130 )];
-    autocompleteBorder.image = [UIImage imageNamed:@"autocompleteBorder.png"];
-    autocompleteBorder.hidden = true;
-   [self.view addSubview:autocompleteBorder];
     
-
+    //autocompleteBorder = [[UIImageView alloc] initWithFrame:CGRectMake(20,215,285,130 )];
+    //autocompleteBorder.image = [UIImage imageNamed:@"autocompleteBorder.png"];
+    //autocompleteBorder.hidden = true;
+    //[self.view addSubview:autocompleteBorder];
+    
+    
     
     searchView = [[searchBar alloc] initWithFrame:self.view.frame];
     searchView.searchField.delegate=self;
@@ -53,11 +53,11 @@
     [self.categoryView registerClass:[categoryCardCell class] forCellWithReuseIdentifier:@"categoryCellIdentifier"];
     
     self.autocompleteTableView = [[UITableView alloc] initWithFrame:CGRectMake(25, 228, 275, 111) style:UITableViewStylePlain];
-    self.autocompleteTableView.delegate=self;
-    self.autocompleteTableView.dataSource=self;
-    self.autocompleteTableView.allowsSelectionDuringEditing = YES;
-    [self.view addSubview:self.autocompleteTableView];
-    self.autocompleteTableView.hidden = YES;
+    //self.autocompleteTableView.delegate=self;
+    //self.autocompleteTableView.dataSource=self;
+    //self.autocompleteTableView.allowsSelectionDuringEditing = YES;
+    //[self.view addSubview:self.autocompleteTableView];
+    //self.autocompleteTableView.hidden = YES;
 }
 
 - (void)didReceiveMemoryWarning
@@ -98,36 +98,36 @@
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
     [UIView animateWithDuration:.5
-    delay:0
-    usingSpringWithDamping:500.0f
-    initialSpringVelocity:0.0f
-    options:UIViewAnimationOptionCurveEaseIn
-    animations:
-    ^{
-        CGRect newFrame = searchView.frame;
-        newFrame.origin.y -= 110;
-        searchView.frame=newFrame;
-    }
+                          delay:0
+         usingSpringWithDamping:500.0f
+          initialSpringVelocity:0.0f
+                        options:UIViewAnimationOptionCurveEaseIn
+                     animations:
+     ^{
+         CGRect newFrame = searchView.frame;
+         newFrame.origin.y -= 110;
+         searchView.frame=newFrame;
+     }
      
-    completion:nil];
+                     completion:nil];
     
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
     [UIView animateWithDuration:0.5
-    delay:0
-    usingSpringWithDamping:500.0f
-    initialSpringVelocity:0.0f
-    options:UIViewAnimationOptionCurveEaseOut
-    animations:
-    ^{
-        CGRect newFrame = searchView.frame;
-        newFrame.origin.y += 110;
-        searchView.frame=newFrame;
-    }
+                          delay:0
+         usingSpringWithDamping:500.0f
+          initialSpringVelocity:0.0f
+                        options:UIViewAnimationOptionCurveEaseOut
+                     animations:
+     ^{
+         CGRect newFrame = searchView.frame;
+         newFrame.origin.y += 110;
+         searchView.frame=newFrame;
+     }
      
-    completion:nil];
+                     completion:nil];
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -137,7 +137,7 @@
     
     if(CGRectContainsPoint(self.autocompleteTableView.bounds, [touches.anyObject locationInView:self.autocompleteTableView])&&self.autocompleteTableView.hidden==true)
         [self endEditView];
-        
+    
     [super touchesBegan:touches withEvent:event];
 }
 
@@ -192,7 +192,7 @@
     cell = [tableView dequeueReusableCellWithIdentifier:AutoCompleteRowIdentifier];
     if (cell == nil) {
         cell = [[UITableViewCell alloc]
-                 initWithStyle:UITableViewCellStyleDefault reuseIdentifier:AutoCompleteRowIdentifier];
+                initWithStyle:UITableViewCellStyleDefault reuseIdentifier:AutoCompleteRowIdentifier];
     }
     
     cell.textLabel.text = @"Search Results";

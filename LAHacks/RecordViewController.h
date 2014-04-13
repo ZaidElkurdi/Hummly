@@ -7,6 +7,7 @@
 @interface RecordViewController : UIViewController <AVAudioPlayerDelegate,AVAudioRecorderDelegate,RdioDelegate,RDPlayerDelegate, EZMicrophoneDelegate>
 {
     IBOutlet UIButton *stopRecording;
+    IBOutlet UIButton *upload;
     IBOutlet UIImageView *albumArtwork;
     IBOutlet UILabel *artistName;
     IBOutlet UILabel *titleName;
@@ -23,5 +24,6 @@
 
 #pragma mark - Actions
 -(IBAction)toggleRecording;
+-(IBAction)upload;
 
 @end

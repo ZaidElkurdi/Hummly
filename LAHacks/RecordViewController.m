@@ -41,7 +41,7 @@
 @synthesize playingTextField;
 @synthesize recordSwitch;
 @synthesize recordingTextField;
-
+@synthesize songName;
 bool alreadyStopped = NO;
 
 
@@ -128,7 +128,40 @@ UInt32 sessionCategory = kAudioSessionCategory_PlayAndRecord;
   
   //NSLog(@"File written to application sandbox's documents directory: %@",[self testFilePathURL]);
   [self.view addSubview:_playButton];
-  [self loadResults:@"Daylight"];
+  [self loadResults:songName];
+}
+-(IBAction)upload
+{
+    NSString *songName = [[NSString alloc] initWithFormat:@"%@",[titleArray objectAtIndex:0]];
+    songName=[songName stringByReplacingOccurrencesOfString:@" " withString:@"+"];
+    [self upload:songName comment:@"Cool!"];
+}
+-(void)upload:(NSString *)song comment:(NSString *)comment
+{
+    
+    NSDate *currentTime = [NSDate date];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"hh-mm"];
+    NSString *resultString = [dateFormatter stringFromDate: currentTime];
+    
+    NSString * post = [[NSString alloc] initWithFormat:@"%@?comment=%@&time%@",song, comment,resultString];
+    NSLog(@"%@",post);
+    NSData * postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:NO];
+    NSString * postLength = [NSString stringWithFormat:@"%d",[postData length]];
+    
+    
+    NSMutableURLRequest * request = [[NSMutableURLRequest alloc] init];
+    [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://107.170.193.94/comment/%@",post]]];
+    [request setHTTPMethod:@"POST"];
+    [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    [request setHTTPBody:postData];
+    NSURLConnection * conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    NSLog(@"%@",conn);
+    
+    if (conn) NSLog(@"Connection Successful");
+    
+    
 }
 - (void)playClicked
 {
