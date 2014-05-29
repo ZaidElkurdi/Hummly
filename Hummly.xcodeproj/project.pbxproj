@@ -64,7 +64,6 @@
 		B86D4F1C18F99F770048F5A3 /* Rdio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B86D4F1B18F99F770048F5A3 /* Rdio.framework */; };
 		B86D4F1E18F9A0A40048F5A3 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B86D4F1D18F9A0A40048F5A3 /* SystemConfiguration.framework */; };
 		B86D4F2018F9A9C70048F5A3 /* autocompleteBorder.png in Resources */ = {isa = PBXBuildFile; fileRef = B86D4F1F18F9A9C70048F5A3 /* autocompleteBorder.png */; };
-		B8DC322618F9CD2400A09EB7 /* radio_microphone.png in Resources */ = {isa = PBXBuildFile; fileRef = B8DC322518F9CD2400A09EB7 /* radio_microphone.png */; };
 		B8DC322818F9CDBA00A09EB7 /* microphoneIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = B8DC322718F9CDBA00A09EB7 /* microphoneIcon.png */; };
 		B8DC322A18F9D13600A09EB7 /* countryIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = B8DC322918F9D13600A09EB7 /* countryIcon.png */; };
 		B8DC322C18F9D3DF00A09EB7 /* familyIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = B8DC322B18F9D3DF00A09EB7 /* familyIcon.png */; };
@@ -171,7 +170,6 @@
 		B86D4F1B18F99F770048F5A3 /* Rdio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Rdio.framework; path = "rdio-ios-1.3.6/Rdio.framework"; sourceTree = "<group>"; };
 		B86D4F1D18F9A0A40048F5A3 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		B86D4F1F18F9A9C70048F5A3 /* autocompleteBorder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = autocompleteBorder.png; sourceTree = "<group>"; };
-		B8DC322518F9CD2400A09EB7 /* radio_microphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = radio_microphone.png; sourceTree = "<group>"; };
 		B8DC322718F9CDBA00A09EB7 /* microphoneIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = microphoneIcon.png; sourceTree = "<group>"; };
 		B8DC322918F9D13600A09EB7 /* countryIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = countryIcon.png; sourceTree = "<group>"; };
 		B8DC322B18F9D3DF00A09EB7 /* familyIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = familyIcon.png; sourceTree = "<group>"; };
@@ -214,8 +212,8 @@
 		935DC78518F8FC3600A42623 = {
 			isa = PBXGroup;
 			children = (
-				935DC79718F8FC3600A42623 /* LAHacks */,
-				935DC7B618F8FC3700A42623 /* LAHacksTests */,
+				935DC79718F8FC3600A42623 /* Hummly */,
+				935DC7B618F8FC3700A42623 /* HummlyTests */,
 				935DC79018F8FC3600A42623 /* Frameworks */,
 				935DC78F18F8FC3600A42623 /* Products */,
 			);
@@ -246,7 +244,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		935DC79718F8FC3600A42623 /* LAHacks */ = {
+		935DC79718F8FC3600A42623 /* Hummly */ = {
 			isa = PBXGroup;
 			children = (
 				935DC7A018F8FC3600A42623 /* AppDelegate.h */,
@@ -267,7 +265,7 @@
 				935DC79818F8FC3600A42623 /* Supporting Files */,
 				935DC7CB18F907B800A42623 /* EZAudio */,
 			);
-			path = LAHacks;
+			path = Hummly;
 			sourceTree = "<group>";
 		};
 		935DC79818F8FC3600A42623 /* Supporting Files */ = {
@@ -301,13 +299,13 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		935DC7B618F8FC3700A42623 /* LAHacksTests */ = {
+		935DC7B618F8FC3700A42623 /* HummlyTests */ = {
 			isa = PBXGroup;
 			children = (
 				935DC7BC18F8FC3700A42623 /* LAHacksTests.m */,
 				935DC7B718F8FC3700A42623 /* Supporting Files */,
 			);
-			path = LAHacksTests;
+			path = HummlyTests;
 			sourceTree = "<group>";
 		};
 		935DC7B718F8FC3700A42623 /* Supporting Files */ = {
@@ -333,7 +331,6 @@
 				B8DC322B18F9D3DF00A09EB7 /* familyIcon.png */,
 				B8DC322918F9D13600A09EB7 /* countryIcon.png */,
 				B8DC322718F9CDBA00A09EB7 /* microphoneIcon.png */,
-				B8DC322518F9CD2400A09EB7 /* radio_microphone.png */,
 				B86D4F1F18F9A9C70048F5A3 /* autocompleteBorder.png */,
 				B86D4F1618F957A20048F5A3 /* mainBackground.png */,
 				B86D4F1418F953020048F5A3 /* magnifyingGlass.png */,
@@ -492,7 +489,6 @@
 				935DC79C18F8FC3600A42623 /* InfoPlist.strings in Resources */,
 				933298C718F9666B00DECBED /* PlayButton.png in Resources */,
 				B8DC322E18F9D45500A09EB7 /* guitarIcon.png in Resources */,
-				B8DC322618F9CD2400A09EB7 /* radio_microphone.png in Resources */,
 				935DC7A518F8FC3600A42623 /* Main.storyboard in Resources */,
 				935DC7F418F907B800A42623 /* VERSION in Resources */,
 				935DC7CA18F8FF4200A42623 /* SearchBar.png in Resources */,
