@@ -16,6 +16,13 @@
     searchBar *searchView;
     UIImageView *autocompleteBorder;
     UIButton *searchButton;
+    progressHUD *HUDView;
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    HUDView.hidden = TRUE;
+    HUDView = nil;
 }
 
 - (void)viewDidLoad
@@ -81,11 +88,13 @@
     if([string isEqualToString:@"\n"])
     {
         [textField resignFirstResponder];
-        [self openResultFor:textField.text];
         NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
         [prefs setObject:textField.text forKey:@"song"];
+        [self openResultFor:textField.text];
+        HUDView = [[progressHUD alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+        HUDView.hidden = false;
+        [self.view addSubview:HUDView];
         
-
         return NO;
     }
     
@@ -203,11 +212,11 @@
     
     SerumDB *db = [[SerumDB alloc] init];
     db.substring = substring;
-    self.songArray = [db getAllSongs];
+    self.songArray = [[db getAllSongs] mutableCopy];
 
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF contains %@",substring]; // if you need case Zsensitive search avoid '[c]' in the predicate
 
-    self.songArray = [self.songArray filteredArrayUsingPredicate:predicate];
+    self.songArray = [[self.songArray filteredArrayUsingPredicate:predicate] mutableCopy];
     
     [self.autocompleteTableView reloadData];
 }

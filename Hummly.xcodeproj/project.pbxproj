@@ -51,6 +51,7 @@
 		B808563918FAA36700691393 /* LAHacks.sqlite3 in Resources */ = {isa = PBXBuildFile; fileRef = B808563818FAA31E00691393 /* LAHacks.sqlite3 */; };
 		B808563B18FAA94800691393 /* top100Graphic.png in Resources */ = {isa = PBXBuildFile; fileRef = B808563A18FAA94800691393 /* top100Graphic.png */; };
 		B808563C18FAA94800691393 /* top100Graphic.png in Resources */ = {isa = PBXBuildFile; fileRef = B808563A18FAA94800691393 /* top100Graphic.png */; };
+		B808563F18FB383A00691393 /* progressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = B808563E18FB383A00691393 /* progressHUD.m */; };
 		B842A61118FA67CB008A9911 /* recordButton.png in Resources */ = {isa = PBXBuildFile; fileRef = B842A61018FA67CB008A9911 /* recordButton.png */; };
 		B842A61518FA6ADF008A9911 /* calendarIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = B842A61218FA6ADF008A9911 /* calendarIcon.png */; };
 		B842A61618FA6ADF008A9911 /* commentsIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = B842A61318FA6ADF008A9911 /* commentsIcon.png */; };
@@ -90,23 +91,23 @@
 		9310A77B18F9FCC300AFC475 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		933298C618F9666B00DECBED /* PlayButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PlayButton.png; sourceTree = "<group>"; };
 		935C12E418FACA7200306C9F /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		935DC78E18F8FC3600A42623 /* LAHacks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LAHacks.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		935DC78E18F8FC3600A42623 /* Hummly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hummly.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		935DC79118F8FC3600A42623 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		935DC79318F8FC3600A42623 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		935DC79518F8FC3600A42623 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		935DC79918F8FC3600A42623 /* LAHacks-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LAHacks-Info.plist"; sourceTree = "<group>"; };
+		935DC79918F8FC3600A42623 /* Hummly-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Hummly-Info.plist"; sourceTree = "<group>"; };
 		935DC79B18F8FC3600A42623 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		935DC79D18F8FC3600A42623 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		935DC79F18F8FC3600A42623 /* LAHacks-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LAHacks-Prefix.pch"; sourceTree = "<group>"; };
+		935DC79F18F8FC3600A42623 /* Hummly-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Hummly-Prefix.pch"; sourceTree = "<group>"; };
 		935DC7A018F8FC3600A42623 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		935DC7A118F8FC3600A42623 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		935DC7A418F8FC3600A42623 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		935DC7A618F8FC3600A42623 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		935DC7A718F8FC3600A42623 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		935DC7A918F8FC3600A42623 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		935DC7AF18F8FC3700A42623 /* LAHacksTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LAHacksTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		935DC7AF18F8FC3700A42623 /* HummlyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HummlyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		935DC7B018F8FC3700A42623 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		935DC7B818F8FC3700A42623 /* LAHacksTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LAHacksTests-Info.plist"; sourceTree = "<group>"; };
+		935DC7B818F8FC3700A42623 /* HummlyTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "HummlyTests-Info.plist"; sourceTree = "<group>"; };
 		935DC7BA18F8FC3700A42623 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		935DC7BC18F8FC3700A42623 /* LAHacksTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LAHacksTests.m; sourceTree = "<group>"; };
 		935DC7C918F8FF4200A42623 /* SearchBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SearchBar.png; sourceTree = "<group>"; };
@@ -155,6 +156,8 @@
 		93B950DA18FA5943000165BE /* SBJson4Writer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJson4Writer.m; sourceTree = "<group>"; };
 		B808563818FAA31E00691393 /* LAHacks.sqlite3 */ = {isa = PBXFileReference; lastKnownFileType = file; path = LAHacks.sqlite3; sourceTree = "<group>"; };
 		B808563A18FAA94800691393 /* top100Graphic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = top100Graphic.png; sourceTree = "<group>"; };
+		B808563D18FB383A00691393 /* progressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = progressHUD.h; sourceTree = "<group>"; };
+		B808563E18FB383A00691393 /* progressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = progressHUD.m; sourceTree = "<group>"; };
 		B842A61018FA67CB008A9911 /* recordButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = recordButton.png; sourceTree = "<group>"; };
 		B842A61218FA6ADF008A9911 /* calendarIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calendarIcon.png; sourceTree = "<group>"; };
 		B842A61318FA6ADF008A9911 /* commentsIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = commentsIcon.png; sourceTree = "<group>"; };
@@ -221,8 +224,8 @@
 		935DC78F18F8FC3600A42623 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				935DC78E18F8FC3600A42623 /* LAHacks.app */,
-				935DC7AF18F8FC3700A42623 /* LAHacksTests.xctest */,
+				935DC78E18F8FC3600A42623 /* Hummly.app */,
+				935DC7AF18F8FC3700A42623 /* HummlyTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -251,6 +254,8 @@
 				935DC7A318F8FC3600A42623 /* Main.storyboard */,
 				B86D4F0D18F93E390048F5A3 /* searchBar.h */,
 				B86D4F0E18F93E390048F5A3 /* searchBar.m */,
+				B808563D18FB383A00691393 /* progressHUD.h */,
+				B808563E18FB383A00691393 /* progressHUD.m */,
 				935DC7A618F8FC3600A42623 /* ViewController.h */,
 				935DC7A718F8FC3600A42623 /* ViewController.m */,
 				B8DC323118F9D54E00A09EB7 /* categoryCardCell.h */,
@@ -288,10 +293,10 @@
 				9310A77918F9FA1B00AFC475 /* SerumDB.m */,
 				B8DC323518F9D9B600A09EB7 /* DroidSans.ttf */,
 				B8DC323418F9D8FC00A09EB7 /* Roboto-Black.ttf */,
-				935DC79918F8FC3600A42623 /* LAHacks-Info.plist */,
+				935DC79918F8FC3600A42623 /* Hummly-Info.plist */,
 				935DC79A18F8FC3600A42623 /* InfoPlist.strings */,
 				935DC79D18F8FC3600A42623 /* main.m */,
-				935DC79F18F8FC3600A42623 /* LAHacks-Prefix.pch */,
+				935DC79F18F8FC3600A42623 /* Hummly-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -308,7 +313,7 @@
 		935DC7B718F8FC3700A42623 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				935DC7B818F8FC3700A42623 /* LAHacksTests-Info.plist */,
+				935DC7B818F8FC3700A42623 /* HummlyTests-Info.plist */,
 				935DC7B918F8FC3700A42623 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
@@ -398,9 +403,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		935DC78D18F8FC3600A42623 /* LAHacks */ = {
+		935DC78D18F8FC3600A42623 /* Hummly */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 935DC7C018F8FC3700A42623 /* Build configuration list for PBXNativeTarget "LAHacks" */;
+			buildConfigurationList = 935DC7C018F8FC3700A42623 /* Build configuration list for PBXNativeTarget "Hummly" */;
 			buildPhases = (
 				935DC78A18F8FC3600A42623 /* Sources */,
 				935DC78B18F8FC3600A42623 /* Frameworks */,
@@ -410,14 +415,14 @@
 			);
 			dependencies = (
 			);
-			name = LAHacks;
+			name = Hummly;
 			productName = LAHacks;
-			productReference = 935DC78E18F8FC3600A42623 /* LAHacks.app */;
+			productReference = 935DC78E18F8FC3600A42623 /* Hummly.app */;
 			productType = "com.apple.product-type.application";
 		};
-		935DC7AE18F8FC3700A42623 /* LAHacksTests */ = {
+		935DC7AE18F8FC3700A42623 /* HummlyTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 935DC7C318F8FC3700A42623 /* Build configuration list for PBXNativeTarget "LAHacksTests" */;
+			buildConfigurationList = 935DC7C318F8FC3700A42623 /* Build configuration list for PBXNativeTarget "HummlyTests" */;
 			buildPhases = (
 				935DC7AB18F8FC3700A42623 /* Sources */,
 				935DC7AC18F8FC3700A42623 /* Frameworks */,
@@ -428,9 +433,9 @@
 			dependencies = (
 				935DC7B518F8FC3700A42623 /* PBXTargetDependency */,
 			);
-			name = LAHacksTests;
+			name = HummlyTests;
 			productName = LAHacksTests;
-			productReference = 935DC7AF18F8FC3700A42623 /* LAHacksTests.xctest */;
+			productReference = 935DC7AF18F8FC3700A42623 /* HummlyTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -450,7 +455,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 935DC78918F8FC3600A42623 /* Build configuration list for PBXProject "LAHacks" */;
+			buildConfigurationList = 935DC78918F8FC3600A42623 /* Build configuration list for PBXProject "Hummly" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -463,8 +468,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				935DC78D18F8FC3600A42623 /* LAHacks */,
-				935DC7AE18F8FC3700A42623 /* LAHacksTests */,
+				935DC78D18F8FC3600A42623 /* Hummly */,
+				935DC7AE18F8FC3700A42623 /* HummlyTests */,
 			);
 		};
 /* End PBXProject section */
@@ -523,6 +528,7 @@
 				935DC7EF18F907B800A42623 /* EZOutput.m in Sources */,
 				935DC7EB18F907B800A42623 /* EZAudioPlot.m in Sources */,
 				935DC7F218F907B800A42623 /* TPCircularBuffer.c in Sources */,
+				B808563F18FB383A00691393 /* progressHUD.m in Sources */,
 				93B950DD18FA5943000165BE /* SBJson4StreamParserState.m in Sources */,
 				935DC7A818F8FC3600A42623 /* ViewController.m in Sources */,
 				935DC7EA18F907B800A42623 /* EZAudioPlayer.m in Sources */,
@@ -561,7 +567,7 @@
 /* Begin PBXTargetDependency section */
 		935DC7B518F8FC3700A42623 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 935DC78D18F8FC3600A42623 /* LAHacks */;
+			target = 935DC78D18F8FC3600A42623 /* Hummly */;
 			targetProxy = 935DC7B418F8FC3700A42623 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -676,10 +682,10 @@
 					"$(PROJECT_DIR)/rdio-ios-1.3.6",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "LAHacks/LAHacks-Prefix.pch";
-				INFOPLIST_FILE = "LAHacks/LAHacks-Info.plist";
+				GCC_PREFIX_HEADER = "LAHacks/Hummly-Prefix.pch";
+				INFOPLIST_FILE = "LAHacks/Hummly-Info.plist";
 				"OTHER_LDFLAGS[arch=*]" = " -all_load";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Hummly;
 				PROVISIONING_PROFILE = "595313B4-CE59-40A4-AE12-CA8DA33FA6D0";
 				WRAPPER_EXTENSION = app;
 			};
@@ -697,10 +703,10 @@
 					"$(PROJECT_DIR)/rdio-ios-1.3.6",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "LAHacks/LAHacks-Prefix.pch";
-				INFOPLIST_FILE = "LAHacks/LAHacks-Info.plist";
+				GCC_PREFIX_HEADER = "LAHacks/Hummly-Prefix.pch";
+				INFOPLIST_FILE = "LAHacks/Hummly-Info.plist";
 				"OTHER_LDFLAGS[arch=*]" = " -all_load";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Hummly;
 				PROVISIONING_PROFILE = "595313B4-CE59-40A4-AE12-CA8DA33FA6D0";
 				WRAPPER_EXTENSION = app;
 			};
@@ -721,8 +727,8 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "LAHacksTests/LAHacksTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "LAHacksTests/HummlyTests-Info.plist";
+				PRODUCT_NAME = HummlyTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -739,8 +745,8 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LAHacks/LAHacks-Prefix.pch";
-				INFOPLIST_FILE = "LAHacksTests/LAHacksTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "LAHacksTests/HummlyTests-Info.plist";
+				PRODUCT_NAME = HummlyTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -749,7 +755,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		935DC78918F8FC3600A42623 /* Build configuration list for PBXProject "LAHacks" */ = {
+		935DC78918F8FC3600A42623 /* Build configuration list for PBXProject "Hummly" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				935DC7BE18F8FC3700A42623 /* Debug */,
@@ -758,7 +764,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		935DC7C018F8FC3700A42623 /* Build configuration list for PBXNativeTarget "LAHacks" */ = {
+		935DC7C018F8FC3700A42623 /* Build configuration list for PBXNativeTarget "Hummly" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				935DC7C118F8FC3700A42623 /* Debug */,
@@ -767,7 +773,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		935DC7C318F8FC3700A42623 /* Build configuration list for PBXNativeTarget "LAHacksTests" */ = {
+		935DC7C318F8FC3700A42623 /* Build configuration list for PBXNativeTarget "HummlyTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				935DC7C418F8FC3700A42623 /* Debug */,

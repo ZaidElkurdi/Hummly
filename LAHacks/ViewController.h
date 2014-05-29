@@ -12,6 +12,7 @@
 #import <sqlite3.h>
 #import "SerumDB.h"
 #import "RecordViewController.h"
+#import "progressHUD.h"
 
 @interface ViewController : UIViewController<UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 {

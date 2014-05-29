@@ -21,6 +21,7 @@
 }
 -(void)stopRecording;
 -(void)stopListening;
+-(IBAction)goBack:(id)sender;
 -(IBAction)didTapRecord:(id)sender;
 -(IBAction)didTapListen:(id)sender;
 @property (retain) RDPlayer *player;

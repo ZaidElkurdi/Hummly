@@ -117,16 +117,11 @@ bool alreadyStopped = NO;
         NSString* lyrics = [results3 objectForKey:@"lyrics_body"];
         
         NSRange end = [lyrics rangeOfString:@"*"];
-        lyrics = [lyrics substringWithRange:NSMakeRange(0, end.location)];
-        [lyricsDisplay setText:lyrics];
+        //lyrics = [lyrics substringWithRange:NSMakeRange(0, end.location)];
+        //[lyricsDisplay setText:lyrics];
         
     }
 
-}
--(void)checkTennysonFirst
-{
-    NSString *myString = @"http://foo.bar/?key[]=value[]<>";
-    NSURL *myUrl = [NSURL URLWithString:[myString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
 }
 
 -(void)uploadAudio
@@ -198,6 +193,16 @@ bool alreadyStopped = NO;
 }
 
 #pragma mark - Customize the Audio Plot
+-(IBAction)goBack:(id)sender
+{
+    if(isPlaying)
+        [[self getPlayer] togglePause];
+        
+    [audioRecorder stop];
+    [songTimer invalidate];
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 -(IBAction)didTapListen:(id)sender
 {{
     if(isPlaying==false)
@@ -312,7 +317,7 @@ bool alreadyStopped = NO;
          
         //NSLog(@"Begin recording");
           
-        [self performSelector:@selector(downloadContent) withObject:nil];
+        //[self performSelector:@selector(downloadContent) withObject:nil];
             
         
         [[AVAudioSession sharedInstance] setCategory:@"AVAudioSessionCategoryPlayAndRecord" error:nil];
@@ -368,9 +373,10 @@ bool alreadyStopped = NO;
      }
      
                      completion:nil];
+                     [self uploadAudio];
     }
     
-    [self uploadAudio];
+    
 }
 
 -(void)grabImage
@@ -493,7 +499,7 @@ bool alreadyStopped = NO;
     
     NSLog(@"Preparing..");
     [self loadResults:songChosen];
-    [self performSelector:@selector(uploadAudio) withObject:nil];
+   // [self performSelector:@selector(uploadAudio) withObject:nil];
     [self performSelector:@selector(accessLyric) withObject:nil];
 
     NSLog(@"Complete.");
@@ -510,31 +516,31 @@ bool alreadyStopped = NO;
     NSString* HTMLFromURL = [[NSString alloc] initWithData:checkData encoding:NSASCIIStringEncoding];
     
     NSArray* HTMLStole = [HTMLFromURL componentsSeparatedByString: @","];
-    
-    NSLog(@"HTMLStole %@",[HTMLStole objectAtIndex:0]);
-    
-    NSString* day = [HTMLStole objectAtIndex: 0];
-    NSString* songName = [NSString alloc];
-    
-    songName = [day substringWithRange:NSMakeRange(9, [day length] - 10)];
-    
-    NSLog(@"Song Name: %@", songName);
-    
-    NSString *updatedUrl = [NSString stringWithFormat:@"http://107.170.193.94/%@",songName];
-    
-    NSLog(@"Processed URL: %@", updatedUrl);
-    
-    NSURL *urlDownload = [NSURL URLWithString:updatedUrl];
-                  
-                  
-    playerItem = [AVPlayerItem playerItemWithURL:urlDownload];
-    self.player = [AVPlayer playerWithPlayerItem:playerItem];
-    
-    
-    self.player = [AVPlayer playerWithURL:urlDownload];
-    [player play];
-                  
-    
+    if([HTMLStole count]>0)
+    {
+        NSLog(@"HTMLStole %@",[HTMLStole objectAtIndex:0]);
+        
+        NSString* day = [HTMLStole objectAtIndex: 0];
+        NSString* songName = [NSString alloc];
+        
+        songName = [day substringWithRange:NSMakeRange(9, [day length] - 10)];
+        
+        NSLog(@"Song Name: %@", songName);
+        
+        NSString *updatedUrl = [NSString stringWithFormat:@"http://107.170.193.94/%@",songName];
+        
+        NSLog(@"Processed URL: %@", updatedUrl);
+        
+        NSURL *urlDownload = [NSURL URLWithString:updatedUrl];
+                      
+                      
+        playerItem = [AVPlayerItem playerItemWithURL:urlDownload];
+        self.player = [AVPlayer playerWithPlayerItem:playerItem];
+        
+        
+        self.player = [AVPlayer playerWithURL:urlDownload];
+        [player play];
+    }
     //Song name now contains the file that everyone contains
     
 }
@@ -567,8 +573,9 @@ bool alreadyStopped = NO;
     ////NSLog(@"raw: %@",postDict);
     if([postDict count]>1)
     {
+        NSLog(@"Befor crash");
         NSDictionary *postDict2 = [postDict objectAtIndex:0];
-
+         NSLog(@"After crash");
         for(id post in postDict)
         {
             //NSLog(@"%@",[post objectForKey:@"artist_id"]);
@@ -580,11 +587,7 @@ bool alreadyStopped = NO;
         
         [self grabImage];
         
-        NSString *finalArtists = [postDict2 objectForKey:@"artist_id"];
-        
         NSArray *finalTracks = [postDict2 objectForKey:@"tracks"];
-      
-        NSMutableArray *tracks = [[NSMutableArray alloc] init];
 
         for( int x=0; x < finalTracks.count; x++)
         {
